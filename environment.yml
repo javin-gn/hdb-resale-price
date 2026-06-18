@@ -16,7 +16,6 @@ dependencies:
   - notebook
   - ipywidgets
   - lightgbm
-  - xgboost
   - pip:
       - torch>=2.2
       - torchvision>=0.17
@@ -25,3 +24,4 @@ dependencies:
       - datasets
       - textblob
       - streamlit
+      - python-dotenv

@@ -11,7 +11,7 @@ st.write("Input a flat's structural configurations and micro-location parameters
 # --- LOAD TRAINED ML ARTIFACTS ---
 @st.cache_resource
 def load_pipeline():
-    with open('hdb_model_pipeline.pkl', 'rb') as f:
+    with open('data/hdb_model_pipeline.pkl', 'rb') as f:
         return pickle.load(f)
 
 artifacts = load_pipeline()
