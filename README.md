@@ -30,7 +30,7 @@ To significantly improve model accuracy, raw data was augmented with auxiliary l
 ## 🛠️ Tech Stack
 * **Data Wrangling:** `pandas`, `numpy`
 * **Geospatial Processing:** `geopy`, `requests` (OneMap API integration)
-* **Machine Learning:** `scikit-learn`, `XGBoost`, `LightGBM`
+* **Machine Learning:** `scikit-learn`, `LightGBM`
 * **Web Application:** `fastapi`
 
 
