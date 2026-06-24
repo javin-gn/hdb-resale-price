@@ -1,0 +1,29 @@
+{
+  "hdb_flat_types": [
+    "2-ROOM FLEXI",
+    "3-ROOM",
+    "4-ROOM",
+    "5-ROOM",
+    "3GEN",
+    "EXECUTIVE",
+    "MAISONETTE"
+  ],
+  "flat_models": [
+    "STANDARD",
+    "MODEL A",
+    "NEW GENERATION",
+    "SIMPLIFIED",
+    "MODEL A2",
+    "PREMIUM APARTMENT",
+    "MAISONETTE",
+    "EXECUTIVE MAISONETTE",
+    "EXECUTIVE APARTMENT",
+    "TERRACE",
+    "MULTI GENERATION",
+    "ADJOINED FLAT",
+    "PREMIUM MAISONETTE",
+    "MODEL A-MAISONETTE",
+    "2-ROOM"
+  ]
+  
+}

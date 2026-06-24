@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDB Resale Price Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .search-container { position: relative; }
+        .suggestions-box {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .metric-card { background: #f8f9fa; border-left: 4px solid #0d6efd; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-8">
+                
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h4 class="card-title mb-0">HDB Resale Price Predictor</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="search-container mb-4">
+                            <label for="addressInput" class="form-label fw-bold">Search HDB Address</label>
+                            <input type="text" id="addressInput" class="form-control form-control-lg" placeholder="Type an address..." autocomplete="off">
+                            <div id="suggestions" class="list-group suggestions-box shadow-sm d-none"></div>
+                        </div>
+
+                        <div id="resultPanel" class="d-none">
+                            <div id="loadingIndicator" class="alert alert-info">Calculating proximity metrics, please wait...</div>
+                            
+                            <div id="dataContent" class="d-none">
+                                <h5 id="resName" class="fw-bold mb-3 text-primary"></h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Flat Type</small>
+                                            <select id="flat_type" class="form-select">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Flat Model</small>
+                                            <select id="flat_model" class="form-select">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Floor Area (Sqm)</small>
+                                            <input type="text" id="floorArea" class="form-control fw-bold" value="93">
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Storey Level</small>
+                                   
+
+                                            <select id="storeyLevel" class="form-select">
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Remaining Lease (Years)</small>
+                                            <div class="fw-bold"><span id="remainingLease">99</span></div>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Lease Commence Date (Year)</small>
+                
+                                            <div class="fw-bold"><span id="leaseCommenceDate"></span></div>
+                                        </div>
+                                    </div>
+
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Town</small>
+                                        
+                                            <div class="fw-bold"><span id="hdb_towns"></span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Street Name</small>
+                                            <div class="fw-bold"><span id="streetName"></span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Closest Primary School</small>
+                                            <div class="fw-bold"><span id="schName"></span></div>
+                                            <small class="text-secondary" id="schDist"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Closest MRT</small>
+                                            <div class="fw-bold" id="mrtName"></div>
+                                            <small class="text-secondary" id="mrtDist"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Closest Shopping Mall </small>                       
+                                            <div class="fw-bold" id="mallName"></div>
+                                            <small class="text-secondary" id="mallDist"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Closest Regional Hub</small>
+                                            <div class="fw-bold" id="hubName"></div>
+                                            <small class="text-secondary" id="hubDist"></small>
+                                        </div>
+                                    </div>
+
+                                
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">No. MRTs within 1km</small>
+                                            <div class="fw-bold"><span id="mrtWithin1km"></span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">No. MRTs within 500m</small>
+                                            <div class="fw-bold"><span id="mrtWithin500m"></span></div>
+                                        </div>
+                                    </div>
+
+
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">No. Schools within 1km</small>
+                                            <div class="fw-bold"><span id="sch1km"></span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Schools within 2km</small>
+                                            <div class="fw-bold"><span id="sch2km"></span></div>
+                                        </div>
+                                    </div>
+
+
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">No. Malls within 1km</small>
+                                            <div class="fw-bold"><span id="mallCount"></span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Malls within 500m</small>
+                                            <div class="fw-bold"><span id="mallsWithin500m"></span></div>
+                                        </div>
+                                    </div>
+
+                            
+                                </div>
+                                  <button id="predictButton" class="btn btn-primary mt-4 w-100">Predict Price</button>
+                            </div>
+
+                      
+                            <div id="resultArea" class="mt-4 alert alert-info d-none">
+                                    <h4>Predicted HDB Resale Price: <span id="predictedPrice"></span></h4>
+                                    <p>Results are trained on HDB Resale Price from Jan-2017 onwards using LIGHTGBM with 98% Accuracy.
+                                    <ul>
+                                        <li>Mean Absolute Error: $18,467.27</li>
+                                        <li>LightGBM MAPE = 3.6%</li>
+                                        <li>LightGBM RMSE = $25,877.07</li>
+                                        <li>LightGBM R² Score: 98.14%</li>
+                               </ul>        
+                                    <br/>Proximty Metrics are based on current avaliable amentites
+                                    <br/>HDB Property Information are retrieved from Jan 1937 to Dec 2025.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const addressInput = document.getElementById('addressInput');
+        const suggestionsBox = document.getElementById('suggestions');
+        const resultPanel = document.getElementById('resultPanel');
+        const dataContent = document.getElementById('dataContent');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        let debounceTimer;
+
+        document.getElementById('floorArea').addEventListener('input', function (e) {
+            // 1. Remove any character that is not a digit or a decimal point
+            let value = this.value.replace(/[^0-9.]/g, '');
+            
+            // 2. Prevent entering multiple decimal points (e.g., 92.5.5 -> 92.55)
+            const parts = value.split('.');
+            if (parts.length > 2) {
+                value = parts[0] + '.' + parts.slice(1).join('');
+            }
+            
+            this.value = value;
+        });
+        
+        async function populateDropdowns() {
+        try {
+            const response = await fetch('/api/config');
+            const config = await response.json();
+
+            // 1. Populate Flat Type
+            const typeSelect = document.getElementById('flat_type');
+            config.hdb_flat_types.forEach(item => {
+                let option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                typeSelect.appendChild(option);
+            });
+
+            // 2. Populate Flat Models (Using the list in your new JSON)
+            const modelSelect = document.getElementById('flat_model');
+            config.flat_models.forEach(item => {
+                let option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                modelSelect.appendChild(option);
+            });
+
+            
+        } catch (error) {
+            console.error("Error populating dropdowns:", error);
+        }
+    }
+        
+
+
+        // Search logic
+        addressInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            const query = addressInput.value.trim();
+            if (query.length < 3) { suggestionsBox.classList.add('d-none'); return; }
+            
+            debounceTimer = setTimeout(async () => {
+                const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                renderSuggestions(data);
+            }, 300);
+        });
+
+        function renderSuggestions(places) {
+            suggestionsBox.innerHTML = '';
+            if (!places || places.length === 0) { suggestionsBox.classList.add('d-none'); return; }
+
+            places.forEach(place => {
+                const btn = document.createElement('button');
+                btn.className = 'list-group-item list-group-item-action py-2';
+                btn.textContent = place.ADDRESS;
+                btn.onclick = () => fetchMetrics(place.ADDRESS, place.ROAD_NAME);
+                suggestionsBox.appendChild(btn);
+            });
+            suggestionsBox.classList.remove('d-none');
+        }
+
+        // Metrics fetch logic
+        async function fetchMetrics(address, roadName) {
+            suggestionsBox.classList.add('d-none');
+            addressInput.value = address;
+            resultPanel.classList.remove('d-none');
+            dataContent.classList.add('d-none');
+            loadingIndicator.classList.remove('d-none');
+
+            try {
+                const response = await fetch(`/api/calculate?address=${encodeURIComponent(address)}`);
+                const data = await response.json();
+
+                // Update UI elements - Ensure these keys match your genDS.py return
+                document.getElementById('resName').textContent = address;
+                  
+                document.getElementById('sch1km').textContent = data.primary_schools_within_1km;
+                document.getElementById('sch2km').textContent = data.primary_schools_within_2km;
+                document.getElementById('schName').textContent = data.closest_primary_school_name;
+                document.getElementById('schDist').textContent = data.dist_to_closest_primary_school_km.toFixed(2) + ' km';
+
+                document.getElementById('hubName').textContent = data.closest_regional_hub_name.replace(/_/g, ' ');
+                document.getElementById('hubDist').textContent = data.min_distance_to_regional_hub_km.toFixed(2) + ' km';
+
+                document.getElementById('mrtName').textContent = data.closest_mrt_name;
+                document.getElementById('mrtDist').textContent = data.dist_to_closest_mrt_km.toFixed(2) + ' km';
+         
+                document.getElementById('mrtWithin500m').textContent = data.mrt_within_500m;
+                document.getElementById('mrtWithin1km').textContent = data.mrt_within_1km;
+                
+                document.getElementById('mallName').textContent = data.closest_shopping_mall_name;
+                document.getElementById('mallsWithin500m').textContent = data.malls_within_500m;
+                document.getElementById('mallCount').textContent = data.malls_within_1km;
+                document.getElementById('mallDist').textContent = data.dist_to_closest_shopping_mall_km.toFixed(2) + ' km';
+                document.getElementById('streetName').textContent = roadName;
+                document.getElementById('remainingLease').textContent = data.remaining_lease;
+                document.getElementById('hdb_towns').textContent = data.town;
+                document.getElementById('leaseCommenceDate').textContent = data.lease_commence_date;
+
+
+
+
+                loadingIndicator.classList.add('d-none');
+                dataContent.classList.remove('d-none');
+                populateDropdowns();
+
+                // Directly embedded array generated from genDS.py
+                const storeyRanges = [
+                    "01 to 03", "04 to 06", "07 to 09", "10 to 12", "13 to 15",
+                    "16 to 18", "19 to 21", "22 to 24", "25 to 27", "28 to 30",
+                    "31 to 33", "34 to 36", "37 to 39", "40 to 42", "43 to 45",
+                    "46 to 48", "49 to 51"
+                ];
+
+                // Locate the select dropdown element
+                const selectEl = document.getElementById('storeyLevel');
+
+                // Dynamically loop and append options
+                storeyRanges.forEach(range => {
+                    const option = document.createElement('option');
+                    option.value = range;        // Internal form value
+                    option.textContent = range;  // Visible dropdown text
+                    selectEl.appendChild(option);
+                });
+
+
+                
+
+
+            } catch (err) {
+                loadingIndicator.textContent = err;
+            }
+        }
+
+
+        document.getElementById('predictButton').addEventListener('click', async () => {
+            // 1. Collect all values from the inputs and selects
+
+            const rawValue = document.getElementById('storeyLevel').value; // e.g., "04 to 06"
+
+            // Extract all numbers using a regular expression
+            const numbers = rawValue.match(/\d+/g);
+
+            let storey_midpoint = 0;
+
+            if (numbers && numbers.length >= 2) {
+                const low = parseFloat(numbers[0]);
+                const high = parseFloat(numbers[1]);
+                storey_midpoint = (low + high) / 2;
+            } else if (numbers && numbers.length === 1) {
+                // Fallback if it's a single floor number instead of a range
+                storey_midpoint = parseFloat(numbers[0]);
+            }
+
+            const cleanDist = (id) => parseFloat(document.getElementById(id).textContent.replace(' km', ''));
+            const payload = {
+                floor_area_sqm: parseFloat(document.getElementById('floorArea').value) || 0,
+                flat_type: document.getElementById('flat_type').value,
+                flat_models: document.getElementById('flat_model').value,
+                storey_range: document.getElementById('storeyLevel').value,
+                storey_midpoint: storey_midpoint,
+                remaining_lease: parseInt(document.getElementById('remainingLease').textContent) || 95,
+                lease_commence_date: parseInt(document.getElementById('leaseCommenceDate').textContent) || 2022,
+                town: document.getElementById('hdb_towns').textContent,
+                month: '2026-06',
+                year: '2026',
+                month_num: 6,
+                
+                street_name: document.getElementById('streetName').textContent, // .textContent
+                dist_to_closest_primary_school_km: cleanDist('schDist'),
+                min_distance_to_regional_hub_km: cleanDist('hubDist'),
+                dist_to_closest_shopping_mall_km: cleanDist('mallDist'),
+                dist_to_closest_mrt_km: cleanDist('mrtDist'),
+                closest_primary_school_name: document.getElementById('schName').textContent,
+                closest_mrt_name: document.getElementById('mrtName').textContent,
+                
+                mrt_within_1km: parseInt(document.getElementById('mrtWithin1km').textContent) || 0,
+                mrt_within_500m: parseInt(document.getElementById('mrtWithin500m').textContent) || 0,
+                sch_within_1km: parseInt(document.getElementById('sch1km').textContent) || 0,
+                sch_within_2km: parseInt(document.getElementById('sch2km').textContent) || 0,
+                mall_count: parseInt(document.getElementById('mallCount').textContent) || 0,
+                malls_within_500m: parseInt(document.getElementById('mallsWithin500m').textContent) || 0,
+                lrt_within_500m: 0,
+                dist_to_closest_lrt_km: 3.54
+            };
+
+            try {
+                const response = await fetch('/api/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                document.getElementById('predictedPrice').textContent = `$${data.predicted_price.toLocaleString()}`;
+                document.getElementById('resultArea').classList.remove('d-none');
+            } catch (err) {
+                console.error("Prediction failed:", err);
+            }
+        });
+
+       
+        
+    </script>
+</body>
+</html>
