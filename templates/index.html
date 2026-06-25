@@ -42,6 +42,22 @@
                             <div id="dataContent" class="d-none">
                                 <h5 id="resName" class="fw-bold mb-3 text-primary"></h5>
                                 <div class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Year</small>
+                                            <select id="year" class="form-select">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                     <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Month</small>
+                                            <select id="month" class="form-select">
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="p-3 border rounded metric-card">
                                             <small class="text-muted">Flat Type</small>
@@ -187,15 +203,17 @@
                       
                             <div id="resultArea" class="mt-4 alert alert-info d-none">
                                     <h4>Predicted HDB Resale Price: <span id="predictedPrice"></span></h4>
-                                    <p>Models are trained on HDB Resale Price from Jan-2017 onwards using LIGHTGBM with  <span id="model_r2"></span> Accuracy.
-                                        <ul>
-                                            <li>Mean Absolute Error: <span id="mae"></span></li>
-                                            <li>MAPE: <span id="mape"></span></li>
-                                            <li>RMSE: <span id="rmse"></span></li>
-                                        </ul>
+                                    <p>Models are trained on HDB Resale Price from Jan-2017 onwards using LIGHTGBM with  <span id="model_r2"></span> accuracy.
+                                    <br/>Proximty Metrics are based on One Map's School/Mrt and OpenStreetMap's Crowd-sourced data.
+                                    <br/>HDB Property Information are retrieved from Jan 1937 to Dec 2025.
+                                    <br/>  
+                                    <ul>
+                                        <li>Mean Absolute Error: <span id="mae"></span></li>
+                                        <li>MAPE: <span id="mape"></span></li>
+                                        <li>RMSE: <span id="rmse"></span></li>
+                                    </ul>
               
-                                    <br/>Proximty Metrics are based on current avaliable amentites
-                                    <br/>HDB Property Information are retrieved from Jan 1937 to Dec 2025.</p>
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -226,6 +244,43 @@
         const dataContent = document.getElementById('dataContent');
         const loadingIndicator = document.getElementById('loadingIndicator');
         let debounceTimer;
+
+
+        const yearDropdown = document.getElementById('year');
+        const monthDropdown = document.getElementById('month');
+        
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth() + 1; // 1-12
+
+        // 1. Populate Year Dropdown (Current to Current + 99)
+        for (let i = 0; i <= 99; i++) {
+            const year = currentYear + i;
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearDropdown.appendChild(option);
+        }
+
+        // 2. Logic to update months based on year
+        function populateMonths(selectedYear) {
+            monthDropdown.innerHTML = ''; // Clear current options
+            
+            // If current year, start from current month; otherwise, start from 01
+            const startMonth = (parseInt(selectedYear) === currentYear) ? currentMonth : 1;
+
+            for (let i = startMonth; i <= 12; i++) {
+                const month = i.toString().padStart(2, '0');
+                const option = document.createElement('option');
+                option.value = month;
+                option.textContent = month;
+                monthDropdown.appendChild(option);
+            }
+        }
+
+        // 3. Event Listener for Year Change
+        yearDropdown.addEventListener('change', (e) => {
+            populateMonths(e.target.value);
+        });
 
         document.getElementById('floorArea').addEventListener('input', function (e) {
             // 1. Remove any character that is not a digit or a decimal point
@@ -262,6 +317,9 @@
                 option.textContent = item;
                 modelSelect.appendChild(option);
             });
+
+            // 4. Initial call to set months for the current year
+            populateMonths(currentYear);
 
             
         } catch (error) {
@@ -401,9 +459,9 @@
                 remaining_lease: parseInt(document.getElementById('remainingLease').textContent) || 95,
                 lease_commence_date: parseInt(document.getElementById('leaseCommenceDate').textContent) || 2022,
                 town: document.getElementById('hdb_towns').textContent,
-                month: '2026-06',
-                year: '2026',
-                month_num: 6,
+                month: document.getElementById('year').value + "-" + document.getElementById('month').value,
+                year: document.getElementById('year').value,
+                month_num: document.getElementById('month').value,
                 
                 street_name: document.getElementById('streetName').textContent, // .textContent
                 dist_to_closest_primary_school_km: cleanDist('schDist'),
