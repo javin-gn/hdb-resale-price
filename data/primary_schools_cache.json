@@ -1,123 +1,218 @@
 [
     {
-        "school_name": "Gongshang Primary School",
-        "sch_x": 40886.8508355999,
-        "sch_y": 37702.2195482217
-    },
-    {
         "school_name": "Henry Park Primary School",
-        "sch_x": 22544.2873791968,
+        "sch_x": 22544.28737919684,
         "sch_y": 33216.9645254761
     },
     {
         "school_name": "Holy Innocents' Primary School",
-        "sch_x": 34765.9036816582,
-        "sch_y": 38774.6943912152
+        "sch_x": 34765.90368165821,
+        "sch_y": 38774.69439121522
     },
     {
         "school_name": "Nan Chiau Primary School",
-        "sch_x": 34439.3196740765,
-        "sch_y": 41569.2687405795
+        "sch_x": 34439.31967407651,
+        "sch_y": 41569.26874057949
     },
     {
         "school_name": "Nan Hua Primary School",
-        "sch_x": 19962.2298404071,
-        "sch_y": 33496.2443055101
+        "sch_x": 19962.22984040715,
+        "sch_y": 33496.24430551007
     },
     {
         "school_name": "Nanyang Primary School",
-        "sch_x": 25154.4872114761,
+        "sch_x": 25154.48721147608,
         "sch_y": 33678.1373927556
     },
     {
+        "school_name": "Pei Hwa Presbyterian Primary School",
+        "sch_x": 21632.89874554798,
+        "sch_y": 35581.06310048513
+    },
+    {
+        "school_name": "Raffles Girls' Primary School",
+        "sch_x": 25009.01465072855,
+        "sch_y": 34624.30176040158
+    },
+    {
         "school_name": "River Valley Primary School",
-        "sch_x": 28277.8483209386,
-        "sch_y": 30734.1542524323
+        "sch_x": 28277.84832093865,
+        "sch_y": 30734.15425243229
     },
     {
         "school_name": "Rulang Primary School",
         "sch_x": 15217.2735802168,
-        "sch_y": 36541.3390983045
+        "sch_y": 36541.33909830451
     },
     {
         "school_name": "Saint Hilda'S Primary School",
-        "sch_x": 39539.3839146122,
-        "sch_y": 36833.9711756017
-    },
-    {
-        "school_name": "Admiralty Primary School",
-        "sch_x": 24296.6250855923,
-        "sch_y": 47144.7700594738
+        "sch_x": 39539.38391461223,
+        "sch_y": 36833.97117560171
     },
     {
         "school_name": "Alexandra Primary School",
-        "sch_x": 27010.1854815315,
-        "sch_y": 30414.7169698272
+        "sch_x": 27010.18548153155,
+        "sch_y": 30414.71696982719
     },
     {
-        "school_name": "Northland Primary School",
-        "sch_x": 28846.8654693784,
-        "sch_y": 44749.1496797893
+        "school_name": "Bukit Timah Primary School",
+        "sch_x": 20600.383664391,
+        "sch_y": 35497.40726663731
     },
     {
-        "school_name": "Pei Hwa Presbyterian Primary School",
-        "sch_x": 21632.898745548,
-        "sch_y": 35581.0631004851
+        "school_name": "Gongshang Primary School",
+        "sch_x": 40886.85083559994,
+        "sch_y": 37702.21954822168
+    },
+    {
+        "school_name": "Keming Primary School",
+        "sch_x": 19445.30316551309,
+        "sch_y": 36407.35614310391
+    },
+    {
+        "school_name": "Nanyang Primary School",
+        "sch_x": 25011.80296765734,
+        "sch_y": 33707.77195837721
     },
     {
         "school_name": "Princess Elizabeth Primary School",
-        "sch_x": 17728.1546840398,
-        "sch_y": 36813.7803722396
+        "sch_x": 17728.15468403976,
+        "sch_y": 36813.78037223965
     },
     {
         "school_name": "Qifa Primary School",
-        "sch_x": 19477.8961843997,
-        "sch_y": 32838.2868056744
-    },
-    {
-        "school_name": "Raffles Girls' Primary School",
-        "sch_x": 25009.0146507286,
-        "sch_y": 34624.3017604016
+        "sch_x": 19477.89618439972,
+        "sch_y": 32838.28680567443
     },
     {
         "school_name": "South View Primary School",
-        "sch_x": 18313.2418920035,
-        "sch_y": 40403.3706761971
+        "sch_x": 18313.24189200345,
+        "sch_y": 40403.37067619711
     },
     {
         "school_name": "Temasek Primary School",
-        "sch_x": 40494.7969370941,
-        "sch_y": 33331.1191061512
+        "sch_x": 40494.79693709407,
+        "sch_y": 33331.11910615116
     },
     {
-        "school_name": "Yangzheng Primary School",
-        "sch_x": 31925.931594234,
-        "sch_y": 36751.9403087255
+        "school_name": "Admiralty Primary School",
+        "sch_x": 24296.62508559227,
+        "sch_y": 47144.77005947381
     },
     {
         "school_name": "Anderson Primary School",
         "sch_x": 28898.4776482461,
-        "sch_y": 40690.4297215287
+        "sch_y": 40690.42972152866
     },
     {
-        "school_name": "Angsana Primary School",
-        "sch_x": 39754.5222957945,
-        "sch_y": 38406.3864220977
+        "school_name": "Bedok Green Primary School",
+        "sch_x": 39636.53248917125,
+        "sch_y": 33965.68938247114
     },
     {
-        "school_name": "Canberra Primary School",
-        "sch_x": 26057.0121687725,
-        "sch_y": 48097.4040875677
+        "school_name": "Bukit Panjang Primary School",
+        "sch_x": 20883.85304792691,
+        "sch_y": 39513.7297099214
     },
     {
-        "school_name": "Nanyang Primary School",
-        "sch_x": 25011.8029676573,
-        "sch_y": 33707.7719583772
+        "school_name": "Chongzheng Primary School",
+        "sch_x": 41141.09405941796,
+        "sch_y": 36980.19595628045
+    },
+    {
+        "school_name": "Kuo Chuan Presbyterian Primary School",
+        "sch_x": 30360.51457798481,
+        "sch_y": 36877.58821791038
     },
     {
         "school_name": "Ngee Ann Primary School",
-        "sch_x": 37364.5041869488,
-        "sch_y": 31984.0027186833
+        "sch_x": 37364.50418694876,
+        "sch_y": 31984.00271868333
+    },
+    {
+        "school_name": "Queenstown Primary School",
+        "sch_x": 25132.02933613304,
+        "sch_y": 30885.69666383043
+    },
+    {
+        "school_name": "Tanjong Katong Primary School",
+        "sch_x": 35439.13210570998,
+        "sch_y": 31954.39636282064
+    },
+    {
+        "school_name": "Yu Neng Primary School",
+        "sch_x": 38998.33523062989,
+        "sch_y": 35120.43932469934
+    },
+    {
+        "school_name": "Angsana Primary School",
+        "sch_x": 39754.52229579445,
+        "sch_y": 38406.38642209768
+    },
+    {
+        "school_name": "Canossa Catholic Primary School",
+        "sch_x": 33443.11893933266,
+        "sch_y": 34319.15096610971
+    },
+    {
+        "school_name": "Fuhua Primary School",
+        "sch_x": 17181.01341815107,
+        "sch_y": 35409.54672556184
+    },
+    {
+        "school_name": "Northland Primary School",
+        "sch_x": 28846.86546937842,
+        "sch_y": 44749.14967978932
+    },
+    {
+        "school_name": "Northoaks Primary School",
+        "sch_x": 25872.07675567921,
+        "sch_y": 48689.8195981402
+    },
+    {
+        "school_name": "Peiying Primary School",
+        "sch_x": 27677.1059972411,
+        "sch_y": 44335.98492202163
+    },
+    {
+        "school_name": "Xinmin Primary School",
+        "sch_x": 33537.92610374279,
+        "sch_y": 39267.51867067441
+    },
+    {
+        "school_name": "Yangzheng Primary School",
+        "sch_x": 31925.93159423396,
+        "sch_y": 36751.94030872546
+    },
+    {
+        "school_name": "Yumin Primary School",
+        "sch_x": 41036.74473153241,
+        "sch_y": 37044.80926326476
+    },
+    {
+        "school_name": "Frontier Primary School",
+        "sch_x": 13129.84674442373,
+        "sch_y": 35399.67912072502
+    },
+    {
+        "school_name": "Gan Eng Seng Primary School",
+        "sch_x": 26022.21709353477,
+        "sch_y": 29780.10807156004
+    },
+    {
+        "school_name": "Jurong Primary School",
+        "sch_x": 16853.07718839776,
+        "sch_y": 36729.23438725621
+    },
+    {
+        "school_name": "Pasir Ris Primary School",
+        "sch_x": 42410.5136828674,
+        "sch_y": 39380.99276653863
+    },
+    {
+        "school_name": "Radin Mas Primary School",
+        "sch_x": 26983.8685896052,
+        "sch_y": 28603.92639917135
     },
     {
         "school_name": "Saint Anthony'S Primary School",
@@ -126,473 +221,483 @@
     },
     {
         "school_name": "Shuqun Primary School",
-        "sch_x": 15558.4638573611,
-        "sch_y": 36642.4359194618
+        "sch_x": 15558.46385736112,
+        "sch_y": 36642.43591946177
     },
     {
-        "school_name": "Tanjong Katong Primary School",
-        "sch_x": 35439.13210571,
-        "sch_y": 31954.3963628206
-    },
-    {
-        "school_name": "Wellington Primary School",
-        "sch_x": 26774.2225156762,
-        "sch_y": 48171.4790451899
-    },
-    {
-        "school_name": "Yu Neng Primary School",
-        "sch_x": 38998.3352306299,
-        "sch_y": 35120.4393246993
-    },
-    {
-        "school_name": "Bukit Panjang Primary School",
-        "sch_x": 20883.8530479269,
-        "sch_y": 39513.7297099214
-    },
-    {
-        "school_name": "Chua Chu Kang Primary School",
-        "sch_x": 17818.7829598142,
-        "sch_y": 39971.2903354876
-    },
-    {
-        "school_name": "Frontier Primary School",
-        "sch_x": 13129.8467444237,
-        "sch_y": 35399.679120725
-    },
-    {
-        "school_name": "Huamin Primary School",
-        "sch_x": 29215.4177919272,
-        "sch_y": 45412.9266837817
-    },
-    {
-        "school_name": "Keming Primary School",
-        "sch_x": 19445.3031655131,
-        "sch_y": 36407.3561431039
-    },
-    {
-        "school_name": "Kuo Chuan Presbyterian Primary School",
-        "sch_x": 30360.5145779848,
-        "sch_y": 36877.5882179104
-    },
-    {
-        "school_name": "Pasir Ris Primary School",
-        "sch_x": 42410.5136828674,
-        "sch_y": 39380.9927665386
-    },
-    {
-        "school_name": "Queenstown Primary School",
-        "sch_x": 25132.029336133,
-        "sch_y": 30885.6966638304
-    },
-    {
-        "school_name": "Xinmin Primary School",
-        "sch_x": 33537.9261037428,
-        "sch_y": 39267.5186706744
-    },
-    {
-        "school_name": "Bukit Timah Primary School",
-        "sch_x": 20600.383664391,
-        "sch_y": 35497.4072666373
-    },
-    {
-        "school_name": "Chongzheng Primary School",
-        "sch_x": 41141.094059418,
-        "sch_y": 36980.1959562805
-    },
-    {
-        "school_name": "Concord Primary School",
-        "sch_x": 17194.7500582738,
-        "sch_y": 40220.0161901619
-    },
-    {
-        "school_name": "Dazhong Primary School",
-        "sch_x": 18557.5702323942,
-        "sch_y": 37916.8722190689
-    },
-    {
-        "school_name": "Elias Park Primary School",
-        "sch_x": 40443.0313903531,
-        "sch_y": 39612.4369040336
-    },
-    {
-        "school_name": "Horizon Primary School",
-        "sch_x": 36912.5247354358,
-        "sch_y": 42380.7999361996
-    },
-    {
-        "school_name": "Junyuan Primary School",
-        "sch_x": 39785.8491141181,
-        "sch_y": 36666.4713015798
-    },
-    {
-        "school_name": "Naval Base Primary School",
-        "sch_x": 28609.3447617413,
-        "sch_y": 44233.5083953608
-    },
-    {
-        "school_name": "Saint Gabriel'S Primary School",
-        "sch_x": 31254.358949963,
-        "sch_y": 36843.2848763354
-    },
-    {
-        "school_name": "Valour Primary School",
-        "sch_x": 35318.1306347065,
-        "sch_y": 43186.3631934691
+        "school_name": "Zhenghua Primary School",
+        "sch_x": 20877.03954318352,
+        "sch_y": 40169.11691311374
     },
     {
         "school_name": "Beacon Primary School",
-        "sch_x": 21357.64699852,
-        "sch_y": 40655.688190354
+        "sch_x": 21357.64699852001,
+        "sch_y": 40655.68819035403
     },
     {
-        "school_name": "Bedok Green Primary School",
-        "sch_x": 39636.5324891713,
-        "sch_y": 33965.6893824711
-    },
-    {
-        "school_name": "Canossa Catholic Primary School",
-        "sch_x": 33443.1189393327,
-        "sch_y": 34319.1509661097
+        "school_name": "Canberra Primary School",
+        "sch_x": 26057.01216877252,
+        "sch_y": 48097.4040875677
     },
     {
         "school_name": "Cedar Primary School",
         "sch_x": 32707.8191135684,
-        "sch_y": 35308.1476785857
+        "sch_y": 35308.14767858572
     },
     {
-        "school_name": "Clementi Primary School",
-        "sch_x": 20190.2983410172,
-        "sch_y": 33038.6364921555
-    },
-    {
-        "school_name": "Compassvale Primary School",
-        "sch_x": 35177.2900137762,
-        "sch_y": 41816.2900234833
-    },
-    {
-        "school_name": "Northshore Primary School",
-        "sch_x": 35912.2240812248,
-        "sch_y": 44436.1362924408
-    },
-    {
-        "school_name": "Radin Mas Primary School",
-        "sch_x": 26983.8685896052,
-        "sch_y": 28603.9263991714
-    },
-    {
-        "school_name": "Sembawang Primary School",
-        "sch_x": 26631.5973549616,
-        "sch_y": 47411.4503978007
-    },
-    {
-        "school_name": "Sengkang Green Primary School",
-        "sch_x": 32662.8166451091,
-        "sch_y": 41639.3984784018
-    },
-    {
-        "school_name": "Bendemeer Primary School",
-        "sch_x": 31570.8074810533,
-        "sch_y": 33784.8514976725
-    },
-    {
-        "school_name": "Fengshan Primary School",
-        "sch_x": 38949.9907227494,
-        "sch_y": 34668.9245775398
-    },
-    {
-        "school_name": "Jurong Primary School",
-        "sch_x": 16853.0771883978,
-        "sch_y": 36729.2343872562
-    },
-    {
-        "school_name": "Kuo Chuan Presbyterian Primary School",
-        "sch_x": 30414.9291181238,
-        "sch_y": 36835.1167885177
-    },
-    {
-        "school_name": "North View Primary School",
-        "sch_x": 29655.0564113865,
-        "sch_y": 45473.7925722394
-    },
-    {
-        "school_name": "Opera Estate Primary School",
-        "sch_x": 38068.3909911709,
-        "sch_y": 33509.3080883529
-    },
-    {
-        "school_name": "Westwood Primary School",
-        "sch_x": 13222.5567915821,
-        "sch_y": 36590.7433790993
-    },
-    {
-        "school_name": "Xishan Primary School",
-        "sch_x": 28493.7422212623,
-        "sch_y": 46131.5536631271
-    },
-    {
-        "school_name": "Yew Tee Primary School",
-        "sch_x": 18837.4775282657,
-        "sch_y": 42072.9649468437
-    },
-    {
-        "school_name": "Zhangde Primary School",
-        "sch_x": 27180.1468993286,
-        "sch_y": 29627.1075303145
-    },
-    {
-        "school_name": "Bukit View Primary School",
-        "sch_x": 19135.5884738322,
-        "sch_y": 36444.0823157039
-    },
-    {
-        "school_name": "Cantonment Primary School",
-        "sch_x": 28739.4305021614,
-        "sch_y": 28660.7930697445
-    },
-    {
-        "school_name": "Fern Green Primary School",
-        "sch_x": 33231.7764054528,
-        "sch_y": 42128.5479522273
-    },
-    {
-        "school_name": "Fernvale Primary School",
-        "sch_x": 32576.8849010281,
-        "sch_y": 41358.1178030372
-    },
-    {
-        "school_name": "Pei Tong Primary School",
-        "sch_x": 20686.1367668323,
-        "sch_y": 33164.0863881912
-    },
-    {
-        "school_name": "Punggol Primary School",
-        "sch_x": 34809.5016854042,
-        "sch_y": 39975.1199013237
-    },
-    {
-        "school_name": "Riverside Primary School",
-        "sch_x": 24496.0361921666,
-        "sch_y": 47632.6851746552
-    },
-    {
-        "school_name": "Rivervale Primary School",
-        "sch_x": 35928.1770641869,
-        "sch_y": 41701.8312798403
-    },
-    {
-        "school_name": "Springdale Primary School",
-        "sch_x": 34299.680692099,
-        "sch_y": 41841.1254489459
-    },
-    {
-        "school_name": "Waterway Primary School",
-        "sch_x": 37493.0794339096,
-        "sch_y": 42300.9820826855
+        "school_name": "Chua Chu Kang Primary School",
+        "sch_x": 17818.78295981418,
+        "sch_y": 39971.29033548757
     },
     {
         "school_name": "Damai Primary School",
-        "sch_x": 37788.0885467725,
-        "sch_y": 35294.1912929006
+        "sch_x": 37788.08854677249,
+        "sch_y": 35294.19129290059
+    },
+    {
+        "school_name": "Edgefield Primary School",
+        "sch_x": 36294.07461215183,
+        "sch_y": 42440.64052697644
+    },
+    {
+        "school_name": "Elias Park Primary School",
+        "sch_x": 40443.03139035311,
+        "sch_y": 39612.43690403365
+    },
+    {
+        "school_name": "Fernvale Primary School",
+        "sch_x": 32576.88490102813,
+        "sch_y": 41358.11780303717
+    },
+    {
+        "school_name": "Opera Estate Primary School",
+        "sch_x": 38068.39099117089,
+        "sch_y": 33509.3080883529
+    },
+    {
+        "school_name": "Unity Primary School",
+        "sch_x": 18374.17757843062,
+        "sch_y": 42746.25212105177
     },
     {
         "school_name": "Hougang Primary School",
-        "sch_x": 33284.6782123018,
-        "sch_y": 39929.5216681417
-    },
-    {
-        "school_name": "Innova Primary School",
-        "sch_x": 23246.8971469188,
-        "sch_y": 45633.4723797198
-    },
-    {
-        "school_name": "Jurong West Primary School",
-        "sch_x": 13029.9245329089,
-        "sch_y": 35705.1165225543
+        "sch_x": 33284.67821230181,
+        "sch_y": 39929.52166814171
     },
     {
         "school_name": "Mayflower Primary School",
-        "sch_x": 29105.5559377754,
+        "sch_x": 29105.55593777541,
         "sch_y": 39818.2753564138
     },
     {
-        "school_name": "Peiying Primary School",
-        "sch_x": 27677.1059972411,
-        "sch_y": 44335.9849220216
+        "school_name": "Northshore Primary School",
+        "sch_x": 35912.22408122476,
+        "sch_y": 44436.13629244082
     },
     {
-        "school_name": "Punggol View Primary School",
-        "sch_x": 35994.5599585725,
-        "sch_y": 42999.5250743832
+        "school_name": "Pei Tong Primary School",
+        "sch_x": 20686.13676683232,
+        "sch_y": 33164.08638819121
     },
     {
-        "school_name": "Yumin Primary School",
-        "sch_x": 41036.7447315324,
-        "sch_y": 37044.8092632648
+        "school_name": "Rivervale Primary School",
+        "sch_x": 35928.17706418689,
+        "sch_y": 41701.83127984032
     },
     {
-        "school_name": "Zhonghua Primary School",
-        "sch_x": 32055.7766133798,
-        "sch_y": 38029.9161160812
+        "school_name": "Springdale Primary School",
+        "sch_x": 34299.68069209903,
+        "sch_y": 41841.12544894591
     },
     {
-        "school_name": "Afterschool @ River Valley Primary School",
-        "sch_x": 28300.5267893467,
-        "sch_y": 30729.7527125087
+        "school_name": "Valour Primary School",
+        "sch_x": 35318.13063470647,
+        "sch_y": 43186.36319346912
     },
     {
-        "school_name": "Endeavour Primary School",
-        "sch_x": 26232.5507349819,
-        "sch_y": 48405.7003912628
+        "school_name": "Wellington Primary School",
+        "sch_x": 26774.22251567617,
+        "sch_y": 48171.47904518992
+    },
+    {
+        "school_name": "West View Primary School",
+        "sch_x": 19867.33217472583,
+        "sch_y": 40625.4829824362
+    },
+    {
+        "school_name": "Yishun Primary School",
+        "sch_x": 28085.52661177795,
+        "sch_y": 46122.06150236167
+    },
+    {
+        "school_name": "Ang Mo Kio Primary School",
+        "sch_x": 28702.48046755511,
+        "sch_y": 39038.16026967019
+    },
+    {
+        "school_name": "Dazhong Primary School",
+        "sch_x": 18557.57023239415,
+        "sch_y": 37916.87221906893
     },
     {
         "school_name": "Farrer Park Primary School",
         "sch_x": 29941.7768185176,
-        "sch_y": 32740.5849021059
+        "sch_y": 32740.58490210585
     },
     {
-        "school_name": "Lakeside Primary School",
-        "sch_x": 15176.2291954523,
-        "sch_y": 35597.6143301465
-    },
-    {
-        "school_name": "Marsiling Primary School",
-        "sch_x": 21359.011448958,
-        "sch_y": 46172.2397052329
-    },
-    {
-        "school_name": "Palm View Primary School",
-        "sch_x": 34458.6783197625,
-        "sch_y": 40635.7654705234
-    },
-    {
-        "school_name": "Tampines Primary School",
-        "sch_x": 40318.132583499,
-        "sch_y": 36877.4678724073
-    },
-    {
-        "school_name": "Woodlands Primary School",
-        "sch_x": 23354.0808293354,
-        "sch_y": 46472.0799515136
-    },
-    {
-        "school_name": "Yishun Primary School",
-        "sch_x": 28085.526611778,
-        "sch_y": 46122.0615023617
-    },
-    {
-        "school_name": "Edgefield Primary School",
-        "sch_x": 36294.0746121518,
-        "sch_y": 42440.6405269764
-    },
-    {
-        "school_name": "Fuhua Primary School",
-        "sch_x": 17181.0134181511,
-        "sch_y": 35409.5467255618
-    },
-    {
-        "school_name": "Gan Eng Seng Primary School",
-        "sch_x": 26022.2170935348,
-        "sch_y": 29780.10807156
-    },
-    {
-        "school_name": "Jiemin Primary School",
-        "sch_x": 27678.0421859771,
-        "sch_y": 45492.0549418237
+        "school_name": "Horizon Primary School",
+        "sch_x": 36912.52473543584,
+        "sch_y": 42380.79993619956
     },
     {
         "school_name": "Jing Shan Primary School",
-        "sch_x": 30093.7277568905,
-        "sch_y": 39360.0670565329
+        "sch_x": 30093.72775689047,
+        "sch_y": 39360.06705653295
     },
     {
-        "school_name": "New Town Primary School",
-        "sch_x": 24303.310102744,
-        "sch_y": 31333.338985689
+        "school_name": "Seng Kang Primary School",
+        "sch_x": 35394.85803627875,
+        "sch_y": 41269.18286961131
     },
     {
-        "school_name": "Oasis Primary School",
-        "sch_x": 36658.2990973163,
-        "sch_y": 42941.8599344008
+        "school_name": "Teck Ghee Primary School",
+        "sch_x": 29962.96029067319,
+        "sch_y": 38625.28590293601
     },
     {
-        "school_name": "Punggol Cove Primary School",
-        "sch_x": 35287.5991076548,
-        "sch_y": 43713.0898242556
+        "school_name": "White Sands Primary School",
+        "sch_x": 42200.40405476838,
+        "sch_y": 38622.26367503032
     },
     {
-        "school_name": "Tampines North Primary School",
-        "sch_x": 40843.482626386,
-        "sch_y": 38060.3925251346
+        "school_name": "Xishan Primary School",
+        "sch_x": 28493.74222126231,
+        "sch_y": 46131.55366312712
     },
     {
         "school_name": "Casuarina Primary School",
-        "sch_x": 41766.4977676729,
-        "sch_y": 39385.5958609674
+        "sch_x": 41766.49776767287,
+        "sch_y": 39385.59586096741
     },
     {
         "school_name": "Changkat Primary School",
-        "sch_x": 41216.8906296864,
-        "sch_y": 35821.8419446945
+        "sch_x": 41216.89062968642,
+        "sch_y": 35821.84194469452
     },
     {
-        "school_name": "Corporation Primary School",
-        "sch_x": 14008.2263862854,
-        "sch_y": 37012.3505131546
+        "school_name": "Clementi Primary School",
+        "sch_x": 20190.29834101722,
+        "sch_y": 33038.63649215549
     },
     {
-        "school_name": "Kranji Primary School",
-        "sch_x": 18434.245239621,
-        "sch_y": 41718.5305804759
+        "school_name": "Fengshan Primary School",
+        "sch_x": 38949.99072274938,
+        "sch_y": 34668.92457753979
+    },
+    {
+        "school_name": "Lianhua Primary School",
+        "sch_x": 19191.19799396954,
+        "sch_y": 37370.8497486636
     },
     {
         "school_name": "Meridian Primary School",
         "sch_x": 39303.5458344575,
-        "sch_y": 39724.6885971073
+        "sch_y": 39724.68859710731
+    },
+    {
+        "school_name": "Tampines North Primary School",
+        "sch_x": 40843.48262638599,
+        "sch_y": 38060.39252513461
+    },
+    {
+        "school_name": "Telok Kurau Primary School",
+        "sch_x": 36637.79729042202,
+        "sch_y": 34805.94041497633
+    },
+    {
+        "school_name": "Zhangde Primary School",
+        "sch_x": 27180.14689932857,
+        "sch_y": 29627.10753031448
+    },
+    {
+        "school_name": "Zhonghua Primary School",
+        "sch_x": 32055.77661337983,
+        "sch_y": 38029.91611608118
+    },
+    {
+        "school_name": "Cantonment Primary School",
+        "sch_x": 28739.43050216138,
+        "sch_y": 28660.79306974448
+    },
+    {
+        "school_name": "Concord Primary School",
+        "sch_x": 17194.75005827378,
+        "sch_y": 40220.01619016193
+    },
+    {
+        "school_name": "East Spring Primary School",
+        "sch_x": 42284.83402256854,
+        "sch_y": 37198.81848506816
+    },
+    {
+        "school_name": "First Toa Payoh Primary School",
+        "sch_x": 30471.88171950262,
+        "sch_y": 35831.63445466198
+    },
+    {
+        "school_name": "Innova Primary School",
+        "sch_x": 23246.89714691881,
+        "sch_y": 45633.47237971984
+    },
+    {
+        "school_name": "Naval Base Primary School",
+        "sch_x": 28609.34476174135,
+        "sch_y": 44233.50839536078
+    },
+    {
+        "school_name": "Punggol Cove Primary School",
+        "sch_x": 35287.59910765477,
+        "sch_y": 43713.08982425556
+    },
+    {
+        "school_name": "Qihua Primary School",
+        "sch_x": 22994.55511569511,
+        "sch_y": 47078.57745990157
+    },
+    {
+        "school_name": "Riverside Primary School",
+        "sch_x": 24496.03619216662,
+        "sch_y": 47632.68517465517
+    },
+    {
+        "school_name": "Saint Gabriel'S Primary School",
+        "sch_x": 31254.358949963,
+        "sch_y": 36843.28487633541
+    },
+    {
+        "school_name": "Afterschool @ Bukit Timah Primary School",
+        "sch_x": 20603.34798964486,
+        "sch_y": 35547.19961325079
+    },
+    {
+        "school_name": "Bendemeer Primary School",
+        "sch_x": 31570.80748105329,
+        "sch_y": 33784.8514976725
+    },
+    {
+        "school_name": "Blangah Rise Primary School",
+        "sch_x": 25252.19389738608,
+        "sch_y": 28732.45261199959
+    },
+    {
+        "school_name": "Corporation Primary School",
+        "sch_x": 14008.22638628539,
+        "sch_y": 37012.35051315464
+    },
+    {
+        "school_name": "Fern Green Primary School",
+        "sch_x": 33231.77640545275,
+        "sch_y": 42128.54795222729
+    },
+    {
+        "school_name": "Greendale Primary School",
+        "sch_x": 36793.43332554493,
+        "sch_y": 42041.54245142452
+    },
+    {
+        "school_name": "Greenridge Primary School",
+        "sch_x": 20708.0073222192,
+        "sch_y": 40870.20504875854
+    },
+    {
+        "school_name": "Jiemin Primary School",
+        "sch_x": 27678.0421859771,
+        "sch_y": 45492.05494182371
+    },
+    {
+        "school_name": "Kranji Primary School",
+        "sch_x": 18434.24523962103,
+        "sch_y": 41718.53058047593
+    },
+    {
+        "school_name": "Townsville Primary School",
+        "sch_x": 30282.24229852296,
+        "sch_y": 38011.02453565225
+    },
+    {
+        "school_name": "Ahmad Ibrahim Primary School",
+        "sch_x": 27958.13714334741,
+        "sch_y": 46096.26276804879
+    },
+    {
+        "school_name": "Junyuan Primary School",
+        "sch_x": 39785.84911411814,
+        "sch_y": 36666.47130157985
+    },
+    {
+        "school_name": "Lakeside Primary School",
+        "sch_x": 15176.2291954523,
+        "sch_y": 35597.61433014646
+    },
+    {
+        "school_name": "New Town Primary School",
+        "sch_x": 24303.31010274403,
+        "sch_y": 31333.33898568898
+    },
+    {
+        "school_name": "Punggol View Primary School",
+        "sch_x": 35994.5599585725,
+        "sch_y": 42999.52507438324
+    },
+    {
+        "school_name": "Sengkang Green Primary School",
+        "sch_x": 32662.81664510909,
+        "sch_y": 41639.39847840182
+    },
+    {
+        "school_name": "The Japanese Primary School",
+        "sch_x": 42720.3882500371,
+        "sch_y": 37369.78458804823
+    },
+    {
+        "school_name": "Woodgrove Primary School",
+        "sch_x": 23246.56050640438,
+        "sch_y": 46090.85424257442
+    },
+    {
+        "school_name": "Xinghua Primary School",
+        "sch_x": 34360.61483485997,
+        "sch_y": 37776.26190722734
+    },
+    {
+        "school_name": "Yew Tee Primary School",
+        "sch_x": 18837.47752826568,
+        "sch_y": 42072.96494684368
+    },
+    {
+        "school_name": "Afterschool @ River Valley Primary School",
+        "sch_x": 28300.52678934671,
+        "sch_y": 30729.75271250866
+    },
+    {
+        "school_name": "Fuchun Primary School",
+        "sch_x": 21865.34118168149,
+        "sch_y": 45800.79088798165
+    },
+    {
+        "school_name": "Marsiling Primary School",
+        "sch_x": 21359.01144895796,
+        "sch_y": 46172.2397052329
+    },
+    {
+        "school_name": "North View Primary School",
+        "sch_x": 29655.05641138647,
+        "sch_y": 45473.79257223941
+    },
+    {
+        "school_name": "Oasis Primary School",
+        "sch_x": 36658.29909731634,
+        "sch_y": 42941.85993440077
+    },
+    {
+        "school_name": "Palm View Primary School",
+        "sch_x": 34458.67831976246,
+        "sch_y": 40635.76547052339
+    },
+    {
+        "school_name": "Punggol Primary School",
+        "sch_x": 34809.50168540422,
+        "sch_y": 39975.11990132369
+    },
+    {
+        "school_name": "Sembawang Primary School",
+        "sch_x": 26631.59735496156,
+        "sch_y": 47411.45039780065
+    },
+    {
+        "school_name": "Westwood Primary School",
+        "sch_x": 13222.55679158214,
+        "sch_y": 36590.74337909929
+    },
+    {
+        "school_name": "Yio Chu Kang Primary School",
+        "sch_x": 33823.13156802021,
+        "sch_y": 39990.3703038469
+    },
+    {
+        "school_name": "Afterschool @ Punggol Primary School",
+        "sch_x": 34827.33167684078,
+        "sch_y": 40020.02635973878
+    },
+    {
+        "school_name": "Boon Lay Garden Primary School",
+        "sch_x": 14641.1027754331,
+        "sch_y": 36147.70269880444
+    },
+    {
+        "school_name": "Bukit View Primary School",
+        "sch_x": 19135.58847383223,
+        "sch_y": 36444.08231570385
+    },
+    {
+        "school_name": "Huamin Primary School",
+        "sch_x": 29215.41779192723,
+        "sch_y": 45412.92668378167
+    },
+    {
+        "school_name": "Kuo Chuan Presbyterian Primary School",
+        "sch_x": 30414.92911812384,
+        "sch_y": 36835.11678851768
+    },
+    {
+        "school_name": "North Spring Primary School",
+        "sch_x": 35777.20057328139,
+        "sch_y": 40999.83988702483
+    },
+    {
+        "school_name": "Teck Whye Primary School",
+        "sch_x": 19094.04333554581,
+        "sch_y": 40622.64938460477
+    },
+    {
+        "school_name": "Waterway Primary School",
+        "sch_x": 37493.07943390962,
+        "sch_y": 42300.98208268546
+    },
+    {
+        "school_name": "West Spring Primary School",
+        "sch_x": 20530.09719895013,
+        "sch_y": 41262.99893893115
+    },
+    {
+        "school_name": "Yuhua Primary School",
+        "sch_x": 17737.71301061753,
+        "sch_y": 36105.9662365932
+    },
+    {
+        "school_name": "Anchor Green Primary School",
+        "sch_x": 33992.44594712928,
+        "sch_y": 41365.63294991106
+    },
+    {
+        "school_name": "Endeavour Primary School",
+        "sch_x": 26232.55073498189,
+        "sch_y": 48405.70039126277
+    },
+    {
+        "school_name": "Jurong West Primary School",
+        "sch_x": 13029.92453290895,
+        "sch_y": 35705.11652255431
+    },
+    {
+        "school_name": "Knowledge Park Educare Pte Ltd (Punggol Cove Primary School)",
+        "sch_x": 35298.79042222258,
+        "sch_y": 43711.46721818484
     },
     {
         "school_name": "Punggol Green Primary School",
         "sch_x": 35287.340952022,
-        "sch_y": 42637.5237120874
-    },
-    {
-        "school_name": "Teck Whye Primary School",
-        "sch_x": 19094.0433355458,
-        "sch_y": 40622.6493846048
-    },
-    {
-        "school_name": "Telok Kurau Primary School",
-        "sch_x": 36637.797290422,
-        "sch_y": 34805.9404149763
-    },
-    {
-        "school_name": "Townsville Primary School",
-        "sch_x": 30282.242298523,
-        "sch_y": 38011.0245356523
-    },
-    {
-        "school_name": "White Sands Primary School",
-        "sch_x": 42200.4040547684,
-        "sch_y": 38622.2636750303
-    },
-    {
-        "school_name": "Afterschool @ Punggol Primary School",
-        "sch_x": 34827.3316768408,
-        "sch_y": 40020.0263597388
-    },
-    {
-        "school_name": "East Spring Primary School",
-        "sch_x": 42284.8340225685,
-        "sch_y": 37198.8184850682
-    },
-    {
-        "school_name": "Lianhua Primary School",
-        "sch_x": 19191.1979939695,
-        "sch_y": 37370.8497486636
-    },
-    {
-        "school_name": "Qihua Primary School",
-        "sch_x": 22994.5551156951,
-        "sch_y": 47078.5774599016
+        "sch_y": 42637.52371208742
     },
     {
         "school_name": "Saint Anthony'S Canossian Primary School",
@@ -600,214 +705,139 @@
         "sch_y": 35212.930261923
     },
     {
-        "school_name": "Seng Kang Primary School",
-        "sch_x": 35394.8580362787,
-        "sch_y": 41269.1828696113
-    },
-    {
-        "school_name": "Woodgrove Primary School",
-        "sch_x": 23246.5605064044,
-        "sch_y": 46090.8542425744
-    },
-    {
-        "school_name": "Xinghua Primary School",
-        "sch_x": 34360.61483486,
-        "sch_y": 37776.2619072273
-    },
-    {
-        "school_name": "Yuhua Primary School",
-        "sch_x": 17737.7130106175,
-        "sch_y": 36105.9662365932
-    },
-    {
-        "school_name": "Zhenghua Primary School",
-        "sch_x": 20877.0395431835,
-        "sch_y": 40169.1169131137
-    },
-    {
-        "school_name": "Ahmad Ibrahim Primary School",
-        "sch_x": 27958.1371433474,
-        "sch_y": 46096.2627680488
-    },
-    {
-        "school_name": "Anchor Green Primary School",
-        "sch_x": 33992.4459471293,
-        "sch_y": 41365.6329499111
-    },
-    {
-        "school_name": "First Toa Payoh Primary School",
-        "sch_x": 30471.8817195026,
-        "sch_y": 35831.634454662
-    },
-    {
-        "school_name": "Greenwood Primary School",
-        "sch_x": 24818.0410170276,
-        "sch_y": 46842.3174743224
-    },
-    {
-        "school_name": "North Vista Primary School",
-        "sch_x": 34971.4042828046,
-        "sch_y": 40531.0861005448
-    },
-    {
-        "school_name": "Northoaks Primary School",
-        "sch_x": 25872.0767556792,
-        "sch_y": 48689.8195981402
-    },
-    {
-        "school_name": "Park View Primary School",
-        "sch_x": 39821.3162899343,
-        "sch_y": 39929.5384668726
-    },
-    {
         "school_name": "Si Ling Primary School",
-        "sch_x": 22738.0565941427,
-        "sch_y": 46014.1202728488
+        "sch_x": 22738.05659414269,
+        "sch_y": 46014.12027284876
     },
     {
-        "school_name": "Unity Primary School",
-        "sch_x": 18374.1775784306,
-        "sch_y": 42746.2521210518
+        "school_name": "The Japanese Primary School",
+        "sch_x": 20881.39298728202,
+        "sch_y": 31403.15532880649
+    },
+    {
+        "school_name": "Woodlands Primary School",
+        "sch_x": 23354.08082933538,
+        "sch_y": 46472.07995151356
     },
     {
         "school_name": "Woodlands Ring Primary School",
-        "sch_x": 24006.7839585366,
-        "sch_y": 46295.2823582534
+        "sch_x": 24006.78395853657,
+        "sch_y": 46295.28235825337
     },
     {
-        "school_name": "Ang Mo Kio Primary School",
-        "sch_x": 28702.4804675551,
-        "sch_y": 39038.1602696702
+        "school_name": "Afterschool @ Elias Park Primary School",
+        "sch_x": 40460.97927558608,
+        "sch_y": 39672.62040079758
     },
     {
-        "school_name": "Blangah Rise Primary School",
-        "sch_x": 25252.1938973861,
-        "sch_y": 28732.4526119996
-    },
-    {
-        "school_name": "Evergreen Primary School",
-        "sch_x": 23688.7552570887,
-        "sch_y": 47312.692020528
-    },
-    {
-        "school_name": "Fuchun Primary School",
-        "sch_x": 21865.3411816815,
-        "sch_y": 45800.7908879817
-    },
-    {
-        "school_name": "Greendale Primary School",
-        "sch_x": 36793.4333255449,
-        "sch_y": 42041.5424514245
-    },
-    {
-        "school_name": "Teck Ghee Primary School",
-        "sch_x": 29962.9602906732,
-        "sch_y": 38625.285902936
-    },
-    {
-        "school_name": "West Grove Primary School",
-        "sch_x": 13083.6706046276,
-        "sch_y": 36335.8187624309
-    },
-    {
-        "school_name": "West View Primary School",
-        "sch_x": 19867.3321747258,
-        "sch_y": 40625.4829824362
-    },
-    {
-        "school_name": "Yio Chu Kang Primary School",
-        "sch_x": 33823.1315680202,
-        "sch_y": 39990.3703038469
-    },
-    {
-        "school_name": "Afterschool @ Tanjong Katong Primary School",
-        "sch_x": 35421.0272507127,
-        "sch_y": 31924.2153390218
-    },
-    {
-        "school_name": "Boon Lay Garden Primary School",
-        "sch_x": 14641.1027754331,
-        "sch_y": 36147.7026988044
-    },
-    {
-        "school_name": "Greenridge Primary School",
-        "sch_x": 20708.0073222192,
-        "sch_y": 40870.2050487585
-    },
-    {
-        "school_name": "Learning Leap Pte Ltd (Punggol Green Primary School)",
-        "sch_x": 35286.5548319491,
-        "sch_y": 42621.3463525623
+        "school_name": "Compassvale Primary School",
+        "sch_x": 35177.29001377616,
+        "sch_y": 41816.29002348334
     },
     {
         "school_name": "Learning Leap Pte Ltd (White Sands Primary School)",
-        "sch_x": 42194.0540739279,
-        "sch_y": 38630.9946565423
+        "sch_x": 42194.05407392792,
+        "sch_y": 38630.99465654232
     },
     {
-        "school_name": "North Spring Primary School",
-        "sch_x": 35777.2005732814,
-        "sch_y": 40999.8398870248
+        "school_name": "North Vista Primary School",
+        "sch_x": 34971.40428280458,
+        "sch_y": 40531.08610054478
     },
     {
-        "school_name": "The Japanese Primary School",
-        "sch_x": 20881.392987282,
-        "sch_y": 31403.1553288065
+        "school_name": "Park View Primary School",
+        "sch_x": 39821.31628993433,
+        "sch_y": 39929.53846687265
     },
     {
-        "school_name": "West Spring Primary School",
-        "sch_x": 20530.0971989501,
-        "sch_y": 41262.9989389312
+        "school_name": "Tampines Primary School",
+        "sch_x": 40318.13258349895,
+        "sch_y": 36877.46787240729
+    },
+    {
+        "school_name": "West Grove Primary School",
+        "sch_x": 13083.67060462758,
+        "sch_y": 36335.81876243092
     },
     {
         "school_name": "Xingnan Primary School",
-        "sch_x": 11822.0669615418,
-        "sch_y": 36078.0729275383
+        "sch_x": 11822.06696154177,
+        "sch_y": 36078.07292753831
     },
     {
-        "school_name": "Afterschool @ Elias Park Primary School",
-        "sch_x": 40460.9792755861,
-        "sch_y": 39672.6204007976
+        "school_name": "Afterschool @ Tanjong Katong Primary School",
+        "sch_x": 35421.02725071274,
+        "sch_y": 31924.21533902176
+    },
+    {
+        "school_name": "Commit Learning Schoolhouse @ Gongshang Primary School",
+        "sch_x": 40890.13194557093,
+        "sch_y": 37688.82396773994
+    },
+    {
+        "school_name": "Evergreen Primary School",
+        "sch_x": 23688.75525708869,
+        "sch_y": 47312.69202052802
+    },
+    {
+        "school_name": "Greenwood Primary School",
+        "sch_x": 24818.04101702757,
+        "sch_y": 46842.31747432239
+    },
+    {
+        "school_name": "Learning Leap Pte Ltd (Punggol Green Primary School)",
+        "sch_x": 35286.55483194906,
+        "sch_y": 42621.34635256231
     },
     {
         "school_name": "Commit Learning Schoolhouse @ Peiying Primary School",
-        "sch_x": 27646.6270154091,
-        "sch_y": 44356.206750067
+        "sch_x": 27646.62701540906,
+        "sch_y": 44356.20675006695
     },
     {
-        "school_name": "Knowledge Park Educare Pte Ltd (Punggol Cove Primary School)",
-        "sch_x": 35298.7904222226,
-        "sch_y": 43711.4672181848
+        "school_name": "Commit Learning Schoolhouse @ Woodlands Primary School",
+        "sch_x": 23378.64541688096,
+        "sch_y": 46475.57602470368
+    },
+    {
+        "school_name": "Learning Studio By Zenitant (Zhonghua Primary School)",
+        "sch_x": 32050.2209249679,
+        "sch_y": 38036.26609692164
+    },
+    {
+        "school_name": "Knowledge Park Educare Pte Ltd (Keming Primary School)",
+        "sch_x": 19386.74439357873,
+        "sch_y": 36355.94049425423
+    },
+    {
+        "school_name": "Learning Leap Pte Ltd (Frontier Primary School)",
+        "sch_x": 13127.74239312299,
+        "sch_y": 35425.12529356405
+    },
+    {
+        "school_name": "Learning Studio Educare @ Changkat Primary School",
+        "sch_x": 41238.46389293764,
+        "sch_y": 35793.28225570917
+    },
+    {
+        "school_name": "The Learning Harbour @ Admiralty Primary School",
+        "sch_x": 24315.93981243391,
+        "sch_y": 47135.3542042952
+    },
+    {
+        "school_name": "Bukit View Primary School (U/C)",
+        "sch_x": 17765.76492390782,
+        "sch_y": 37852.52838794328
+    },
+    {
+        "school_name": "Commit Learning Schoolhouse @ Woodgrove Primary School",
+        "sch_x": 23204.92541166954,
+        "sch_y": 46050.25249680318
     },
     {
         "school_name": "Pioneer Primary School",
         "sch_x": 16812.4121220056,
-        "sch_y": 37391.2857226934
-    },
-    {
-        "school_name": "Afterschool @ Elias Park Primary School",
-        "sch_x": 40460.9792755861,
-        "sch_y": 39672.6204007976
-    },
-    {
-        "school_name": "Pioneer Primary School",
-        "sch_x": 16812.4121220056,
-        "sch_y": 37391.2857226934
-    },
-    {
-        "school_name": "The Japanese Primary School",
-        "sch_x": 42720.3882500371,
-        "sch_y": 37369.7845880482
-    },
-    {
-        "school_name": "Afterschool @ Bukit Timah Primary School",
-        "sch_x": 20603.3479896449,
-        "sch_y": 35547.1996132508
-    },
-    {
-        "school_name": "Knowledge Park Educare Pte Lte (Opera Estate Primary School)",
-        "sch_x": 38064.4274895079,
-        "sch_y": 33581.1396132912
+        "sch_y": 37391.28572269343
     },
     {
         "school_name": "Powerlife Student Services @ Qihua Primary School",
@@ -815,8 +845,13 @@
         "sch_y": 47078.5773993656
     },
     {
-        "school_name": "The Learning Harbour @ Admiralty Primary School",
-        "sch_x": 24315.9398124339,
-        "sch_y": 47135.3542042952
+        "school_name": "Knowledge Park Educare Pte Lte (Opera Estate Primary School)",
+        "sch_x": 38064.42748950794,
+        "sch_y": 33581.13961329125
+    },
+    {
+        "school_name": "Learning Leap Pte Ltd (Pei Tong Primary School)",
+        "sch_x": 20668.24048851151,
+        "sch_y": 33215.772784153
     }
 ]

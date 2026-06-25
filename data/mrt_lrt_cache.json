@@ -1,113 +1,118 @@
 [
     {
-        "station_name": "Bishan Mrt Station",
-        "station_x": 29862.8212393234,
-        "station_y": 37014.32792053
-    },
-    {
-        "station_name": "Canberra Mrt Station (Ns12)",
-        "station_x": 27597.5969376964,
-        "station_y": 47193.6008830499
-    },
-    {
-        "station_name": "Clementi Mrt Station (Ew23)",
-        "station_x": 20418.1055078562,
-        "station_y": 33044.4944669213
-    },
-    {
-        "station_name": "Jurong East Mrt Station (Ew24 / Ns1)",
-        "station_x": 17878.4221474277,
-        "station_y": 35025.1134275831
-    },
-    {
-        "station_name": "Lakeside Mrt Station (Ew26)",
-        "station_x": 15494.4969534362,
-        "station_y": 36267.1470333859
-    },
-    {
-        "station_name": "Novena Mrt Station (Ns20)",
-        "station_x": 29169.3297925005,
-        "station_y": 33633.1535391063
-    },
-    {
-        "station_name": "Redhill Mrt Station (Ew18)",
-        "station_x": 26155.053497511,
-        "station_y": 30226.759782847
-    },
-    {
-        "station_name": "Sengkang Mrt Station (Ne16)",
-        "station_x": 34918.2740132138,
-        "station_y": 41512.1276907362
-    },
-    {
-        "station_name": "Springleaf Mrt Station (Te4)",
-        "station_x": 26279.3279363979,
-        "station_y": 42162.9344399534
-    },
-    {
-        "station_name": "Woodlands Mrt Station (Ns9)",
-        "station_x": 22741.5981903812,
-        "station_y": 46501.7861009166
-    },
-    {
-        "station_name": "Ang Mo Kio Mrt Station (Ns16)",
-        "station_x": 29807.2611468043,
-        "station_y": 39105.7359950263
-    },
-    {
         "station_name": "Bayshore Mrt Station (Te29)",
-        "station_x": 40129.6870528692,
+        "station_x": 40129.68705286924,
         "station_y": 32824.1944562085
     },
     {
-        "station_name": "Caldecott Mrt Station",
-        "station_x": 28692.8318213131,
-        "station_y": 35502.5785213858
+        "station_name": "Bishan Mrt Station",
+        "station_x": 29862.82123932336,
+        "station_y": 37014.32792052999
+    },
+    {
+        "station_name": "Clementi Mrt Station (Ew23)",
+        "station_x": 20418.10550785623,
+        "station_y": 33044.49446692131
+    },
+    {
+        "station_name": "Jurong East Mrt Station (Ew24 / Ns1)",
+        "station_x": 17878.42214742769,
+        "station_y": 35025.11342758313
     },
     {
         "station_name": "Khatib Mrt Station (Ns14)",
-        "station_x": 27962.3108561579,
-        "station_y": 44352.5679935999
+        "station_x": 27962.31085615791,
+        "station_y": 44352.56799359992
     },
     {
-        "station_name": "Orchard Mrt Station (Ns22)",
-        "station_x": 27880.5476490632,
-        "station_y": 31813.0165782962
+        "station_name": "Novena Mrt Station (Ns20)",
+        "station_x": 29169.32979250047,
+        "station_y": 33633.15353910625
     },
     {
-        "station_name": "Paya Lebar Mrt Station (Cc9)",
-        "station_x": 34559.6916920897,
-        "station_y": 33280.1181892157
+        "station_name": "Pasir Ris Mrt Station (Ew1)",
+        "station_x": 40905.59746265505,
+        "station_y": 39449.98233968206
     },
     {
         "station_name": "Queenstown Mrt Station (Ew19)",
-        "station_x": 24968.2673462247,
-        "station_y": 30770.3911128063
+        "station_x": 24968.26734622475,
+        "station_y": 30770.39111280628
     },
     {
-        "station_name": "Sembawang Mrt Station (Ns11)",
-        "station_x": 26522.9882623879,
-        "station_y": 47854.1998395547
-    },
-    {
-        "station_name": "Toa Payoh Mrt Station (Ns19)",
-        "station_x": 29578.4890669128,
-        "station_y": 34980.8962922301
+        "station_name": "Redhill Mrt Station (Ew18)",
+        "station_x": 26155.05349751096,
+        "station_y": 30226.75978284702
     },
     {
         "station_name": "Yishun Mrt Station (Ns13)",
-        "station_x": 28187.6788169928,
-        "station_y": 45686.0705381557
+        "station_x": 28187.67881699279,
+        "station_y": 45686.07053815573
+    },
+    {
+        "station_name": "Lakeside Mrt Station (Ew26)",
+        "station_x": 15494.49695343617,
+        "station_y": 36267.14703338593
+    },
+    {
+        "station_name": "Macpherson Mrt Station",
+        "station_x": 34308.94224109687,
+        "station_y": 34340.77432287298
+    },
+    {
+        "station_name": "Newton Mrt Station",
+        "station_x": 28524.50935429893,
+        "station_y": 32762.87500201538
+    },
+    {
+        "station_name": "Paya Lebar Mrt Station (Cc9)",
+        "station_x": 34559.69169208966,
+        "station_y": 33280.11818921566
+    },
+    {
+        "station_name": "Sembawang Mrt Station (Ns11)",
+        "station_x": 26522.98826238792,
+        "station_y": 47854.19983955473
+    },
+    {
+        "station_name": "Tanah Merah Mrt Station (Ew4)",
+        "station_x": 40579.09977936372,
+        "station_y": 34379.4316836372
+    },
+    {
+        "station_name": "Telok Blangah Mrt Station (Cc28)",
+        "station_x": 25378.2908018399,
+        "station_y": 28133.79905159026
+    },
+    {
+        "station_name": "Toa Payoh Mrt Station (Ns19)",
+        "station_x": 29578.48906691279,
+        "station_y": 34980.89629223011
+    },
+    {
+        "station_name": "Woodlands Mrt Station (Ns9)",
+        "station_x": 22741.59819038119,
+        "station_y": 46501.78610091656
+    },
+    {
+        "station_name": "Yio Chu Kang Mrt Station (Ns15)",
+        "station_x": 29294.12623303384,
+        "station_y": 40413.0626359228
+    },
+    {
+        "station_name": "Admiralty Mrt Station (Ns10)",
+        "station_x": 24402.38662679307,
+        "station_y": 46918.50680194795
+    },
+    {
+        "station_name": "Ang Mo Kio Mrt Station (Ns16)",
+        "station_x": 29807.26114680432,
+        "station_y": 39105.73599502631
     },
     {
         "station_name": "Beauty World Mrt Station",
-        "station_x": 21592.8719098605,
-        "station_y": 35895.6656477842
-    },
-    {
-        "station_name": "Bedok Mrt Station (Ew5)",
-        "station_x": 38757.952049505,
-        "station_y": 34024.7047772072
+        "station_x": 21592.87190986052,
+        "station_y": 35895.66564778425
     },
     {
         "station_name": "Boon Keng Mrt Station",
@@ -115,139 +120,89 @@
         "station_y": 33577.7477830369
     },
     {
-        "station_name": "Buona Vista Mrt Station",
-        "station_x": 23219.4630031772,
-        "station_y": 32066.8500946872
+        "station_name": "Canberra Mrt Station (Ns12)",
+        "station_x": 27597.59693769645,
+        "station_y": 47193.60088304989
     },
     {
-        "station_name": "Great World Mrt Station (Te15)",
-        "station_x": 28044.7678659763,
-        "station_y": 30703.7324468214
+        "station_name": "Changi Airport Mrt Station (Cg2)",
+        "station_x": 45201.32039469201,
+        "station_y": 37729.19337646663
     },
     {
-        "station_name": "Hougang Mrt Station",
-        "station_x": 34559.6618478578,
-        "station_y": 39150.2477892004
-    },
-    {
-        "station_name": "Kovan Mrt Station",
-        "station_x": 33695.3094792981,
-        "station_y": 37996.6210615803
-    },
-    {
-        "station_name": "Newton Mrt Station",
-        "station_x": 28524.5093542989,
-        "station_y": 32762.8750020154
-    },
-    {
-        "station_name": "Pasir Ris Mrt Station (Ew1)",
-        "station_x": 40905.597462655,
-        "station_y": 39449.9823396821
-    },
-    {
-        "station_name": "Punggol Coast Mrt Station (Ne18)",
-        "station_x": 36552.0706724664,
-        "station_y": 44081.1334630698
-    },
-    {
-        "station_name": "Admiralty Mrt Station (Ns10)",
-        "station_x": 24402.3866267931,
-        "station_y": 46918.506801948
-    },
-    {
-        "station_name": "Aljunied Mrt Station (Ew9)",
-        "station_x": 33518.6048692847,
-        "station_y": 33190.002017457
-    },
-    {
-        "station_name": "Buangkok Mrt Station",
-        "station_x": 34647.3445947971,
-        "station_y": 40627.470590122
-    },
-    {
-        "station_name": "Chinatown Mrt Station",
-        "station_x": 29093.2593877828,
-        "station_y": 29599.7432148103
-    },
-    {
-        "station_name": "Kembangan Mrt Station (Ew6)",
-        "station_x": 36861.9614935443,
-        "station_y": 33699.3440501876
-    },
-    {
-        "station_name": "Kranji Mrt Station (Ns7)",
-        "station_x": 20078.5865077013,
-        "station_y": 45204.5168451127
-    },
-    {
-        "station_name": "Macpherson Mrt Station",
-        "station_x": 34308.9422410969,
-        "station_y": 34340.774322873
-    },
-    {
-        "station_name": "Tanah Merah Mrt Station (Ew4)",
-        "station_x": 40579.0997793637,
-        "station_y": 34379.4316836372
-    },
-    {
-        "station_name": "Yew Tee Mrt Station (Ns5)",
-        "station_x": 18438.9831173802,
-        "station_y": 42158.0181021616
-    },
-    {
-        "station_name": "Yio Chu Kang Mrt Station (Ns15)",
-        "station_x": 29294.1262330338,
-        "station_y": 40413.0626359228
-    },
-    {
-        "station_name": "Havelock Mrt Station (Te16)",
-        "station_x": 28029.7436560951,
-        "station_y": 30101.8822241165
-    },
-    {
-        "station_name": "Holland Village Mrt Station (Cc21)",
-        "station_x": 23891.2152273953,
-        "station_y": 32726.4128267691
+        "station_name": "Eunos Mrt Station (Ew7)",
+        "station_x": 35779.98834538553,
+        "station_y": 33560.58589680493
     },
     {
         "station_name": "Kallang Mrt Station (Ew10)",
-        "station_x": 32236.6038438473,
-        "station_y": 32643.3302382641
-    },
-    {
-        "station_name": "Lentor Mrt Station (Te5)",
-        "station_x": 28269.897072956,
-        "station_y": 40827.7939434573
-    },
-    {
-        "station_name": "Marine Parade Mrt Station (Te26)",
-        "station_x": 35975.6107479017,
-        "station_y": 31661.8079924919
-    },
-    {
-        "station_name": "Raffles Place Mrt Station",
-        "station_x": 30019.3313532807,
-        "station_y": 29596.3437267561
+        "station_x": 32236.60384384729,
+        "station_y": 32643.33023826405
     },
     {
         "station_name": "Raffles Place Mrt Station (Ew14 / Ns26)",
-        "station_x": 30019.180527918,
-        "station_y": 29617.6125848945
+        "station_x": 30019.18052791804,
+        "station_y": 29617.61258489452
     },
     {
-        "station_name": "Serangoon Mrt Station",
-        "station_x": 32201.3552331412,
-        "station_y": 37017.6041270886
+        "station_name": "Tampines West Mrt Station (Dt31)",
+        "station_x": 39698.52758529689,
+        "station_y": 36406.01433311775
     },
     {
-        "station_name": "Tampines Mrt Station (Dt32)",
-        "station_x": 40207.3952279184,
-        "station_y": 37471.4394600224
+        "station_name": "Ang Mo Kio Mrt Station",
+        "station_x": 29807.26108626835,
+        "station_y": 39105.73599502631
     },
     {
-        "station_name": "Telok Blangah Mrt Station (Cc28)",
-        "station_x": 25378.2908018399,
-        "station_y": 28133.7990515903
+        "station_name": "Bedok Mrt Station (Ew5)",
+        "station_x": 38757.95204950497,
+        "station_y": 34024.70477720723
+    },
+    {
+        "station_name": "Buangkok Mrt Station",
+        "station_x": 34647.34459479712,
+        "station_y": 40627.47059012204
+    },
+    {
+        "station_name": "Caldecott Mrt Station",
+        "station_x": 28692.83182131313,
+        "station_y": 35502.57852138579
+    },
+    {
+        "station_name": "Hougang Mrt Station",
+        "station_x": 34559.66184785776,
+        "station_y": 39150.2477892004
+    },
+    {
+        "station_name": "Kembangan Mrt Station (Ew6)",
+        "station_x": 36861.96149354428,
+        "station_y": 33699.34405018762
+    },
+    {
+        "station_name": "Kranji Mrt Station (Ns7)",
+        "station_x": 20078.58650770131,
+        "station_y": 45204.51684511267
+    },
+    {
+        "station_name": "Potong Pasir Mrt Station",
+        "station_x": 32011.43183793873,
+        "station_y": 34842.57024458237
+    },
+    {
+        "station_name": "Punggol Mrt Station (Ne17)",
+        "station_x": 35651.38280017301,
+        "station_y": 42933.24826928042
+    },
+    {
+        "station_name": "Sengkang Mrt Station (Ne16)",
+        "station_x": 34918.27401321381,
+        "station_y": 41512.1276907362
+    },
+    {
+        "station_name": "Aljunied Mrt Station (Ew9)",
+        "station_x": 33518.60486928467,
+        "station_y": 33190.00201745704
     },
     {
         "station_name": "Boon Lay Mrt Station (Ew27)",
@@ -255,1138 +210,1188 @@
         "station_y": 35641.9191215802
     },
     {
-        "station_name": "Changi Airport Mrt Station (Cg2)",
-        "station_x": 45201.320394692,
-        "station_y": 37729.1933764666
-    },
-    {
-        "station_name": "Farrer Park Mrt Station",
-        "station_x": 30385.638003313,
-        "station_y": 32825.9104390088
-    },
-    {
-        "station_name": "Marsiling Mrt Station (Ns8)",
-        "station_x": 21407.0413211482,
-        "station_y": 46026.5125302058
-    },
-    {
-        "station_name": "Punggol Mrt Station (Ne17)",
-        "station_x": 35651.382800173,
-        "station_y": 42933.2482692804
-    },
-    {
-        "station_name": "Simei Mrt Station (Ew3)",
-        "station_x": 41361.2281713123,
-        "station_y": 36149.7527796105
-    },
-    {
-        "station_name": "Sixth Avenue Mrt Station (Dt7)",
-        "station_x": 23947.7493738988,
-        "station_y": 34785.0233010761
-    },
-    {
-        "station_name": "Tampines East Mrt Station (Dt33)",
-        "station_x": 41501.0748521937,
-        "station_y": 37586.6177644413
-    },
-    {
-        "station_name": "Tiong Bahru Mrt Station",
-        "station_x": 27296.6770021692,
-        "station_y": 29846.3821525425
-    },
-    {
-        "station_name": "Bedok North Mrt Station (Dt29)",
-        "station_x": 37421.7438196167,
-        "station_y": 35214.6803870108
-    },
-    {
-        "station_name": "Bukit Gombak Mrt Station (Ns3)",
-        "station_x": 18926.9127006577,
-        "station_y": 37854.0358848721
-    },
-    {
-        "station_name": "Dakota Mrt Station",
-        "station_x": 34226.6721360786,
-        "station_y": 32305.2884973213
+        "station_name": "Commonwealth Mrt Station (Ew20)",
+        "station_x": 24094.79514336679,
+        "station_y": 31649.59891697206
     },
     {
         "station_name": "Dover Mrt Station (Ew22)",
         "station_x": 21914.5509301452,
-        "station_y": 32634.1186314393
+        "station_y": 32634.11863143928
     },
     {
-        "station_name": "Kent Ridge Mrt Station (Cc24)",
-        "station_x": 22575.0107144611,
-        "station_y": 30657.9332947638
+        "station_name": "Farrer Park Mrt Station",
+        "station_x": 30385.63800331298,
+        "station_y": 32825.91043900885
+    },
+    {
+        "station_name": "Kovan Mrt Station",
+        "station_x": 33695.30947929807,
+        "station_y": 37996.62106158026
     },
     {
         "station_name": "Lavender Mrt Station",
         "station_x": 31279.2955007609,
-        "station_y": 32190.2886529341
-    },
-    {
-        "station_name": "Potong Pasir Mrt Station",
-        "station_x": 32011.4318379387,
-        "station_y": 34842.5702445824
+        "station_y": 32190.28865293413
     },
     {
         "station_name": "Somerset Mrt Station",
-        "station_x": 28649.912577102,
-        "station_y": 31400.8761193641
+        "station_x": 28649.91257710196,
+        "station_y": 31400.87611936405
     },
     {
-        "station_name": "Woodleigh Mrt Station",
-        "station_x": 32189.1849914445,
-        "station_y": 35776.9485923164
+        "station_name": "Tampines East Mrt Station (Dt33)",
+        "station_x": 41501.07485219371,
+        "station_y": 37586.6177644413
     },
     {
-        "station_name": "Bartley Mrt Station",
-        "station_x": 33217.0694948444,
-        "station_y": 36066.3621538337
-    },
-    {
-        "station_name": "Botanic Gardens Mrt Station",
-        "station_x": 26004.2227469468,
-        "station_y": 33848.3595389649
-    },
-    {
-        "station_name": "Bukit Panjang Mrt Station",
-        "station_x": 19972.866827121,
-        "station_y": 40170.5069702659
-    },
-    {
-        "station_name": "Commonwealth Mrt Station (Ew20)",
-        "station_x": 24094.7951433668,
-        "station_y": 31649.5989169721
-    },
-    {
-        "station_name": "Enterprise Mrt Station",
-        "station_x": 14117.8580826893,
-        "station_y": 34992.5649329014
-    },
-    {
-        "station_name": "Orchard Boulevard Mrt Station (Te13)",
-        "station_x": 26948.2945375377,
-        "station_y": 31640.7552477568
-    },
-    {
-        "station_name": "Outram Park Mrt Station",
-        "station_x": 28749.3862473657,
-        "station_y": 29188.1251812782
-    },
-    {
-        "station_name": "Tampines West Mrt Station (Dt31)",
-        "station_x": 39698.5275852969,
-        "station_y": 36406.0143331178
-    },
-    {
-        "station_name": "Tanjong Pagar Mrt Station (Ew15)",
-        "station_x": 29380.7567437869,
-        "station_y": 28781.1883335691
-    },
-    {
-        "station_name": "Ubi Mrt Station (Dt27)",
-        "station_x": 35334.8918333696,
-        "station_y": 34687.4109907392
-    },
-    {
-        "station_name": "Bayfront Mrt Station (Dt16 / Ce1)",
-        "station_x": 30867.0092712184,
-        "station_y": 29368.6250332333
-    },
-    {
-        "station_name": "Caldecott Mrt Station (Te9)",
-        "station_x": 28761.5758000361,
-        "station_y": 35491.3431366347
-    },
-    {
-        "station_name": "Chinese Garden Mrt Station (Ew25)",
-        "station_x": 16790.7466322081,
-        "station_y": 36056.3018932827
-    },
-    {
-        "station_name": "Eunos Mrt Station (Ew7)",
-        "station_x": 35779.9883453855,
-        "station_y": 33560.5858968049
-    },
-    {
-        "station_name": "Kaki Bukit Mrt Station (Dt28)",
-        "station_x": 36362.3782825153,
-        "station_y": 35239.5522551257
-    },
-    {
-        "station_name": "Mayflower Mrt Station (Te6)",
-        "station_x": 28361.5950495424,
-        "station_y": 39274.947190579
-    },
-    {
-        "station_name": "One-North Mrt Station (Cc23)",
-        "station_x": 22896.0728127016,
-        "station_y": 31346.4080956969
-    },
-    {
-        "station_name": "Pioneer Mrt Station (Ew28)",
-        "station_x": 12864.9698331021,
-        "station_y": 35529.5115483906
-    },
-    {
-        "station_name": "Stadium Mrt Station (Cc6)",
-        "station_x": 32676.3477050858,
-        "station_y": 31683.9407594204
-    },
-    {
-        "station_name": "Tai Seng Mrt Station (Cc11)",
-        "station_x": 34128.792347569,
-        "station_y": 35258.74881576
-    },
-    {
-        "station_name": "Ang Mo Kio Mrt Station",
-        "station_x": 29807.2610862684,
-        "station_y": 39105.7359950263
-    },
-    {
-        "station_name": "Braddell Mrt Station",
-        "station_x": 29495.4316916373,
-        "station_y": 35807.5454679448
+        "station_name": "Yew Tee Mrt Station (Ns5)",
+        "station_x": 18438.98311738018,
+        "station_y": 42158.01810216159
     },
     {
         "station_name": "Bugis Mrt Station",
-        "station_x": 30491.6001001745,
-        "station_y": 31424.3513016403
+        "station_x": 30491.60010017455,
+        "station_y": 31424.35130164027
     },
     {
-        "station_name": "Marina Bay Mrt Station",
-        "station_x": 30369.0068661757,
-        "station_y": 28753.5319017563
+        "station_name": "Chinatown Mrt Station",
+        "station_x": 29093.25938778277,
+        "station_y": 29599.74321481027
     },
     {
-        "station_name": "Marine Terrace Mrt Station (Te27)",
-        "station_x": 37102.263435401,
-        "station_y": 32110.0544330366
+        "station_name": "Expo Mrt Station (Cg1)",
+        "station_x": 42270.62323448155,
+        "station_y": 35193.62234537862
+    },
+    {
+        "station_name": "Holland Village Mrt Station (Cc21)",
+        "station_x": 23891.2152273953,
+        "station_y": 32726.41282676905
+    },
+    {
+        "station_name": "Lentor Mrt Station (Te5)",
+        "station_x": 28269.89707295597,
+        "station_y": 40827.79394345731
+    },
+    {
+        "station_name": "Mayflower Mrt Station (Te6)",
+        "station_x": 28361.59504954237,
+        "station_y": 39274.94719057903
+    },
+    {
+        "station_name": "Orchard Mrt Station (Ns22)",
+        "station_x": 27880.54764906317,
+        "station_y": 31813.0165782962
+    },
+    {
+        "station_name": "Serangoon Mrt Station (Cc13)",
+        "station_x": 32390.68525479082,
+        "station_y": 36971.75454856828
+    },
+    {
+        "station_name": "Simei Mrt Station (Ew3)",
+        "station_x": 41361.22817131225,
+        "station_y": 36149.75277961046
+    },
+    {
+        "station_name": "Woodleigh Mrt Station",
+        "station_x": 32189.18499144446,
+        "station_y": 35776.94859231636
+    },
+    {
+        "station_name": "Bartley Mrt Station",
+        "station_x": 33217.06949484441,
+        "station_y": 36066.36215383373
+    },
+    {
+        "station_name": "Dakota Mrt Station",
+        "station_x": 34226.67213607859,
+        "station_y": 32305.28849732131
+    },
+    {
+        "station_name": "Havelock Mrt Station (Te16)",
+        "station_x": 28029.74365609512,
+        "station_y": 30101.88222411647
+    },
+    {
+        "station_name": "Kaki Bukit Mrt Station (Dt28)",
+        "station_x": 36362.37828251533,
+        "station_y": 35239.55225512572
+    },
+    {
+        "station_name": "Marsiling Mrt Station (Ns8)",
+        "station_x": 21407.04132114816,
+        "station_y": 46026.51253020577
     },
     {
         "station_name": "Mount Pleasant Mrt Station (Te10)",
-        "station_x": 28208.1121879769,
-        "station_y": 34531.4352277666
+        "station_x": 28208.11218797695,
+        "station_y": 34531.43522776663
     },
     {
-        "station_name": "Pasir Ris East Mrt Station (Cr4)",
-        "station_x": 42160.158442094,
-        "station_y": 38796.1007870715
+        "station_name": "Orchard Boulevard Mrt Station (Te13)",
+        "station_x": 26948.29453753773,
+        "station_y": 31640.75524775684
     },
     {
-        "station_name": "Tanjong Rhu Mrt Station (Te23)",
-        "station_x": 32466.6345270379,
-        "station_y": 31070.5354917869
+        "station_name": "Outram Park Mrt Station",
+        "station_x": 28749.38624736574,
+        "station_y": 29188.12518127821
     },
     {
-        "station_name": "Telok Ayer Mrt Station (Dt18)",
-        "station_x": 29706.1259155739,
-        "station_y": 29390.1953907572
+        "station_name": "Springleaf Mrt Station (Te4)",
+        "station_x": 26279.32793639787,
+        "station_y": 42162.93443995342
     },
     {
-        "station_name": "Upper Changi Mrt Station (Dt34)",
-        "station_x": 42262.187971171,
-        "station_y": 35988.6568845119
+        "station_name": "Tiong Bahru Mrt Station",
+        "station_x": 27296.67700216919,
+        "station_y": 29846.38215254247
     },
     {
-        "station_name": "Bright Hill Mrt Station (Te7)",
-        "station_x": 27952.7070973367,
-        "station_y": 38370.443887597
+        "station_name": "Botanic Gardens Mrt Station",
+        "station_x": 26004.22274694685,
+        "station_y": 33848.35953896493
+    },
+    {
+        "station_name": "Braddell Mrt Station",
+        "station_x": 29495.43169163726,
+        "station_y": 35807.54546794482
+    },
+    {
+        "station_name": "Buona Vista Mrt Station",
+        "station_x": 23219.4630031772,
+        "station_y": 32066.85009468719
+    },
+    {
+        "station_name": "Chinese Garden Mrt Station (Ew25)",
+        "station_x": 16790.74663220812,
+        "station_y": 36056.30189328268
+    },
+    {
+        "station_name": "Great World Mrt Station (Te15)",
+        "station_x": 28044.76786597632,
+        "station_y": 30703.73244682141
+    },
+    {
+        "station_name": "Marine Parade Mrt Station (Te26)",
+        "station_x": 35975.61074790172,
+        "station_y": 31661.80799249187
+    },
+    {
+        "station_name": "Punggol Coast Mrt Station (Ne18)",
+        "station_x": 36552.07067246642,
+        "station_y": 44081.1334630698
+    },
+    {
+        "station_name": "Tai Seng Mrt Station (Cc11)",
+        "station_x": 34128.79234756902,
+        "station_y": 35258.74881576002
+    },
+    {
+        "station_name": "Tampines Mrt Station (Dt32)",
+        "station_x": 40207.3952279184,
+        "station_y": 37471.43946002237
+    },
+    {
+        "station_name": "Tanjong Pagar Mrt Station (Ew15)",
+        "station_x": 29380.75674378686,
+        "station_y": 28781.18833356909
+    },
+    {
+        "station_name": "Bendemeer Mrt Station (Dt23)",
+        "station_x": 31300.76760840975,
+        "station_y": 32884.77092220448
     },
     {
         "station_name": "Bukit Batok Mrt Station (Ns2)",
-        "station_x": 18679.3223191258,
-        "station_y": 36794.9260214306
+        "station_x": 18679.32231912576,
+        "station_y": 36794.92602143064
     },
     {
-        "station_name": "City Hall Mrt Station (Ew13 / Ns25)",
-        "station_x": 30144.2503791479,
-        "station_y": 30591.9008128252
+        "station_name": "Bukit Gombak Mrt Station (Ns3)",
+        "station_x": 18926.91270065773,
+        "station_y": 37854.03588487208
+    },
+    {
+        "station_name": "Harbourfront Mrt Station",
+        "station_x": 26579.76679259259,
+        "station_y": 27537.23074338213
+    },
+    {
+        "station_name": "Kent Ridge Mrt Station (Cc24)",
+        "station_x": 22575.0107144611,
+        "station_y": 30657.93329476379
     },
     {
         "station_name": "Little India Mrt Station",
         "station_x": 29838.8603467131,
-        "station_y": 32173.9034431651
+        "station_y": 32173.90344316512
     },
     {
-        "station_name": "Pasir Panjang Mrt Station (Cc26)",
-        "station_x": 23329.2647148455,
-        "station_y": 28742.7657615561
+        "station_name": "One-North Mrt Station (Cc23)",
+        "station_x": 22896.07281270158,
+        "station_y": 31346.40809569694
     },
     {
-        "station_name": "Siglap Mrt Station (Te28)",
-        "station_x": 38762.6117753303,
-        "station_y": 32479.831004722
+        "station_name": "Pioneer Mrt Station (Ew28)",
+        "station_x": 12864.96983310208,
+        "station_y": 35529.51154839061
+    },
+    {
+        "station_name": "Raffles Place Mrt Station",
+        "station_x": 30019.33135328069,
+        "station_y": 29596.34372675605
     },
     {
         "station_name": "Stevens Mrt Station (Dt10)",
-        "station_x": 27188.2299643802,
-        "station_y": 33591.6608552355
+        "station_x": 27188.22996438015,
+        "station_y": 33591.66085523553
     },
     {
-        "station_name": "Tampines Mrt Station (Ew2)",
-        "station_x": 40444.9732025806,
-        "station_y": 37267.0262664594
+        "station_name": "Bright Hill Mrt Station (Te7)",
+        "station_x": 27952.70709733665,
+        "station_y": 38370.44388759695
+    },
+    {
+        "station_name": "Bukit Panjang Mrt Station",
+        "station_x": 19972.866827121,
+        "station_y": 40170.50697026588
+    },
+    {
+        "station_name": "Dhoby Ghaut Mrt Station (Cc1)",
+        "station_x": 29443.88240964059,
+        "station_y": 31252.57238222472
+    },
+    {
+        "station_name": "Joo Koon Mrt Station (Ew29)",
+        "station_x": 10756.33797434811,
+        "station_y": 34438.26177777722
+    },
+    {
+        "station_name": "Labrador Park Mrt Station",
+        "station_x": 24672.10102780815,
+        "station_y": 28317.57168982178
+    },
+    {
+        "station_name": "Marymount Mrt Station (Cc16)",
+        "station_x": 28679.36877349578,
+        "station_y": 36758.71364785545
+    },
+    {
+        "station_name": "Pasir Panjang Mrt Station (Cc26)",
+        "station_x": 23329.26471484546,
+        "station_y": 28742.7657615561
+    },
+    {
+        "station_name": "Sixth Avenue Mrt Station (Dt7)",
+        "station_x": 23947.74937389884,
+        "station_y": 34785.02330107614
+    },
+    {
+        "station_name": "Stadium Mrt Station (Cc6)",
+        "station_x": 32676.34770508576,
+        "station_y": 31683.94075942039
+    },
+    {
+        "station_name": "Tanjong Rhu Mrt Station (Te23)",
+        "station_x": 32466.63452703785,
+        "station_y": 31070.5354917869
+    },
+    {
+        "station_name": "Bencoolen Mrt Station (Dt21)",
+        "station_x": 29895.86394964438,
+        "station_y": 31253.32587341219
+    },
+    {
+        "station_name": "Choa Chu Kang Mrt Station (Js1)",
+        "station_x": 18069.43349503633,
+        "station_y": 40812.70934894867
+    },
+    {
+        "station_name": "City Hall Mrt Station (Ew13 / Ns25)",
+        "station_x": 30144.25037914794,
+        "station_y": 30591.90081282519
+    },
+    {
+        "station_name": "Hillview Mrt Station",
+        "station_x": 20706.42830204498,
+        "station_y": 38326.89609843679
+    },
+    {
+        "station_name": "Maxwell Mrt Station (Te18)",
+        "station_x": 29175.80883602332,
+        "station_y": 29220.38855155371
+    },
+    {
+        "station_name": "Outram Park Mrt Station (Ew16)",
+        "station_x": 28646.87267269287,
+        "station_y": 29316.78039625101
+    },
+    {
+        "station_name": "Pasir Ris East Mrt Station (Cr4)",
+        "station_x": 42160.15844209399,
+        "station_y": 38796.10078707151
+    },
+    {
+        "station_name": "Telok Ayer Mrt Station (Dt18)",
+        "station_x": 29706.12591557391,
+        "station_y": 29390.19539075717
     },
     {
         "station_name": "Upper Thomson Mrt Station (Te8)",
-        "station_x": 27953.2465030747,
-        "station_y": 37390.003691975
+        "station_x": 27953.24650307465,
+        "station_y": 37390.00369197503
     },
     {
         "station_name": "Woodlands North Mrt Station (Te1)",
         "station_x": 22699.9912448721,
-        "station_y": 47770.3945726696
+        "station_y": 47770.39457266964
     },
     {
-        "station_name": "Boon Keng Mrt Station (Ne9)",
-        "station_x": 31144.045013207,
-        "station_y": 33510.9746132698
+        "station_name": "Caldecott Mrt Station (Te9)",
+        "station_x": 28761.57580003608,
+        "station_y": 35491.34313663468
     },
     {
-        "station_name": "Expo Mrt Station (Cg1)",
-        "station_x": 42270.6232344816,
-        "station_y": 35193.6223453786
-    },
-    {
-        "station_name": "Fort Canning Mrt Station (Dt20)",
-        "station_x": 29225.6276065866,
-        "station_y": 30541.6087720692
-    },
-    {
-        "station_name": "Geylang Bahru Mrt Station (Dt24)",
-        "station_x": 32262.8612591857,
-        "station_y": 33728.3126899004
-    },
-    {
-        "station_name": "King Albert Park Mrt Station (Dt6)",
-        "station_x": 22444.4895690959,
-        "station_y": 35316.2479055841
-    },
-    {
-        "station_name": "Lorong Chuan Mrt Station",
-        "station_x": 31504.881845098,
-        "station_y": 37071.0015116353
-    },
-    {
-        "station_name": "Marymount Mrt Station (Cc16)",
-        "station_x": 28679.3687734958,
-        "station_y": 36758.7136478554
-    },
-    {
-        "station_name": "Mattar Mrt Station (Dt25)",
-        "station_x": 33556.5834402461,
-        "station_y": 34344.8585332558
-    },
-    {
-        "station_name": "Maxwell Mrt Station (Te18)",
-        "station_x": 29175.8088360233,
-        "station_y": 29220.3885515537
-    },
-    {
-        "station_name": "Tanjong Katong Mrt Station (Te25)",
-        "station_x": 35128.2119915774,
-        "station_y": 31297.7308518719
-    },
-    {
-        "station_name": "Bedok Reservoir Mrt Station (Dt30)",
-        "station_x": 39008.3131622663,
-        "station_y": 35421.0408713054
-    },
-    {
-        "station_name": "Bendemeer Mrt Station (Dt23)",
-        "station_x": 31300.7676084097,
-        "station_y": 32884.7709222045
-    },
-    {
-        "station_name": "Dhoby Ghaut Mrt Station (Cc1)",
-        "station_x": 29443.8824096406,
-        "station_y": 31252.5723822247
+        "station_name": "City Hall Mrt Station",
+        "station_x": 30139.47036835551,
+        "station_y": 30597.78167018667
     },
     {
         "station_name": "Farrer Road Mrt Station (Cc20)",
         "station_x": 25113.2011973979,
-        "station_y": 33301.2602245007
+        "station_y": 33301.26022450067
     },
     {
-        "station_name": "Jalan Besar Mrt Station (Dt22)",
-        "station_x": 30445.8529787809,
-        "station_y": 31944.7496234626
+        "station_name": "Geylang Bahru Mrt Station (Dt24)",
+        "station_x": 32262.86125918571,
+        "station_y": 33728.3126899004
     },
     {
-        "station_name": "Labrador Park Mrt Station",
-        "station_x": 24672.1010278082,
-        "station_y": 28317.5716898218
+        "station_name": "Lorong Chuan Mrt Station",
+        "station_x": 31504.88184509799,
+        "station_y": 37071.00151163526
     },
     {
-        "station_name": "Outram Park Mrt Station (Ew16)",
-        "station_x": 28646.8726726929,
-        "station_y": 29316.780396251
+        "station_name": "Marine Terrace Mrt Station (Te27)",
+        "station_x": 37102.26343540102,
+        "station_y": 32110.0544330366
     },
     {
-        "station_name": "Serangoon Mrt Station (Cc13)",
-        "station_x": 32390.6852547908,
-        "station_y": 36971.7545485683
-    },
-    {
-        "station_name": "Shenton Way Mrt Station (Te19)",
-        "station_x": 29897.4191489154,
-        "station_y": 28908.9617211055
-    },
-    {
-        "station_name": "Bencoolen Mrt Station (Dt21)",
-        "station_x": 29895.8639496444,
-        "station_y": 31253.3258734122
-    },
-    {
-        "station_name": "City Hall Mrt Station",
-        "station_x": 30139.4703683555,
-        "station_y": 30597.7816701867
-    },
-    {
-        "station_name": "Clarke Quay Mrt Station",
-        "station_x": 29424.6004630253,
-        "station_y": 29985.4365992192
-    },
-    {
-        "station_name": "Harbourfront Mrt Station",
-        "station_x": 26579.7667925926,
-        "station_y": 27537.2307433821
-    },
-    {
-        "station_name": "Katong Park Mrt Station (Te24)",
-        "station_x": 33882.890949796,
-        "station_y": 31133.1909445133
-    },
-    {
-        "station_name": "Rochor Mrt Station (Dt13)",
-        "station_x": 30164.7018503863,
-        "station_y": 31798.8766778279
-    },
-    {
-        "station_name": "Tan Kah Kee Mrt Station",
-        "station_x": 25020.7282696236,
-        "station_y": 34291.248031836
-    },
-    {
-        "station_name": "Tuas Crescent Mrt Station (Ew31)",
-        "station_x": 7495.83786702435,
-        "station_y": 33698.7263109088
-    },
-    {
-        "station_name": "Woodlands Mrt Station (Te2)",
-        "station_x": 22949.9191319831,
-        "station_y": 46417.5223346148
-    },
-    {
-        "station_name": "Woodlands South Mrt Station (Te3)",
-        "station_x": 23542.5545697259,
-        "station_y": 45459.758821588
-    },
-    {
-        "station_name": "Beauty World Mrt Station (Dt5)",
-        "station_x": 21598.1664763764,
-        "station_y": 35931.2358860858
-    },
-    {
-        "station_name": "Bedok South Mrt Station (Te30)",
-        "station_x": 40908.8629240785,
-        "station_y": 33218.045304371
-    },
-    {
-        "station_name": "Cashew Mrt Station",
-        "station_x": 20320.7412133776,
-        "station_y": 39096.2385978997
-    },
-    {
-        "station_name": "Choa Chu Kang Mrt Station (Js1)",
-        "station_x": 18069.4334950363,
-        "station_y": 40812.7093489487
-    },
-    {
-        "station_name": "Dhoby Ghaut Mrt Station (Ne6)",
-        "station_x": 29354.4079191377,
-        "station_y": 31340.2508916464
-    },
-    {
-        "station_name": "Downtown Mrt Station (Dt17)",
-        "station_x": 30172.6688074525,
-        "station_y": 29100.2087655049
-    },
-    {
-        "station_name": "Farrer Park Mrt Station (Ne8)",
-        "station_x": 30243.5206485614,
-        "station_y": 32689.3795552086
-    },
-    {
-        "station_name": "Hillview Mrt Station",
-        "station_x": 20706.428302045,
-        "station_y": 38326.8960984368
-    },
-    {
-        "station_name": "Hume Mrt Station (Dt4)",
-        "station_x": 20855.3014404941,
-        "station_y": 37409.8791332152
-    },
-    {
-        "station_name": "Little India Mrt Station (Dt12)",
-        "station_x": 29707.4618838392,
-        "station_y": 32148.9626245815
-    },
-    {
-        "station_name": "Bugis Mrt Station (Dt14)",
-        "station_x": 30649.548609254,
-        "station_y": 31297.0167393312
-    },
-    {
-        "station_name": "Bukit Panjang Mrt Station (Dt1)",
-        "station_x": 20011.3981217332,
-        "station_y": 40108.6837660205
-    },
-    {
-        "station_name": "Buona Vista Mrt Station (Cc22)",
-        "station_x": 23257.9930265341,
-        "station_y": 32106.5630513821
-    },
-    {
-        "station_name": "Choa Chu Kang Mrt Station (Ns4)",
-        "station_x": 18101.2472041463,
-        "station_y": 40812.1216052417
-    },
-    {
-        "station_name": "Clarke Quay Mrt Station (Ne5)",
-        "station_x": 29473.1249443376,
-        "station_y": 30088.7037861496
-    },
-    {
-        "station_name": "Esplanade Mrt Station (Cc3)",
-        "station_x": 30421.9934839159,
-        "station_y": 30671.6277715843
-    },
-    {
-        "station_name": "Joo Koon Mrt Station (Ew29)",
-        "station_x": 10756.3379743481,
-        "station_y": 34438.2617777772
-    },
-    {
-        "station_name": "Mountbatten Mrt Station",
-        "station_x": 33534.1084029563,
-        "station_y": 32053.4526375905
+        "station_name": "Mattar Mrt Station (Dt25)",
+        "station_x": 33556.58344024606,
+        "station_y": 34344.85853325576
     },
     {
         "station_name": "Paya Lebar Mrt Station (Ew8)",
         "station_x": 34648.7236344032,
-        "station_y": 33375.6688563768
+        "station_y": 33375.66885637678
     },
     {
-        "station_name": "Promenade Mrt Station (Cc4)",
-        "station_x": 31008.3618750935,
-        "station_y": 30709.2578067128
+        "station_name": "Siglap Mrt Station (Te28)",
+        "station_x": 38762.61177533027,
+        "station_y": 32479.83100472204
     },
     {
-        "station_name": "Caldecott Mrt Station (Cc17)",
-        "station_x": 28691.3524736091,
-        "station_y": 35538.642612109
+        "station_name": "Woodlands South Mrt Station (Te3)",
+        "station_x": 23542.55456972588,
+        "station_y": 45459.75882158801
     },
     {
-        "station_name": "Gardens By The Bay Mrt Station (Te22)",
-        "station_x": 31799.0721787345,
-        "station_y": 28994.1708776113
+        "station_name": "Bedok South Mrt Station (Te30)",
+        "station_x": 40908.86292407848,
+        "station_y": 33218.04530437104
     },
     {
-        "station_name": "Harbourfront Mrt Station (Ne1 / Cc29)",
-        "station_x": 26688.0367021402,
-        "station_y": 27545.8534260485
+        "station_name": "Boon Keng Mrt Station (Ne9)",
+        "station_x": 31144.04501320701,
+        "station_y": 33510.97461326979
     },
     {
-        "station_name": "Hougang Mrt Station (Ne14)",
-        "station_x": 34572.8752453458,
-        "station_y": 39256.1282835789
+        "station_name": "Cashew Mrt Station",
+        "station_x": 20320.74121337757,
+        "station_y": 39096.23859789968
     },
     {
-        "station_name": "Napier Mrt Station (Te12)",
-        "station_x": 26401.666707457,
-        "station_y": 32122.8625724912
+        "station_name": "Clarke Quay Mrt Station (Ne5)",
+        "station_x": 29473.12494433764,
+        "station_y": 30088.70378614962
     },
     {
-        "station_name": "Newton Mrt Station (Dt11)",
-        "station_x": 28489.236438402,
-        "station_y": 32920.1726889089
+        "station_name": "Farrer Park Mrt Station (Ne8)",
+        "station_x": 30243.52064856142,
+        "station_y": 32689.37955520861
     },
     {
-        "station_name": "Orchard Mrt Station (Te14)",
-        "station_x": 27783.6973352153,
-        "station_y": 31709.5324909948
-    },
-    {
-        "station_name": "Tuas Link Mrt Station (Ew33)",
-        "station_x": 6150.86278806347,
-        "station_y": 35894.3582222275
-    },
-    {
-        "station_name": "Cantonment Mrt Station (Cc31)",
-        "station_x": 28416.6484560147,
-        "station_y": 28373.255790269
-    },
-    {
-        "station_name": "Chinatown Mrt Station (Dt19)",
-        "station_x": 29316.0490006926,
-        "station_y": 29628.4789423887
-    },
-    {
-        "station_name": "King Albert Park Mrt Station",
-        "station_x": 22426.3220593724,
-        "station_y": 35341.8887923621
+        "station_name": "Katong Park Mrt Station (Te24)",
+        "station_x": 33882.89094979595,
+        "station_y": 31133.19094451331
     },
     {
         "station_name": "Kovan Mrt Station (Ne13)",
-        "station_x": 33758.7578018578,
-        "station_y": 38027.2794417515
+        "station_x": 33758.75780185778,
+        "station_y": 38027.27944175154
     },
     {
-        "station_name": "Lavender Mrt Station (Ew11)",
-        "station_x": 31277.4062337531,
-        "station_y": 32188.7337866109
-    },
-    {
-        "station_name": "Nicoll Highway Mrt Station (Cc5)",
-        "station_x": 31374.1649264134,
-        "station_y": 31347.1528697051
-    },
-    {
-        "station_name": "Sungei Bedok Mrt Station (Te31 / Dt37)",
-        "station_x": 41784.9899015203,
-        "station_y": 33629.1483281609
+        "station_name": "Tampines Mrt Station (Ew2)",
+        "station_x": 40444.97320258059,
+        "station_y": 37267.02626645938
     },
     {
         "station_name": "Tiong Bahru Mrt Station (Ew17)",
-        "station_x": 27346.3322650846,
-        "station_y": 29836.2044219468
+        "station_x": 27346.33226508461,
+        "station_y": 29836.20442194678
     },
     {
-        "station_name": "Bishan Mrt Station (Cc15)",
-        "station_x": 29760.7755471431,
-        "station_y": 37047.1573323701
+        "station_name": "Ubi Mrt Station (Dt27)",
+        "station_x": 35334.89183336962,
+        "station_y": 34687.41099073924
     },
     {
-        "station_name": "Bishan Mrt Station (Ns17)",
-        "station_x": 29649.8988074977,
-        "station_y": 36994.4330169763
+        "station_name": "Bedok North Mrt Station (Dt29)",
+        "station_x": 37421.74381961673,
+        "station_y": 35214.6803870108
     },
     {
-        "station_name": "Botanic Gardens Mrt Station (Cc19)",
-        "station_x": 25959.6005048994,
-        "station_y": 33818.1442215387
+        "station_name": "Bukit Panjang Mrt Station (Dt1)",
+        "station_x": 20011.39812173322,
+        "station_y": 40108.68376602046
+    },
+    {
+        "station_name": "Buona Vista Mrt Station (Cc22)",
+        "station_x": 23257.9930265341,
+        "station_y": 32106.56305138208
+    },
+    {
+        "station_name": "Dhoby Ghaut Mrt Station (Ne6)",
+        "station_x": 29354.40791913774,
+        "station_y": 31340.25089164637
+    },
+    {
+        "station_name": "Fort Canning Mrt Station (Dt20)",
+        "station_x": 29225.62760658655,
+        "station_y": 30541.60877206922
     },
     {
         "station_name": "Haw Par Villa Mrt Station",
-        "station_x": 22287.4361145627,
-        "station_y": 29377.8564655874
+        "station_x": 22287.43611456268,
+        "station_y": 29377.85646558739
     },
     {
-        "station_name": "Jurong East Mrt Station (Je5)",
-        "station_x": 17797.0155577157,
-        "station_y": 35105.2592347004
+        "station_name": "King Albert Park Mrt Station (Dt6)",
+        "station_x": 22444.48956909589,
+        "station_y": 35316.24790558405
     },
     {
-        "station_name": "Outram Park Mrt Station (Ne3)",
-        "station_x": 28681.2492930563,
-        "station_y": 29130.5222722683
+        "station_name": "Napier Mrt Station (Te12)",
+        "station_x": 26401.66670745704,
+        "station_y": 32122.86257249117
     },
     {
-        "station_name": "Somerset Mrt Station (Ns23)",
-        "station_x": 28641.8346576076,
-        "station_y": 31402.1245223526
+        "station_name": "Serangoon Mrt Station",
+        "station_x": 32201.35523314122,
+        "station_y": 37017.60412708856
     },
     {
-        "station_name": "Dhoby Ghaut Mrt Station (Ns24)",
-        "station_x": 29423.9804536467,
-        "station_y": 31229.3163704202
+        "station_name": "Tanjong Katong Mrt Station (Te25)",
+        "station_x": 35128.21199157741,
+        "station_y": 31297.73085187189
+    },
+    {
+        "station_name": "Bedok Reservoir Mrt Station (Dt30)",
+        "station_x": 39008.31316226628,
+        "station_y": 35421.04087130539
+    },
+    {
+        "station_name": "Clarke Quay Mrt Station",
+        "station_x": 29424.60046302527,
+        "station_y": 29985.43659921922
+    },
+    {
+        "station_name": "Downtown Mrt Station (Dt17)",
+        "station_x": 30172.66880745254,
+        "station_y": 29100.20876550488
+    },
+    {
+        "station_name": "Hougang Mrt Station (Ne14)",
+        "station_x": 34572.87524534576,
+        "station_y": 39256.1282835789
+    },
+    {
+        "station_name": "Jalan Besar Mrt Station (Dt22)",
+        "station_x": 30445.85297878087,
+        "station_y": 31944.74962346256
+    },
+    {
+        "station_name": "Marina Bay Mrt Station",
+        "station_x": 30369.00686617568,
+        "station_y": 28753.5319017563
+    },
+    {
+        "station_name": "Mountbatten Mrt Station",
+        "station_x": 33534.10840295628,
+        "station_y": 32053.45263759047
+    },
+    {
+        "station_name": "Newton Mrt Station (Dt11)",
+        "station_x": 28489.23643840197,
+        "station_y": 32920.17268890887
+    },
+    {
+        "station_name": "Promenade Mrt Station (Cc4)",
+        "station_x": 31008.36187509354,
+        "station_y": 30709.25780671276
+    },
+    {
+        "station_name": "Shenton Way Mrt Station (Te19)",
+        "station_x": 29897.41914891545,
+        "station_y": 28908.9617211055
+    },
+    {
+        "station_name": "Bayfront Mrt Station (Dt16 / Ce1)",
+        "station_x": 30867.00927121844,
+        "station_y": 29368.62503323331
+    },
+    {
+        "station_name": "Beauty World Mrt Station (Dt5)",
+        "station_x": 21598.16647637635,
+        "station_y": 35931.23588608578
+    },
+    {
+        "station_name": "Buangkok Mrt Station (Ne15)",
+        "station_x": 34655.42505680211,
+        "station_y": 40536.34016849846
+    },
+    {
+        "station_name": "Bugis Mrt Station (Dt14)",
+        "station_x": 30649.54860925395,
+        "station_y": 31297.01673933119
+    },
+    {
+        "station_name": "Chinatown Mrt Station (Dt19)",
+        "station_x": 29316.04900069255,
+        "station_y": 29628.47894238867
+    },
+    {
+        "station_name": "Harbourfront Mrt Station (Ne1 / Cc29)",
+        "station_x": 26688.03670214023,
+        "station_y": 27545.85342604853
+    },
+    {
+        "station_name": "King Albert Park Mrt Station",
+        "station_x": 22426.32205937244,
+        "station_y": 35341.88879236206
+    },
+    {
+        "station_name": "Nicoll Highway Mrt Station (Cc5)",
+        "station_x": 31374.16492641345,
+        "station_y": 31347.15286970511
+    },
+    {
+        "station_name": "Rochor Mrt Station (Dt13)",
+        "station_x": 30164.70185038634,
+        "station_y": 31798.87667782791
+    },
+    {
+        "station_name": "Tuas Crescent Mrt Station (Ew31)",
+        "station_x": 7495.837867024355,
+        "station_y": 33698.72631090879
+    },
+    {
+        "station_name": "Bras Basah Mrt Station (Cc2)",
+        "station_x": 29930.76738426369,
+        "station_y": 31025.90159656666
+    },
+    {
+        "station_name": "Choa Chu Kang Mrt Station (Ns4)",
+        "station_x": 18101.24720414635,
+        "station_y": 40812.12160524167
     },
     {
         "station_name": "Gul Circle Mrt Station (Ew30)",
         "station_x": 8770.35150132887,
-        "station_y": 33526.5733700171
-    },
-    {
-        "station_name": "Marina South Mrt Station (Te21)",
-        "station_x": 31367.2262635585,
-        "station_y": 28559.3299454469
-    },
-    {
-        "station_name": "Potong Pasir Mrt Station (Ne10)",
-        "station_x": 31977.1667550961,
-        "station_y": 34842.7250955887
-    },
-    {
-        "station_name": "Prince Edward Road Mrt Station (Cc32)",
-        "station_x": 29533.4444351522,
-        "station_y": 28404.7502629552
-    },
-    {
-        "station_name": "Serangoon Mrt Station (Ne12)",
-        "station_x": 32480.0729367165,
-        "station_y": 36869.3930099793
-    },
-    {
-        "station_name": "Bras Basah Mrt Station (Cc2)",
-        "station_x": 29930.7673842637,
-        "station_y": 31025.9015965667
-    },
-    {
-        "station_name": "Bugis Mrt Station (Ew12)",
-        "station_x": 30491.6000699066,
-        "station_y": 31424.3512713723
-    },
-    {
-        "station_name": "Expo Mrt Station (Dt35)",
-        "station_x": 42362.6034600167,
-        "station_y": 35285.7083877847
-    },
-    {
-        "station_name": "Little India Mrt Station (Ne7)",
-        "station_x": 29817.2085683132,
-        "station_y": 32124.850180177
-    },
-    {
-        "station_name": "Bartley Mrt Station (Cc12)",
-        "station_x": 33214.9339675205,
-        "station_y": 36072.5255325548
-    },
-    {
-        "station_name": "Botanic Gardens Mrt Station (Dt9)",
-        "station_x": 26074.1720875856,
-        "station_y": 33859.5354773961
+        "station_y": 33526.57337001711
     },
     {
         "station_name": "Haw Par Villa Mrt Station (Cc25)",
-        "station_x": 22261.1431040755,
-        "station_y": 29445.802035436
+        "station_x": 22261.14310407545,
+        "station_y": 29445.80203543603
     },
     {
-        "station_name": "Macpherson Mrt Station (Cc10)",
-        "station_x": 34351.6177675035,
-        "station_y": 34256.5138255134
+        "station_name": "Hume Mrt Station (Dt4)",
+        "station_x": 20855.30144049414,
+        "station_y": 37409.87913321517
     },
     {
-        "station_name": "Tuas West Road Mrt Station (Ew32)",
-        "station_x": 6442.92861192208,
-        "station_y": 34689.3517738562
+        "station_name": "Outram Park Mrt Station (Ne3)",
+        "station_x": 28681.24929305632,
+        "station_y": 29130.52227226831
+    },
+    {
+        "station_name": "Potong Pasir Mrt Station (Ne10)",
+        "station_x": 31977.16675509606,
+        "station_y": 34842.72509558871
+    },
+    {
+        "station_name": "Tan Kah Kee Mrt Station",
+        "station_x": 25020.72826962359,
+        "station_y": 34291.248031836
+    },
+    {
+        "station_name": "Woodlands Mrt Station (Te2)",
+        "station_x": 22949.91913198307,
+        "station_y": 46417.52233461477
+    },
+    {
+        "station_name": "Bishan Mrt Station (Ns17)",
+        "station_x": 29649.8988074977,
+        "station_y": 36994.43301697634
     },
     {
         "station_name": "Braddell Mrt Station (Ns18)",
-        "station_x": 29500.2349482412,
-        "station_y": 35847.7719815206
+        "station_x": 29500.23494824115,
+        "station_y": 35847.77198152058
     },
     {
-        "station_name": "Buangkok Mrt Station (Ne15)",
-        "station_x": 34655.4250568021,
-        "station_y": 40536.3401684985
+        "station_name": "Chinatown Mrt Station (Ne4)",
+        "station_x": 29124.94802958332,
+        "station_y": 29643.48020913824
     },
     {
-        "station_name": "Keppel Mrt Station (Cc30)",
-        "station_x": 27634.1687435787,
-        "station_y": 28030.479924798
+        "station_name": "Dhoby Ghaut Mrt Station (Ns24)",
+        "station_x": 29423.98045364674,
+        "station_y": 31229.31637042016
     },
     {
-        "station_name": "Marina Bay Mrt Station (Ce2)",
-        "station_x": 30462.7349769669,
-        "station_y": 28746.9336326458
+        "station_name": "Gardens By The Bay Mrt Station (Te22)",
+        "station_x": 31799.07217873447,
+        "station_y": 28994.17087761126
     },
     {
-        "station_name": "Bukit Brown Mrt Station (Cc18)",
-        "station_x": 27707.416568011,
-        "station_y": 35102.4802705795
+        "station_name": "Little India Mrt Station (Dt12)",
+        "station_x": 29707.46188383922,
+        "station_y": 32148.96262458153
     },
     {
-        "station_name": "Dakota Mrt Station (Cc8)",
-        "station_x": 34204.0252977135,
-        "station_y": 32318.1744557619
+        "station_name": "Macpherson Mrt Station (Cc10)",
+        "station_x": 34351.61776750349,
+        "station_y": 34256.51382551342
+    },
+    {
+        "station_name": "Serangoon Mrt Station (Ne12)",
+        "station_x": 32480.07293671649,
+        "station_y": 36869.39300997928
+    },
+    {
+        "station_name": "Upper Changi Mrt Station (Dt34)",
+        "station_x": 42262.18797117099,
+        "station_y": 35988.65688451193
+    },
+    {
+        "station_name": "Botanic Gardens Mrt Station (Cc19)",
+        "station_x": 25959.6005048994,
+        "station_y": 33818.14422153868
+    },
+    {
+        "station_name": "Caldecott Mrt Station (Cc17)",
+        "station_x": 28691.35247360915,
+        "station_y": 35538.64261210896
     },
     {
         "station_name": "Hillview Mrt Station (Dt3)",
-        "station_x": 20666.0675499607,
+        "station_x": 20666.06754996069,
         "station_y": 38266.7898455672
+    },
+    {
+        "station_name": "Lavender Mrt Station (Ew11)",
+        "station_x": 31277.40623375308,
+        "station_y": 32188.73378661089
+    },
+    {
+        "station_name": "Marina Bay Mrt Station (Ns27)",
+        "station_x": 30367.95472079422,
+        "station_y": 28764.49593403377
+    },
+    {
+        "station_name": "Stevens Mrt Station (Te11)",
+        "station_x": 27137.32151613478,
+        "station_y": 33510.81053053029
+    },
+    {
+        "station_name": "Sungei Bedok Mrt Station (Te31 / Dt37)",
+        "station_x": 41784.98990152031,
+        "station_y": 33629.14832816087
+    },
+    {
+        "station_name": "Tuas Link Mrt Station (Ew33)",
+        "station_x": 6150.862788063474,
+        "station_y": 35894.35822222754
+    },
+    {
+        "station_name": "Bishan Mrt Station (Cc15)",
+        "station_x": 29760.77554714307,
+        "station_y": 37047.15733237006
+    },
+    {
+        "station_name": "Botanic Gardens Mrt Station (Dt9)",
+        "station_x": 26074.17208758555,
+        "station_y": 33859.5354773961
+    },
+    {
+        "station_name": "Corporation Mrt Station (Js5)",
+        "station_x": 14714.86993792932,
+        "station_y": 37240.86071445048
+    },
+    {
+        "station_name": "Jurong East Mrt Station (Je5)",
+        "station_x": 17797.01555771567,
+        "station_y": 35105.25923470035
+    },
+    {
+        "station_name": "Keppel Mrt Station (Cc30)",
+        "station_x": 27634.16874357872,
+        "station_y": 28030.47992479801
+    },
+    {
+        "station_name": "Prince Edward Road Mrt Station (Cc32)",
+        "station_x": 29533.44443515223,
+        "station_y": 28404.7502629552
+    },
+    {
+        "station_name": "Cantonment Mrt Station (Cc31)",
+        "station_x": 28416.64845601469,
+        "station_y": 28373.255790269
+    },
+    {
+        "station_name": "Little India Mrt Station (Ne7)",
+        "station_x": 29817.20856831316,
+        "station_y": 32124.85018017702
+    },
+    {
+        "station_name": "Marina South Pier Mrt Station (Ns28)",
+        "station_x": 31241.82600701787,
+        "station_y": 28169.25109341368
+    },
+    {
+        "station_name": "Outram Park Mrt Station (Te17)",
+        "station_x": 28647.60482495092,
+        "station_y": 29308.44265638478
+    },
+    {
+        "station_name": "Tuas West Road Mrt Station (Ew32)",
+        "station_x": 6442.928611922078,
+        "station_y": 34689.35177385621
+    },
+    {
+        "station_name": "Xilin Mrt Station (Dt36)",
+        "station_x": 42643.96237811912,
+        "station_y": 34569.68530254252
+    },
+    {
+        "station_name": "Bugis Mrt Station (Ew12)",
+        "station_x": 30491.60006990656,
+        "station_y": 31424.35127137229
+    },
+    {
+        "station_name": "Buona Vista Mrt Station (Ew21)",
+        "station_x": 23207.25780195929,
+        "station_y": 32171.71509820968
+    },
+    {
+        "station_name": "Enterprise Mrt Station",
+        "station_x": 14117.85808268934,
+        "station_y": 34992.56493290141
+    },
+    {
+        "station_name": "Esplanade Mrt Station (Cc3)",
+        "station_x": 30421.99348391593,
+        "station_y": 30671.62777158432
     },
     {
         "station_name": "Labrador Park Mrt Station (Cc27)",
         "station_x": 24584.7750495933,
-        "station_y": 28304.9440988898
-    },
-    {
-        "station_name": "Stevens Mrt Station (Te11)",
-        "station_x": 27137.3215161348,
-        "station_y": 33510.8105305303
-    },
-    {
-        "station_name": "Xilin Mrt Station (Dt36)",
-        "station_x": 42643.9623781191,
-        "station_y": 34569.6853025425
-    },
-    {
-        "station_name": "Chinatown Mrt Station (Ne4)",
-        "station_x": 29124.9480295833,
-        "station_y": 29643.4802091382
-    },
-    {
-        "station_name": "Macpherson Mrt Station (Dt26)",
-        "station_x": 34230.0104828067,
-        "station_y": 34264.5435281098
-    },
-    {
-        "station_name": "Mountbatten Mrt Station (Cc7)",
-        "station_x": 33476.563426869,
-        "station_y": 32058.7418466732
+        "station_y": 28304.94409888983
     },
     {
         "station_name": "Newton Mrt Station (Ns21)",
-        "station_x": 28519.2830723543,
-        "station_y": 32735.0770371091
+        "station_x": 28519.28307235427,
+        "station_y": 32735.07703710906
     },
     {
-        "station_name": "Outram Park Mrt Station (Te17)",
-        "station_x": 28647.6048249509,
-        "station_y": 29308.4426563848
+        "station_name": "Somerset Mrt Station (Ns23)",
+        "station_x": 28641.8346576076,
+        "station_y": 31402.12452235259
     },
     {
-        "station_name": "Marina Bay Mrt Station (Te20)",
-        "station_x": 30447.3793931995,
-        "station_y": 28579.995138919
+        "station_name": "Dakota Mrt Station (Cc8)",
+        "station_x": 34204.02529771347,
+        "station_y": 32318.17445576191
     },
     {
-        "station_name": "Buona Vista Mrt Station (Ew21)",
-        "station_x": 23207.2578019593,
-        "station_y": 32171.7150982097
-    },
-    {
-        "station_name": "Marina South Pier Mrt Station (Ns28)",
-        "station_x": 31241.8260070179,
-        "station_y": 28169.2510934137
-    },
-    {
-        "station_name": "Tan Kah Kee Mrt Station (Dt8)",
-        "station_x": 25155.6221095249,
-        "station_y": 34198.8053115103
-    },
-    {
-        "station_name": "Woodleigh Mrt Station (Ne11)",
-        "station_x": 32173.3185749156,
-        "station_y": 35706.3793633711
-    },
-    {
-        "station_name": "Boon Lay Mrt Station (Js8)",
-        "station_x": 13677.6658012709,
-        "station_y": 35586.0199368391
-    },
-    {
-        "station_name": "Promenade Mrt Station (Dt15)",
-        "station_x": 31068.6608139481,
-        "station_y": 30586.9369543009
-    },
-    {
-        "station_name": "Corporation Mrt Station (Js5)",
-        "station_x": 14714.8699379293,
-        "station_y": 37240.8607144505
+        "station_name": "Orchard Mrt Station (Te14)",
+        "station_x": 27783.69733521529,
+        "station_y": 31709.53249099478
     },
     {
         "station_name": "Cashew Mrt Station (Dt2)",
-        "station_x": 20334.5589111606,
-        "station_y": 39092.8585418891
+        "station_x": 20334.55891116057,
+        "station_y": 39092.85854188912
+    },
+    {
+        "station_name": "Expo Mrt Station (Dt35)",
+        "station_x": 42362.60346001666,
+        "station_y": 35285.70838778466
+    },
+    {
+        "station_name": "Promenade Mrt Station (Dt15)",
+        "station_x": 31068.66081394814,
+        "station_y": 30586.93695430085
+    },
+    {
+        "station_name": "Bartley Mrt Station (Cc12)",
+        "station_x": 33214.93396752048,
+        "station_y": 36072.52553255484
+    },
+    {
+        "station_name": "Marina Bay Mrt Station (Ce2)",
+        "station_x": 30462.73497696687,
+        "station_y": 28746.93363264576
+    },
+    {
+        "station_name": "Boon Lay Mrt Station (Js8)",
+        "station_x": 13677.66580127086,
+        "station_y": 35586.01993683912
+    },
+    {
+        "station_name": "Defu Mrt Station (Cr07)",
+        "station_x": 35220.03061634768,
+        "station_y": 38290.14898039214
+    },
+    {
+        "station_name": "Bukit Brown Mrt Station (Cc18)",
+        "station_x": 27707.41656801105,
+        "station_y": 35102.48027057946
+    },
+    {
+        "station_name": "Macpherson Mrt Station (Dt26)",
+        "station_x": 34230.01048280671,
+        "station_y": 34264.54352810979
+    },
+    {
+        "station_name": "Tan Kah Kee Mrt Station (Dt8)",
+        "station_x": 25155.62210952491,
+        "station_y": 34198.80531151034
+    },
+    {
+        "station_name": "Mountbatten Mrt Station (Cc7)",
+        "station_x": 33476.56342686899,
+        "station_y": 32058.74184667319
+    },
+    {
+        "station_name": "Marina Bay Mrt Station (Te20)",
+        "station_x": 30447.37939319946,
+        "station_y": 28579.99513891898
     },
     {
         "station_name": "Lorong Chuan Mrt Station (Cc14)",
-        "station_x": 31431.4054671209,
-        "station_y": 37079.9443690311
-    },
-    {
-        "station_name": "Ang Mo Kio Mrt Station (Cr11)",
-        "station_x": 29942.6479008207,
-        "station_y": 39035.6986653581
-    },
-    {
-        "station_name": "Mrt Station",
-        "station_x": 14319.9842274031,
-        "station_y": 32822.9619741794
+        "station_x": 31431.40546712093,
+        "station_y": 37079.94436903112
     },
     {
         "station_name": "Mrt Station (Je1)",
         "station_x": 16887.7488005301,
-        "station_y": 37712.2800509185
+        "station_y": 37712.28005091846
     },
     {
         "station_name": "Mrt Station (Je2)",
-        "station_x": 17252.7633406054,
-        "station_y": 37172.1733368579
-    },
-    {
-        "station_name": "Mrt Station (Je3)",
-        "station_x": 17567.142570721,
-        "station_y": 36418.62672952
+        "station_x": 17252.76334060542,
+        "station_y": 37172.17333685793
     },
     {
         "station_name": "Mrt Station (Js2)",
         "station_x": 17617.2922006147,
-        "station_y": 40133.6950484701
+        "station_y": 40133.69504847005
     },
     {
         "station_name": "Mrt Station (Js4)",
-        "station_x": 16073.7050595814,
-        "station_y": 37800.0116503835
-    },
-    {
-        "station_name": "Mrt Station (Js6)",
-        "station_x": 14085.2387306569,
-        "station_y": 36811.8961902522
-    },
-    {
-        "station_name": "Nanyang Crescent Mrt Station (Jw4)",
-        "station_x": 11026.8523581726,
-        "station_y": 36725.9691982456
-    },
-    {
-        "station_name": "Yunnan Gardens Mrt Station (Jw5)",
-        "station_x": 10777.513334685,
-        "station_y": 36150.9003902134
+        "station_x": 16073.70505958144,
+        "station_y": 37800.01165038347
     },
     {
         "station_name": "Mrt Station (Js7)",
         "station_x": 13497.2176167639,
-        "station_y": 36479.8977549393
+        "station_y": 36479.89775493927
+    },
+    {
+        "station_name": "Nanyang Crescent Mrt Station (Jw4)",
+        "station_x": 11026.85235817265,
+        "station_y": 36725.96919824556
+    },
+    {
+        "station_name": "Ang Mo Kio Mrt Station (Cr11)",
+        "station_x": 29942.64790082071,
+        "station_y": 39035.69866535813
+    },
+    {
+        "station_name": "Yunnan Gardens Mrt Station (Jw5)",
+        "station_x": 10777.51333468501,
+        "station_y": 36150.90039021336
+    },
+    {
+        "station_name": "Mrt Station (Je3)",
+        "station_x": 17567.14257072099,
+        "station_y": 36418.62672952004
+    },
+    {
+        "station_name": "Mrt Station (Js3)",
+        "station_x": 16508.89676740952,
+        "station_y": 38709.45980359614
+    },
+    {
+        "station_name": "Mrt Station (Js6)",
+        "station_x": 14085.23873065691,
+        "station_y": 36811.89619025216
     },
     {
         "station_name": "Nanyang Gateway Mrt Station (Jw3)",
-        "station_x": 11672.6308688633,
-        "station_y": 37310.0339234509
+        "station_x": 11672.63086886331,
+        "station_y": 37310.03392345086
+    },
+    {
+        "station_name": "Mrt Station",
+        "station_x": 14319.98422740307,
+        "station_y": 32822.96197417937
     },
     {
         "station_name": "Sixth Avenue Mrt Station.",
-        "station_x": 23954.6986305481,
-        "station_y": 34796.40533421
+        "station_x": 23954.69863054808,
+        "station_y": 34796.40533421002
     },
     {
-        "station_name": "Marina Bay Mrt Station (Ns27)",
-        "station_x": 30367.9547207942,
-        "station_y": 28764.4959340338
-    },
-    {
-        "station_name": "Bangkit Lrt Station (Bp9)",
-        "station_x": 21248.0565876467,
-        "station_y": 40221.4484106153
+        "station_name": "Woodleigh Mrt Station (Ne11)",
+        "station_x": 32173.31857491564,
+        "station_y": 35706.37936337106
     },
     {
         "station_name": "Bukit Panjang Lrt Station (Bp6)",
-        "station_x": 20185.8730407264,
-        "station_y": 39989.791610267
+        "station_x": 20185.87304072641,
+        "station_y": 39989.79161026701
     },
     {
-        "station_name": "Fajar Lrt Station (Bp10)",
-        "station_x": 21052.1874405267,
-        "station_y": 40724.6743432153
-    },
-    {
-        "station_name": "Farmway Lrt Station (Sw2)",
-        "station_x": 34230.5208312804,
-        "station_y": 42117.5715403445
+        "station_name": "Cheng Lim Lrt Station (Sw1)",
+        "station_x": 34730.46289952379,
+        "station_y": 42018.88883303106
     },
     {
         "station_name": "Fernvale Lrt Station (Sw5)",
-        "station_x": 32784.2279748796,
-        "station_y": 41533.229409067
-    },
-    {
-        "station_name": "Jelapang Lrt Station (Bp12)",
-        "station_x": 20345.1711083958,
-        "station_y": 40964.2096878495
-    },
-    {
-        "station_name": "Kupang Lrt Station (Sw3)",
-        "station_x": 33334.8164311657,
-        "station_y": 42232.8410119303
-    },
-    {
-        "station_name": "Oasis Lrt Station (Pe6)",
-        "station_x": 36837.1174417054,
-        "station_y": 42683.4020451903
-    },
-    {
-        "station_name": "Riviera Lrt Station (Pe4)",
-        "station_x": 37220.1990320655,
-        "station_y": 41824.5905639976
-    },
-    {
-        "station_name": "Sengkang Lrt Station (Stc)",
-        "station_x": 34913.5878634388,
-        "station_y": 41502.6996980961
-    },
-    {
-        "station_name": "Choa Chu Kang Lrt Station (Bp1)",
-        "station_x": 18119.8205469949,
-        "station_y": 40744.9184182286
-    },
-    {
-        "station_name": "Compassvale Lrt Station (Se1)",
-        "station_x": 35475.5631351992,
-        "station_y": 41821.5781126507
-    },
-    {
-        "station_name": "Kadaloor Lrt Station (Pe5)",
-        "station_x": 37265.3166702027,
-        "station_y": 42376.2865863442
-    },
-    {
-        "station_name": "Kangkar Lrt Station (Se4)",
-        "station_x": 35668.448192073,
-        "station_y": 40656.7945456952
+        "station_x": 32784.22797487956,
+        "station_y": 41533.22940906696
     },
     {
         "station_name": "Keat Hong Lrt Station (Bp3)",
-        "station_x": 18622.5893422375,
+        "station_x": 18622.58934223745,
         "station_y": 40064.6246900782
     },
     {
-        "station_name": "Pending Lrt Station (Bp8)",
-        "station_x": 21093.7792520449,
-        "station_y": 39791.7041831557
+        "station_name": "Kupang Lrt Station (Sw3)",
+        "station_x": 33334.81643116567,
+        "station_y": 42232.84101193026
     },
     {
-        "station_name": "Petir Lrt Station (Bp7)",
-        "station_x": 20580.1479736092,
-        "station_y": 39972.6518196631
+        "station_name": "Layar Lrt Station (Sw6)",
+        "station_x": 33198.32332180813,
+        "station_y": 41554.68265976384
+    },
+    {
+        "station_name": "Oasis Lrt Station (Pe6)",
+        "station_x": 36837.11744170543,
+        "station_y": 42683.40204519033
+    },
+    {
+        "station_name": "Riviera Lrt Station (Pe4)",
+        "station_x": 37220.19903206546,
+        "station_y": 41824.59056399763
     },
     {
         "station_name": "Segar Lrt Station (Bp11)",
         "station_x": 20908.9104285147,
-        "station_y": 41079.8350806553
-    },
-    {
-        "station_name": "Sumang Lrt Station (Pw6)",
-        "station_x": 35260.291393281,
-        "station_y": 43365.130112553
+        "station_y": 41079.83508065529
     },
     {
         "station_name": "Thanggam Lrt Station (Sw4)",
-        "station_x": 32709.2687078444,
-        "station_y": 42133.9003911279
+        "station_x": 32709.26870784443,
+        "station_y": 42133.90039112791
+    },
+    {
+        "station_name": "Choa Chu Kang Lrt Station (Bp1)",
+        "station_x": 18119.82054699492,
+        "station_y": 40744.91841822863
+    },
+    {
+        "station_name": "Farmway Lrt Station (Sw2)",
+        "station_x": 34230.52083128039,
+        "station_y": 42117.57154034451
+    },
+    {
+        "station_name": "Jelapang Lrt Station (Bp12)",
+        "station_x": 20345.17110839579,
+        "station_y": 40964.20968784951
+    },
+    {
+        "station_name": "Kadaloor Lrt Station (Pe5)",
+        "station_x": 37265.31667020265,
+        "station_y": 42376.28658634424
+    },
+    {
+        "station_name": "Pending Lrt Station (Bp8)",
+        "station_x": 21093.77925204486,
+        "station_y": 39791.70418315567
+    },
+    {
+        "station_name": "Phoenix Lrt Station (Bp5)",
+        "station_x": 19617.48816019762,
+        "station_y": 40065.94040906243
+    },
+    {
+        "station_name": "Rumbia Lrt Station (Se2)",
+        "station_x": 36085.55238845851,
+        "station_y": 41487.15663443692
+    },
+    {
+        "station_name": "Soo Teck Lrt Station (Pw7)",
+        "station_x": 35119.19800441898,
+        "station_y": 43019.12583367154
+    },
+    {
+        "station_name": "Sumang Lrt Station (Pw6)",
+        "station_x": 35260.29139328096,
+        "station_y": 43365.13011255302
+    },
+    {
+        "station_name": "Tongkang Lrt Station (Sw7)",
+        "station_x": 33845.41322316136,
+        "station_y": 41252.61759560741
     },
     {
         "station_name": "Bakau Lrt Station (Se3)",
-        "station_x": 36023.4333449397,
-        "station_y": 41102.9966866206
+        "station_x": 36023.43334493972,
+        "station_y": 41102.99668662064
     },
     {
-        "station_name": "Beach Lrt Station (S4)",
-        "station_x": 26273.1492723459,
-        "station_y": 25986.8301278763
+        "station_name": "Bangkit Lrt Station (Bp9)",
+        "station_x": 21248.05658764672,
+        "station_y": 40221.44841061532
     },
     {
-        "station_name": "Cheng Lim Lrt Station (Sw1)",
-        "station_x": 34730.4628995238,
-        "station_y": 42018.8888330311
+        "station_name": "Compassvale Lrt Station (Se1)",
+        "station_x": 35475.56313519925,
+        "station_y": 41821.57811265066
+    },
+    {
+        "station_name": "Coral Edge Lrt Station (Pe3)",
+        "station_x": 36820.84446561895,
+        "station_y": 41757.06447813474
     },
     {
         "station_name": "Damai Lrt Station (Pe7)",
         "station_x": 36378.1826799456,
-        "station_y": 43009.3794218432
+        "station_y": 43009.37942184322
     },
     {
-        "station_name": "Layar Lrt Station (Sw6)",
-        "station_x": 33198.3233218081,
-        "station_y": 41554.6826597638
-    },
-    {
-        "station_name": "Meridian Lrt Station (Pe2)",
-        "station_x": 36416.793337211,
-        "station_y": 42089.08824775
-    },
-    {
-        "station_name": "Phoenix Lrt Station (Bp5)",
-        "station_x": 19617.4881601976,
-        "station_y": 40065.9404090624
-    },
-    {
-        "station_name": "Punggol Lrt Station (Ptc)",
-        "station_x": 35689.1389922583,
-        "station_y": 43004.9202214088
-    },
-    {
-        "station_name": "Senja Lrt Station (Bp13)",
-        "station_x": 20101.4576015575,
-        "station_y": 40520.3910598382
-    },
-    {
-        "station_name": "Soo Teck Lrt Station (Pw7)",
-        "station_x": 35119.198004419,
-        "station_y": 43019.1258336715
-    },
-    {
-        "station_name": "Coral Edge Lrt Station (Pe3)",
-        "station_x": 36820.844465619,
-        "station_y": 41757.0644781347
-    },
-    {
-        "station_name": "Cove Lrt Station (Pe1)",
-        "station_x": 36084.2289814064,
-        "station_y": 42351.133770803
-    },
-    {
-        "station_name": "Imbiah Lrt Station (S3)",
-        "station_x": 26456.9087137356,
-        "station_y": 26277.1349301729
-    },
-    {
-        "station_name": "Punggol Point Lrt Station (Pw3)",
-        "station_x": 36160.8274716362,
-        "station_y": 44293.556079682
-    },
-    {
-        "station_name": "Rumbia Lrt Station (Se2)",
-        "station_x": 36085.5523884585,
-        "station_y": 41487.1566344369
-    },
-    {
-        "station_name": "Sam Kee Lrt Station (Pw1)",
-        "station_x": 35958.3967099339,
-        "station_y": 43493.4470222741
-    },
-    {
-        "station_name": "Samudera Lrt Station (Pw4)",
-        "station_x": 35660.6597858425,
-        "station_y": 44188.8484394047
-    },
-    {
-        "station_name": "South View Lrt Station (Bp2)",
-        "station_x": 18203.72427563,
-        "station_y": 40252.0686228592
-    },
-    {
-        "station_name": "Teck Lee Lrt Station (Pw2)",
-        "station_x": 36152.699307289,
-        "station_y": 43842.6720870361
-    },
-    {
-        "station_name": "Teck Whye Lrt Station (Bp4)",
-        "station_x": 19140.8000152688,
-        "station_y": 39852.4607739244
+        "station_name": "Fajar Lrt Station (Bp10)",
+        "station_x": 21052.18744052667,
+        "station_y": 40724.6743432153
     },
     {
         "station_name": "Nibong Lrt Station (Pw5)",
-        "station_x": 35458.481398589,
+        "station_x": 35458.48139858898,
         "station_y": 43741.3183814995
     },
     {
+        "station_name": "Petir Lrt Station (Bp7)",
+        "station_x": 20580.14797360916,
+        "station_y": 39972.65181966312
+    },
+    {
+        "station_name": "Punggol Lrt Station (Ptc)",
+        "station_x": 35689.13899225835,
+        "station_y": 43004.92022140883
+    },
+    {
+        "station_name": "Samudera Lrt Station (Pw4)",
+        "station_x": 35660.65978584252,
+        "station_y": 44188.84843940474
+    },
+    {
+        "station_name": "Cove Lrt Station (Pe1)",
+        "station_x": 36084.22898140643,
+        "station_y": 42351.13377080299
+    },
+    {
+        "station_name": "Imbiah Lrt Station (S3)",
+        "station_x": 26456.90871373564,
+        "station_y": 26277.13493017294
+    },
+    {
+        "station_name": "Kangkar Lrt Station (Se4)",
+        "station_x": 35668.44819207303,
+        "station_y": 40656.79454569519
+    },
+    {
+        "station_name": "Meridian Lrt Station (Pe2)",
+        "station_x": 36416.79333721101,
+        "station_y": 42089.08824774995
+    },
+    {
+        "station_name": "Punggol Point Lrt Station (Pw3)",
+        "station_x": 36160.82747163624,
+        "station_y": 44293.55607968196
+    },
+    {
         "station_name": "Ranggung Lrt Station (Se5)",
-        "station_x": 35108.5940098073,
-        "station_y": 40687.1253354792
+        "station_x": 35108.59400980733,
+        "station_y": 40687.12533547916
     },
     {
         "station_name": "Renjong Lrt Station (Sw8)",
-        "station_x": 34377.0569484383,
-        "station_y": 40959.8985281233
+        "station_x": 34377.05694843829,
+        "station_y": 40959.89852812327
     },
     {
-        "station_name": "Tongkang Lrt Station (Sw7)",
-        "station_x": 33845.4132231614,
-        "station_y": 41252.6175956074
+        "station_name": "Sam Kee Lrt Station (Pw1)",
+        "station_x": 35958.39670993388,
+        "station_y": 43493.44702227414
+    },
+    {
+        "station_name": "Senja Lrt Station (Bp13)",
+        "station_x": 20101.45760155749,
+        "station_y": 40520.39105983824
+    },
+    {
+        "station_name": "Teck Whye Lrt Station (Bp4)",
+        "station_x": 19140.80001526885,
+        "station_y": 39852.46077392437
+    },
+    {
+        "station_name": "Beach Lrt Station (S4)",
+        "station_x": 26273.14927234594,
+        "station_y": 25986.83012787625
+    },
+    {
+        "station_name": "Sengkang Lrt Station (Stc)",
+        "station_x": 34913.58786343876,
+        "station_y": 41502.69969809614
+    },
+    {
+        "station_name": "South View Lrt Station (Bp2)",
+        "station_x": 18203.72427562997,
+        "station_y": 40252.06862285919
+    },
+    {
+        "station_name": "Teck Lee Lrt Station (Pw2)",
+        "station_x": 36152.69930728897,
+        "station_y": 43842.67208703607
     }
 ]

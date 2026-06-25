@@ -1,307 +1,1152 @@
 [
     {
-        "mall_name": "51 Old Airport Road Food Centre And Shopping Mall",
-        "mall_x": 33841.6620816709,
-        "mall_y": 32285.4213495106
+        "mall_name": "The Star Vista",
+        "mall_x": 23006.81,
+        "mall_y": 32127.742
     },
     {
-        "mall_name": "Boon Lay Shopping Centre",
-        "mall_x": 14546.4666856667,
-        "mall_y": 36496.7915879078
+        "mall_name": "Bencoolen Underground Mall",
+        "mall_x": 29940.529,
+        "mall_y": 31287.081
     },
     {
-        "mall_name": "Hougang Green Shopping Mall",
-        "mall_x": 34066.6627102559,
-        "mall_y": 40135.5216910187
+        "mall_name": "Katong V",
+        "mall_x": 35780.64,
+        "mall_y": 31719.497
     },
     {
-        "mall_name": "Katong Shopping Centre",
-        "mall_x": 35589.7415065095,
-        "mall_y": 31826.0758814793
-    },
-    {
-        "mall_name": "Parklane Shopping Mall",
-        "mall_x": 29795.1275293678,
-        "mall_y": 31444.2734161112
-    },
-    {
-        "mall_name": "Queensway Shopping Centre",
-        "mall_x": 24670.0123250559,
-        "mall_y": 30001.2731109783
-    },
-    {
-        "mall_name": "Raffles City Shopping Centre",
-        "mall_x": 30203.7152231745,
-        "mall_y": 30697.7055161726
-    },
-    {
-        "mall_name": "Sembawang Shopping Centre",
-        "mall_x": 27057.045284275,
-        "mall_y": 47055.1697449628
-    },
-    {
-        "mall_name": "Singapore Shopping Centre",
-        "mall_x": 29201.1359043466,
-        "mall_y": 31168.6460736729
-    },
-    {
-        "mall_name": "Takashimaya Shopping Centre",
-        "mall_x": 28159.2823632453,
-        "mall_y": 31628.210651638
-    },
-    {
-        "mall_name": "Anchorpoint Shopping Centre",
-        "mall_x": 24849.4909352409,
-        "mall_y": 30114.0022209603
-    },
-    {
-        "mall_name": "Balestier Hill Shopping Centre",
-        "mall_x": 29070.2638017088,
-        "mall_y": 34236.3844964262
-    },
-    {
-        "mall_name": "Bukit Timah Shopping Centre",
-        "mall_x": 21624.5547704771,
-        "mall_y": 36145.9251206573
-    },
-    {
-        "mall_name": "Coronation Shopping Plaza",
-        "mall_x": 25404.8279538844,
-        "mall_y": 34008.4909447618
-    },
-    {
-        "mall_name": "Far East Shopping Centre",
-        "mall_x": 27628.9835352879,
-        "mall_y": 31981.7507806942
-    },
-    {
-        "mall_name": "Forum The Shopping Mall",
-        "mall_x": 27483.6082861088,
-        "mall_y": 32047.1465453263
-    },
-    {
-        "mall_name": "Gek Poh Shopping Centre",
-        "mall_x": 12910.7207379946,
-        "mall_y": 36763.1478772014
-    },
-    {
-        "mall_name": "Peninsula Shopping Complex",
-        "mall_x": 29886.84073075,
-        "mall_y": 30467.0791893303
-    },
-    {
-        "mall_name": "Taman Jurong Shopping Centre",
-        "mall_x": 15440.244104865,
-        "mall_y": 35226.1689331774
-    },
-    {
-        "mall_name": "Upper Serangoon Shopping Centre",
-        "mall_x": 33064.697135333,
-        "mall_y": 37286.5960918665
-    },
-    {
-        "mall_name": "Bishan North Shopping Mall",
-        "mall_x": 29272.8527438939,
-        "mall_y": 37802.2177626435
-    },
-    {
-        "mall_name": "Clementi Avenue 2 Shopping Centre",
-        "mall_x": 21049.0773446644,
-        "mall_y": 32867.2939462624
-    },
-    {
-        "mall_name": "Concorde Hotel And Shopping Mall",
-        "mall_x": 28991.5434350166,
-        "mall_y": 31440.8495623283
-    },
-    {
-        "mall_name": "Concorde Shopping Centre",
-        "mall_x": 28098.8517283937,
-        "mall_y": 30143.9909522608
-    },
-    {
-        "mall_name": "Greenridge Shopping Centre",
-        "mall_x": 20533.7299018195,
-        "mall_y": 40816.7439803742
-    },
-    {
-        "mall_name": "Holland Road Shopping Centre",
-        "mall_x": 23776.8098159395,
-        "mall_y": 32509.3758863099
-    },
-    {
-        "mall_name": "Orchard Shopping Centre",
-        "mall_x": 28508.5638475288,
-        "mall_y": 31538.767972786
-    },
-    {
-        "mall_name": "Raffles Hotel Shopping Arcade",
-        "mall_x": 30312.4383352436,
-        "mall_y": 30881.4786992278
-    },
-    {
-        "mall_name": "Ue Shopping Mall",
-        "mall_x": 29077.8254402056,
-        "mall_y": 30560.3399927206
-    },
-    {
-        "mall_name": "Bendemeer Shopping Mall",
-        "mall_x": 31270.1865932047,
-        "mall_y": 33438.7611063775
-    },
-    {
-        "mall_name": "Depot Heights Shopping Centre",
-        "mall_x": 25437.3978480315,
-        "mall_y": 29254.8302480821
+        "mall_name": "The Poiz Centre",
+        "mall_x": 31923.218,
+        "mall_y": 34848.973
     },
     {
         "mall_name": "Excelsior Shopping Centre",
-        "mall_x": 29836.5104312617,
-        "mall_y": 30490.0821910594
+        "mall_x": 29821.853,
+        "mall_y": 30499.323
     },
     {
-        "mall_name": "Fajar Shopping Centre",
-        "mall_x": 21038.9723480316,
-        "mall_y": 40614.8899751026
+        "mall_name": "Changi Airport Terminal 1",
+        "mall_x": 45557.088,
+        "mall_y": 38307.395
     },
     {
-        "mall_name": "Keat Hong Shopping Centre",
-        "mall_x": 18103.7591441153,
-        "mall_y": 39927.8427333515
+        "mall_name": "Sim Lim Square",
+        "mall_x": 30193.201,
+        "mall_y": 31708.318
     },
     {
-        "mall_name": "Tudor Court Shopping Gallery",
-        "mall_x": 27039.8263731627,
-        "mall_y": 31949.7237428352
+        "mall_name": "Broadway Plaza",
+        "mall_x": 29406.802,
+        "mall_y": 39327.143
+    },
+    {
+        "mall_name": "Compass One",
+        "mall_x": 34859.481,
+        "mall_y": 41547.773
+    },
+    {
+        "mall_name": "Rivervale Plaza",
+        "mall_x": 35640.236,
+        "mall_y": 40808.7
+    },
+    {
+        "mall_name": "Rivervale Mall",
+        "mall_x": 35918.809,
+        "mall_y": 41571.477
+    },
+    {
+        "mall_name": "Hougang Green Shopping Mall",
+        "mall_x": 34077.133,
+        "mall_y": 40140.222
+    },
+    {
+        "mall_name": "Hougang Mall",
+        "mall_x": 34723.376,
+        "mall_y": 39383.186
+    },
+    {
+        "mall_name": "Heartland Mall",
+        "mall_x": 33774.078,
+        "mall_y": 37951.782
+    },
+    {
+        "mall_name": "Imm",
+        "mall_x": 18351.768,
+        "mall_y": 35217.263
+    },
+    {
+        "mall_name": "White Sands",
+        "mall_x": 40958.482,
+        "mall_y": 39383.892
+    },
+    {
+        "mall_name": "Jubilee Square",
+        "mall_x": 29608.99,
+        "mall_y": 39310.613
+    },
+    {
+        "mall_name": "Raffles City Shopping Centre",
+        "mall_x": 30229.468,
+        "mall_y": 30698.294
+    },
+    {
+        "mall_name": "Shaw House",
+        "mall_x": 27800.903,
+        "mall_y": 32017.41
+    },
+    {
+        "mall_name": "Orchard Central",
+        "mall_x": 28721.669,
+        "mall_y": 31443.881
+    },
+    {
+        "mall_name": "Palais Renaissance",
+        "mall_x": 27591.966,
+        "mall_y": 32116.01
+    },
+    {
+        "mall_name": "Orchard Towers",
+        "mall_x": 27542.753,
+        "mall_y": 32142.603
+    },
+    {
+        "mall_name": "Anchorpoint",
+        "mall_x": 24851.153,
+        "mall_y": 30122.341
+    },
+    {
+        "mall_name": "Queensway Shopping Centre",
+        "mall_x": 24678.906,
+        "mall_y": 29996.608
+    },
+    {
+        "mall_name": "Cathay Cineleisure Orchard",
+        "mall_x": 28353.062,
+        "mall_y": 31537.814
+    },
+    {
+        "mall_name": "100Am",
+        "mall_x": 29145.755,
+        "mall_y": 28597.93
+    },
+    {
+        "mall_name": "Parkway Parade",
+        "mall_x": 36009.226,
+        "mall_y": 31525.654
+    },
+    {
+        "mall_name": "I12 Katong",
+        "mall_x": 35982.193,
+        "mall_y": 31944.345
+    },
+    {
+        "mall_name": "Katong Plaza",
+        "mall_x": 35851.763,
+        "mall_y": 31838.157
+    },
+    {
+        "mall_name": "Katong Shopping Centre",
+        "mall_x": 35548.741,
+        "mall_y": 31801.835
+    },
+    {
+        "mall_name": "Odeon Katong Shopping Complex",
+        "mall_x": 35636.046,
+        "mall_y": 31891.149
+    },
+    {
+        "mall_name": "Bras Basah Complex",
+        "mall_x": 30260.415,
+        "mall_y": 31021.87
+    },
+    {
+        "mall_name": "Roxy Square",
+        "mall_x": 35877.804,
+        "mall_y": 31847.634
+    },
+    {
+        "mall_name": "Orchard Plaza",
+        "mall_x": 28871.333,
+        "mall_y": 31512.527
+    },
+    {
+        "mall_name": "The Centrepoint",
+        "mall_x": 28722.648,
+        "mall_y": 31583.117
+    },
+    {
+        "mall_name": "The Cathay",
+        "mall_x": 29595.682,
+        "mall_y": 31315.497
+    },
+    {
+        "mall_name": "Ngee Ann City",
+        "mall_x": 28155.309,
+        "mall_y": 31661.879
+    },
+    {
+        "mall_name": "Pacific Plaza",
+        "mall_x": 27867.01,
+        "mall_y": 32098.251
+    },
+    {
+        "mall_name": "Parklane Shopping Mall",
+        "mall_x": 29794.28,
+        "mall_y": 31446.219
+    },
+    {
+        "mall_name": "Gr.Id",
+        "mall_x": 29781.716,
+        "mall_y": 31387.581
+    },
+    {
+        "mall_name": "Sunshine Plaza",
+        "mall_x": 29961.273,
+        "mall_y": 31412.02
+    },
+    {
+        "mall_name": "Fortune Centre",
+        "mall_x": 30110.681,
+        "mall_y": 31416.3
+    },
+    {
+        "mall_name": "Peninsula Plaza",
+        "mall_x": 29948.736,
+        "mall_y": 30524.446
+    },
+    {
+        "mall_name": "Suntec City",
+        "mall_x": 30830.271,
+        "mall_y": 30936.434
+    },
+    {
+        "mall_name": "Tanglin Mall",
+        "mall_x": 26947.069,
+        "mall_y": 31907.755
+    },
+    {
+        "mall_name": "East Point",
+        "mall_x": 41317.782,
+        "mall_y": 36097.761
+    },
+    {
+        "mall_name": "Tanjong Katong Complex",
+        "mall_x": 34790.96,
+        "mall_y": 33183.638
+    },
+    {
+        "mall_name": "City Plaza",
+        "mall_x": 34691.649,
+        "mall_y": 33006.527
+    },
+    {
+        "mall_name": "Tekka Centre",
+        "mall_x": 29915.483,
+        "mall_y": 32061.038
+    },
+    {
+        "mall_name": "Mustafa Centre",
+        "mall_x": 30492.678,
+        "mall_y": 32452.224
+    },
+    {
+        "mall_name": "Oue Downtown",
+        "mall_x": 29708.613,
+        "mall_y": 28874.204
+    },
+    {
+        "mall_name": "Bugis+",
+        "mall_x": 30320.076,
+        "mall_y": 31336.809
+    },
+    {
+        "mall_name": "Sun Plaza",
+        "mall_x": 26463.914,
+        "mall_y": 47759.313
+    },
+    {
+        "mall_name": "313@Somerset",
+        "mall_x": 28552.985,
+        "mall_y": 31485.446
+    },
+    {
+        "mall_name": "Depot Heights Shopping Centre",
+        "mall_x": 25441.358,
+        "mall_y": 29290.193
+    },
+    {
+        "mall_name": "Sembawang Shopping Centre",
+        "mall_x": 27066.593,
+        "mall_y": 47063.175
+    },
+    {
+        "mall_name": "Simei Plaza /Blk 248",
+        "mall_x": 41388.48,
+        "mall_y": 36183.725
+    },
+    {
+        "mall_name": "The Centris",
+        "mall_x": 13745.592,
+        "mall_y": 35735.896
+    },
+    {
+        "mall_name": "Pioneer Mall",
+        "mall_x": 12849.135,
+        "mall_y": 35984.528
+    },
+    {
+        "mall_name": "Gek Poh Shopping Centre",
+        "mall_x": 12910.0,
+        "mall_y": 36797.44
+    },
+    {
+        "mall_name": "City Square Mall",
+        "mall_x": 30589.154,
+        "mall_y": 32632.008
+    },
+    {
+        "mall_name": "Hougang 1",
+        "mall_x": 33140.979,
+        "mall_y": 39744.189
+    },
+    {
+        "mall_name": "Alexandra Central",
+        "mall_x": 24884.839,
+        "mall_y": 29970.466
+    },
+    {
+        "mall_name": "Old Airport Road Food Centre & Shopping Mall",
+        "mall_x": 33844.043,
+        "mall_y": 32286.19
+    },
+    {
+        "mall_name": "Djitsun Mall Bedok",
+        "mall_x": 38710.1,
+        "mall_y": 34262.365
+    },
+    {
+        "mall_name": "Thomson Plaza",
+        "mall_x": 27715.348,
+        "mall_y": 37410.39
+    },
+    {
+        "mall_name": "Bukit Timah Shopping Center",
+        "mall_x": 21626.73,
+        "mall_y": 36156.468
+    },
+    {
+        "mall_name": "Beauty World Centre",
+        "mall_x": 21683.263,
+        "mall_y": 36056.794
+    },
+    {
+        "mall_name": "Beauty World Plaza",
+        "mall_x": 21654.86,
+        "mall_y": 35998.19
+    },
+    {
+        "mall_name": "The Clementi Mall",
+        "mall_x": 20311.45,
+        "mall_y": 33029.619
+    },
+    {
+        "mall_name": "Grantral Mall @ Clementi",
+        "mall_x": 20412.143,
+        "mall_y": 32953.828
+    },
+    {
+        "mall_name": "Woodlands North Plaza",
+        "mall_x": 23269.022,
+        "mall_y": 47156.775
+    },
+    {
+        "mall_name": "Greenwich V",
+        "mall_x": 32014.172,
+        "mall_y": 41048.888
+    },
+    {
+        "mall_name": "Upper Serangoon Shopping Centre",
+        "mall_x": 33065.394,
+        "mall_y": 37302.406
+    },
+    {
+        "mall_name": "West Coast Plaza",
+        "mall_x": 20538.771,
+        "mall_y": 31775.771
+    },
+    {
+        "mall_name": "Icon Village",
+        "mall_x": 29248.31,
+        "mall_y": 28626.624
+    },
+    {
+        "mall_name": "Holland Road Shopping Centre",
+        "mall_x": 23774.51,
+        "mall_y": 32511.148
+    },
+    {
+        "mall_name": "Holland Piazza",
+        "mall_x": 23764.016,
+        "mall_y": 32553.786
+    },
+    {
+        "mall_name": "Ang Mo Kio Hub",
+        "mall_x": 29671.914,
+        "mall_y": 39051.681
+    },
+    {
+        "mall_name": "Admiralty Place",
+        "mall_x": 24436.559,
+        "mall_y": 46881.977
+    },
+    {
+        "mall_name": "Leisure Park Kallang",
+        "mall_x": 32811.677,
+        "mall_y": 31614.494
+    },
+    {
+        "mall_name": "Delfi Orchard",
+        "mall_x": 27460.832,
+        "mall_y": 32166.974
+    },
+    {
+        "mall_name": "Orchard Building",
+        "mall_x": 28448.661,
+        "mall_y": 31528.249
+    },
+    {
+        "mall_name": "Tekka Place",
+        "mall_x": 30114.439,
+        "mall_y": 31880.515
+    },
+    {
+        "mall_name": "Westgate",
+        "mall_x": 17934.585,
+        "mall_y": 35152.05
+    },
+    {
+        "mall_name": "Coronation Shopping Plaza",
+        "mall_x": 25405.076,
+        "mall_y": 34008.721
+    },
+    {
+        "mall_name": "Great World City",
+        "mall_x": 27841.334,
+        "mall_y": 30666.186
+    },
+    {
+        "mall_name": "West Mall",
+        "mall_x": 18648.201,
+        "mall_y": 36905.866
+    },
+    {
+        "mall_name": "Tampines Mall",
+        "mall_x": 40398.093,
+        "mall_y": 37182.846
+    },
+    {
+        "mall_name": "Century Square",
+        "mall_x": 40294.205,
+        "mall_y": 37165.746
+    },
+    {
+        "mall_name": "Tampines 1",
+        "mall_x": 40430.224,
+        "mall_y": 37368.326
+    },
+    {
+        "mall_name": "Rochester Mall",
+        "mall_x": 22979.007,
+        "mall_y": 31998.79
+    },
+    {
+        "mall_name": "Hdb Hub",
+        "mall_x": 29687.565,
+        "mall_y": 34910.54
+    },
+    {
+        "mall_name": "Concorde Shopping Centre",
+        "mall_x": 28101.3,
+        "mall_y": 30151.073
+    },
+    {
+        "mall_name": "Tiong Bahru Plaza",
+        "mall_x": 27333.365,
+        "mall_y": 29869.273
+    },
+    {
+        "mall_name": "Bugis Junction",
+        "mall_x": 30431.501,
+        "mall_y": 31252.729
+    },
+    {
+        "mall_name": "Far East Shopping Centre",
+        "mall_x": 27640.811,
+        "mall_y": 31984.99
+    },
+    {
+        "mall_name": "Forum The Shopping Mall",
+        "mall_x": 27486.752,
+        "mall_y": 32046.514
+    },
+    {
+        "mall_name": "Liat Tower",
+        "mall_x": 27711.626,
+        "mall_y": 31937.465
+    },
+    {
+        "mall_name": "Lucky Plaza",
+        "mall_x": 28071.718,
+        "mall_y": 31872.159
+    },
+    {
+        "mall_name": "Paragon",
+        "mall_x": 28258.308,
+        "mall_y": 31796.802
+    },
+    {
+        "mall_name": "Tang Plaza",
+        "mall_x": 27968.73,
+        "mall_y": 31927.679
+    },
+    {
+        "mall_name": "Wisma Atria",
+        "mall_x": 27987.972,
+        "mall_y": 31779.84
+    },
+    {
+        "mall_name": "The Heeren",
+        "mall_x": 28447.514,
+        "mall_y": 31664.212
+    },
+    {
+        "mall_name": "Velocity @ Novena Square",
+        "mall_x": 29170.118,
+        "mall_y": 33561.535
+    },
+    {
+        "mall_name": "Square 2",
+        "mall_x": 29204.072,
+        "mall_y": 33662.125
+    },
+    {
+        "mall_name": "United Square",
+        "mall_x": 29144.879,
+        "mall_y": 33270.546
+    },
+    {
+        "mall_name": "Changi Airport Terminal 2",
+        "mall_x": 45486.806,
+        "mall_y": 37321.8
+    },
+    {
+        "mall_name": "Changi Airport Terminal 3",
+        "mall_x": 44888.967,
+        "mall_y": 37411.593
+    },
+    {
+        "mall_name": "Plaza 8",
+        "mall_x": 42712.883,
+        "mall_y": 35078.838
+    },
+    {
+        "mall_name": "Lot One Shoppers' Mall",
+        "mall_x": 18174.053,
+        "mall_y": 40789.212
+    },
+    {
+        "mall_name": "Bukit Panjang Plaza",
+        "mall_x": 20075.33,
+        "mall_y": 40067.756
     },
     {
         "mall_name": "Valley Point Shopping Centre",
-        "mall_x": 27290.2090064604,
-        "mall_y": 30600.8644037917
+        "mall_x": 27302.428,
+        "mall_y": 30611.739
     },
     {
-        "mall_name": "Goldhill Shopping Centre",
-        "mall_x": 29130.9393045483,
-        "mall_y": 33432.8750126548
+        "mall_name": "Downtown East",
+        "mall_x": 41495.997,
+        "mall_y": 39925.306
+    },
+    {
+        "mall_name": "Nex",
+        "mall_x": 32340.621,
+        "mall_y": 36951.196
+    },
+    {
+        "mall_name": "Fusionopolis 1",
+        "mall_x": 22908.569,
+        "mall_y": 31289.277
+    },
+    {
+        "mall_name": "Midpoint Orchard",
+        "mall_x": 28593.417,
+        "mall_y": 31567.592
+    },
+    {
+        "mall_name": "Orchard Gateway",
+        "mall_x": 28667.103,
+        "mall_y": 31450.25
+    },
+    {
+        "mall_name": "Sunshine Place",
+        "mall_x": 17511.538,
+        "mall_y": 39972.297
+    },
+    {
+        "mall_name": "Shaw Plaza",
+        "mall_x": 29996.955,
+        "mall_y": 34132.748
+    },
+    {
+        "mall_name": "Joo Chiat Complex",
+        "mall_x": 35242.356,
+        "mall_y": 33130.485
+    },
+    {
+        "mall_name": "Loyang Point",
+        "mall_x": 42612.756,
+        "mall_y": 38781.465
+    },
+    {
+        "mall_name": "Punggol Plaza",
+        "mall_x": 36872.453,
+        "mall_y": 41798.927
+    },
+    {
+        "mall_name": "Paya Lebar Square",
+        "mall_x": 34597.543,
+        "mall_y": 33453.204
+    },
+    {
+        "mall_name": "Citylink Mall",
+        "mall_x": 30361.594,
+        "mall_y": 30510.838
+    },
+    {
+        "mall_name": "Esplanade Xchange",
+        "mall_x": 30416.527,
+        "mall_y": 30555.51
+    },
+    {
+        "mall_name": "Marina Bay Link Mall",
+        "mall_x": 30279.36,
+        "mall_y": 29261.949
+    },
+    {
+        "mall_name": "Yewtee Point",
+        "mall_x": 18356.201,
+        "mall_y": 42108.553
+    },
+    {
+        "mall_name": "Ion Orchard",
+        "mall_x": 27850.383,
+        "mall_y": 31810.193
+    },
+    {
+        "mall_name": "Greenridge Shopping Centre",
+        "mall_x": 20533.845,
+        "mall_y": 40809.734
+    },
+    {
+        "mall_name": "The Seletar Mall",
+        "mall_x": 32771.061,
+        "mall_y": 41495.734
+    },
+    {
+        "mall_name": "Yew Tee Square",
+        "mall_x": 18394.432,
+        "mall_y": 42228.979
     },
     {
         "mall_name": "Limbang Shopping Centre",
-        "mall_x": 17960.1078382162,
-        "mall_y": 41553.4949440826
+        "mall_x": 17972.295,
+        "mall_y": 41543.407
     },
     {
-        "mall_name": "Teck Whye Shopping Centre",
-        "mall_x": 19004.1078333827,
-        "mall_y": 40224.3126699142
+        "mall_name": "Fajar Shopping Centre",
+        "mall_x": 21048.377,
+        "mall_y": 40641.127
     },
     {
-        "mall_name": "Bedok Shopping Complex",
-        "mall_x": 40818.0514059309,
-        "mall_y": 34779.0009106249
+        "mall_name": "Junction 10",
+        "mall_x": 19854.975,
+        "mall_y": 40257.808
     },
     {
-        "mall_name": "Bukit Timah Shopping Centre (Car Park Entrance)",
-        "mall_x": 21611.4110498875,
-        "mall_y": 36103.2311307807
+        "mall_name": "Jurong Point",
+        "mall_x": 13805.389,
+        "mall_y": 35746.464
     },
     {
-        "mall_name": "Concorde Hotel And Shopping Mall (Car Park Entrance)",
-        "mall_x": 28926.9964451836,
-        "mall_y": 31486.4893231839
+        "mall_name": "Royal Square At Novena",
+        "mall_x": 29101.953,
+        "mall_y": 33642.509
     },
     {
-        "mall_name": "Coronation Shopping Plaza (Car Park Entrance)",
-        "mall_x": 25361.4414930763,
-        "mall_y": 34027.6849931516
+        "mall_name": "Orchard Shopping Centre",
+        "mall_x": 28508.558,
+        "mall_y": 31538.411
     },
     {
-        "mall_name": "Icb Shopping Centre",
-        "mall_x": 32949.1597920908,
-        "mall_y": 37408.5902013965
+        "mall_name": "Zhongshan Mall",
+        "mall_x": 29446.381,
+        "mall_y": 34374.649
     },
     {
-        "mall_name": "Bedok Shopping Complex (Car Park Entrance)",
-        "mall_x": 40709.8571360745,
-        "mall_y": 34849.6308874134
+        "mall_name": "Kallang Wave Mall",
+        "mall_x": 32443.391,
+        "mall_y": 31756.61
     },
     {
-        "mall_name": "Anchorpoint Shopping Centre (Car Park Entrance)",
-        "mall_x": 24820.3769184025,
-        "mall_y": 30075.0469929688
+        "mall_name": "Orchard Gateway @ Emerald",
+        "mall_x": 28617.623,
+        "mall_y": 31555.694
     },
     {
-        "mall_name": "Siglap Shopping Centre",
-        "mall_x": 38121.9942888115,
-        "mall_y": 32803.352134496
+        "mall_name": "Waterway Point",
+        "mall_x": 35668.646,
+        "mall_y": 43144.764
     },
     {
-        "mall_name": "Boon Lay Shopping Centre (Car Park Entrance)",
-        "mall_x": 14628.2383980649,
-        "mall_y": 36475.5550257079
+        "mall_name": "Marina Square",
+        "mall_x": 30695.08,
+        "mall_y": 30409.377
     },
     {
-        "mall_name": "Cold Storage Jelita Shopping Centre (Car Park Entrance)",
-        "mall_x": 22699.8235602425,
-        "mall_y": 33322.0849907827
+        "mall_name": "Myvillage",
+        "mall_x": 31543.082,
+        "mall_y": 38576.735
     },
     {
-        "mall_name": "Concorde Shopping Centre (Car Park Entrance)",
-        "mall_x": 28134.5431294339,
-        "mall_y": 30169.5094353128
+        "mall_name": "Kang Kar Mall",
+        "mall_x": 34778.577,
+        "mall_y": 39303.264
     },
     {
-        "mall_name": "Yue Hua Eating House Depot Heights Shopping Centre",
-        "mall_x": 25720.1244855141,
-        "mall_y": 29329.3869206663
+        "mall_name": "Jalan Besar Plaza",
+        "mall_x": 30750.907,
+        "mall_y": 32327.221
+    },
+    {
+        "mall_name": "Balestier Plaza",
+        "mall_x": 29898.931,
+        "mall_y": 34216.209
+    },
+    {
+        "mall_name": "Kinex",
+        "mall_x": 34843.516,
+        "mall_y": 32993.207
+    },
+    {
+        "mall_name": "Hillion Mall",
+        "mall_x": 20207.762,
+        "mall_y": 40046.666
+    },
+    {
+        "mall_name": "Fairprice Hub",
+        "mall_x": 10756.683,
+        "mall_y": 34253.53
+    },
+    {
+        "mall_name": "Hillv2 Mall",
+        "mall_x": 20326.079,
+        "mall_y": 38383.227
+    },
+    {
+        "mall_name": "South Beach Quarter",
+        "mall_x": 30541.549,
+        "mall_y": 30901.39
+    },
+    {
+        "mall_name": "South Beach Avenue",
+        "mall_x": 30521.139,
+        "mall_y": 30792.96
+    },
+    {
+        "mall_name": "Guoco Tower",
+        "mall_x": 29352.557,
+        "mall_y": 28831.332
+    },
+    {
+        "mall_name": "Grandlink Square",
+        "mall_x": 34478.897,
+        "mall_y": 32953.38
+    },
+    {
+        "mall_name": "Buangkok Square Mall",
+        "mall_x": 33375.131,
+        "mall_y": 40694.343
+    },
+    {
+        "mall_name": "Northshore Plaza Ii",
+        "mall_x": 35567.739,
+        "mall_y": 44409.241
+    },
+    {
+        "mall_name": "Marina One",
+        "mall_x": 30185.944,
+        "mall_y": 28858.826
+    },
+    {
+        "mall_name": "Duo Residences",
+        "mall_x": 30819.104,
+        "mall_y": 31359.537
+    },
+    {
+        "mall_name": "Scotts Square",
+        "mall_x": 27957.066,
+        "mall_y": 32017.985
+    },
+    {
+        "mall_name": "Funan",
+        "mall_x": 29855.097,
+        "mall_y": 30420.782
+    },
+    {
+        "mall_name": "Clementi 321",
+        "mall_x": 20399.171,
+        "mall_y": 32698.279
+    },
+    {
+        "mall_name": "Wisteria Mall",
+        "mall_x": 28884.868,
+        "mall_y": 44449.503
+    },
+    {
+        "mall_name": "18 Tai Seng",
+        "mall_x": 34178.102,
+        "mall_y": 35386.541
+    },
+    {
+        "mall_name": "Wheelock Place",
+        "mall_x": 27706.061,
+        "mall_y": 31891.145
+    },
+    {
+        "mall_name": "Junction Nine",
+        "mall_x": 28932.692,
+        "mall_y": 46091.53
+    },
+    {
+        "mall_name": "Singpost Centre",
+        "mall_x": 34841.59,
+        "mall_y": 33473.677
+    },
+    {
+        "mall_name": "Aperia Mall",
+        "mall_x": 31411.649,
+        "mall_y": 32510.893
+    },
+    {
+        "mall_name": "Macpherson Mall",
+        "mall_x": 33123.688,
+        "mall_y": 34888.578
+    },
+    {
+        "mall_name": "Marsiling Mall Hawker Centre",
+        "mall_x": 22062.029,
+        "mall_y": 46140.129
+    },
+    {
+        "mall_name": "Downtown Gallery",
+        "mall_x": 29674.725,
+        "mall_y": 28819.049
+    },
+    {
+        "mall_name": "Liat Towers",
+        "mall_x": 27711.626,
+        "mall_y": 31937.465
+    },
+    {
+        "mall_name": "Plaza Singapura",
+        "mall_x": 29323.241,
+        "mall_y": 31423.494
+    },
+    {
+        "mall_name": "The Oasis",
+        "mall_x": 23220.586,
+        "mall_y": 30010.55
+    },
+    {
+        "mall_name": "Jewel Changi Basement",
+        "mall_x": 45411.362,
+        "mall_y": 38037.66
+    },
+    {
+        "mall_name": "Katong Square",
+        "mall_x": 35946.247,
+        "mall_y": 31893.303
+    },
+    {
+        "mall_name": "The Flow Mall",
+        "mall_x": 35889.712,
+        "mall_y": 31877.556
+    },
+    {
+        "mall_name": "Le Quest Mall",
+        "mall_x": 17742.991,
+        "mall_y": 37563.035
+    },
+    {
+        "mall_name": "Junction 8",
+        "mall_x": 29707.372,
+        "mall_y": 36966.415
+    },
+    {
+        "mall_name": "Design Orchard",
+        "mall_x": 28513.387,
+        "mall_y": 31601.207
+    },
+    {
+        "mall_name": "Bedok Mall",
+        "mall_x": 38675.761,
+        "mall_y": 34119.446
+    },
+    {
+        "mall_name": "Clarke Quay Central",
+        "mall_x": 29481.226,
+        "mall_y": 30155.433
+    },
+    {
+        "mall_name": "Northpoint City",
+        "mall_x": 28324.732,
+        "mall_y": 45545.31
+    },
+    {
+        "mall_name": "Canberra Plaza",
+        "mall_x": 27688.651,
+        "mall_y": 47205.328
+    },
+    {
+        "mall_name": "Mandarin Gallery",
+        "mall_x": 28358.749,
+        "mall_y": 31595.999
+    },
+    {
+        "mall_name": "Bencoolen",
+        "mall_x": 29847.334,
+        "mall_y": 31200.434
+    },
+    {
+        "mall_name": "Jewel Changi Airport",
+        "mall_x": 45401.568,
+        "mall_y": 38032.23
+    },
+    {
+        "mall_name": "Millenia Walk",
+        "mall_x": 30893.522,
+        "mall_y": 30559.573
+    },
+    {
+        "mall_name": "Imall",
+        "mall_x": 36153.031,
+        "mall_y": 31717.141
+    },
+    {
+        "mall_name": "Quayside Isle",
+        "mall_x": 28930.325,
+        "mall_y": 25618.457
+    },
+    {
+        "mall_name": "Alexandra Retail Centre",
+        "mall_x": 24448.402,
+        "mall_y": 28482.2
+    },
+    {
+        "mall_name": "Changi City Point",
+        "mall_x": 42437.215,
+        "mall_y": 35136.588
+    },
+    {
+        "mall_name": "Liv@Changi",
+        "mall_x": 43149.685,
+        "mall_y": 37858.623
+    },
+    {
+        "mall_name": "Plantation Plaza",
+        "mall_x": 16965.925,
+        "mall_y": 37734.877
+    },
+    {
+        "mall_name": "Parc Point",
+        "mall_x": 17476.564,
+        "mall_y": 38085.059
+    },
+    {
+        "mall_name": "Trio",
+        "mall_x": 30627.507,
+        "mall_y": 32377.764
+    },
+    {
+        "mall_name": "The Woodleigh Mall",
+        "mall_x": 32272.533,
+        "mall_y": 35651.984
+    },
+    {
+        "mall_name": "The Concourse",
+        "mall_x": 31179.096,
+        "mall_y": 31469.64
+    },
+    {
+        "mall_name": "Stellar@Te2",
+        "mall_x": 22976.238,
+        "mall_y": 46306.481
+    },
+    {
+        "mall_name": "Sengkang Grand Mall",
+        "mall_x": 34558.863,
+        "mall_y": 40573.19
+    },
+    {
+        "mall_name": "Pasir Ris Mall",
+        "mall_x": 40850.914,
+        "mall_y": 39539.101
+    },
+    {
+        "mall_name": "Eastlink Mall",
+        "mall_x": 40349.339,
+        "mall_y": 37384.168
+    },
+    {
+        "mall_name": "Dairy Farm Mall",
+        "mall_x": 21512.82,
+        "mall_y": 38672.449
+    },
+    {
+        "mall_name": "Balmoral Plaza",
+        "mall_x": 28237.885,
+        "mall_y": 33196.558
+    },
+    {
+        "mall_name": "Lentor Modern",
+        "mall_x": 28136.641,
+        "mall_y": 40853.56
+    },
+    {
+        "mall_name": "One Holland Village",
+        "mall_x": 23635.888,
+        "mall_y": 32602.186
+    },
+    {
+        "mall_name": "Big Block",
+        "mall_x": 28629.477,
+        "mall_y": 30549.242
+    },
+    {
+        "mall_name": "Icon Link @ Club Street",
+        "mall_x": 29502.152,
+        "mall_y": 29514.939
+    },
+    {
+        "mall_name": "Causeway Point",
+        "mall_x": 22734.775,
+        "mall_y": 46416.264
+    },
+    {
+        "mall_name": "Ntp+",
+        "mall_x": 31159.534,
+        "mall_y": 37053.937
+    },
+    {
+        "mall_name": "Sprout @ Amk",
+        "mall_x": 29412.868,
+        "mall_y": 39298.316
+    },
+    {
+        "mall_name": "Pinery Mall",
+        "mall_x": 39755.519,
+        "mall_y": 36208.065
+    },
+    {
+        "mall_name": "Knightsbridge",
+        "mall_x": 28337.781,
+        "mall_y": 31722.684
+    },
+    {
+        "mall_name": "Taman Jurong Shopping Centre",
+        "mall_x": 15440.553,
+        "mall_y": 35224.281
+    },
+    {
+        "mall_name": "888 Plaza",
+        "mall_x": 23767.968,
+        "mall_y": 46611.775
+    },
+    {
+        "mall_name": "The Shoppes At Marina Bay Sands",
+        "mall_x": 30846.155,
+        "mall_y": 29605.953
+    },
+    {
+        "mall_name": "Vivocity",
+        "mall_x": 26750.109,
+        "mall_y": 27433.61
+    },
+    {
+        "mall_name": "Boon Lay Shopping Centre",
+        "mall_x": 14552.335,
+        "mall_y": 36495.893
+    },
+    {
+        "mall_name": "Tampines Mart",
+        "mall_x": 42106.322,
+        "mall_y": 37388.776
+    },
+    {
+        "mall_name": "Far East Plaza",
+        "mall_x": 28066.154,
+        "mall_y": 32161.942
+    },
+    {
+        "mall_name": "Elias Mall",
+        "mall_x": 40096.336,
+        "mall_y": 40061.898
+    },
+    {
+        "mall_name": "Keat Hong Shopping Centre",
+        "mall_x": 18108.072,
+        "mall_y": 39923.4
+    },
+    {
+        "mall_name": "Dawson Place",
+        "mall_x": 25526.808,
+        "mall_y": 30562.499
+    },
+    {
+        "mall_name": "Jem",
+        "mall_x": 17992.908,
+        "mall_y": 35036.784
+    },
+    {
+        "mall_name": "Northshore Plaza I",
+        "mall_x": 35652.799,
+        "mall_y": 44275.227
+    },
+    {
+        "mall_name": "The Woodgrove",
+        "mall_x": 22192.889,
+        "mall_y": 45647.216
+    },
+    {
+        "mall_name": "Cluny Court",
+        "mall_x": 25880.306,
+        "mall_y": 33876.458
+    },
+    {
+        "mall_name": "Vista Point",
+        "mall_x": 23615.484,
+        "mall_y": 45853.775
+    },
+    {
+        "mall_name": "Parktown",
+        "mall_x": 39628.472,
+        "mall_y": 38771.223
     },
     {
         "mall_name": "Amk Hub",
         "mall_x": 29184.22,
         "mall_y": 39105.82
-    },
-    {
-        "mall_name": "Ion Orchard",
-        "mall_x": 27807.51,
-        "mall_y": 32395.71
-    },
-    {
-        "mall_name": "Ngee Ann City",
-        "mall_x": 27931.33,
-        "mall_y": 32247.16
-    },
-    {
-        "mall_name": "Vivocity",
-        "mall_x": 26458.74,
-        "mall_y": 29013.91
-    },
-    {
-        "mall_name": "Plaza Singapura",
-        "mall_x": 29088.22,
-        "mall_y": 32881.54
-    },
-    {
-        "mall_name": "Bugis Junction",
-        "mall_x": 30200.7,
-        "mall_y": 32857.73
-    },
-    {
-        "mall_name": "Nex",
-        "mall_x": 32306.21,
-        "mall_y": 36743.79
-    },
-    {
-        "mall_name": "Jem",
-        "mall_x": 17972.14,
-        "mall_y": 35431.11
-    },
-    {
-        "mall_name": "Westgate",
-        "mall_x": 17871.91,
-        "mall_y": 35572.82
-    },
-    {
-        "mall_name": "Tampines Mall",
-        "mall_x": 41280.55,
-        "mall_y": 36802.4
     }
 ]

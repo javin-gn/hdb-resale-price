@@ -187,13 +187,13 @@
                       
                             <div id="resultArea" class="mt-4 alert alert-info d-none">
                                     <h4>Predicted HDB Resale Price: <span id="predictedPrice"></span></h4>
-                                    <p>Results are trained on HDB Resale Price from Jan-2017 onwards using LIGHTGBM with 98% Accuracy.
-                                    <ul>
-                                        <li>Mean Absolute Error: $18,467.27</li>
-                                        <li>MAPE = 3.6%</li>
-                                        <li>RMSE = $25,877.07</li>
-                                        <li>R² Score: 98.14%</li>
-                                    </ul>        
+                                    <p>Models are trained on HDB Resale Price from Jan-2017 onwards using LIGHTGBM with  <span id="model_r2"></span> Accuracy.
+                                        <ul>
+                                            <li>Mean Absolute Error: <span id="mae"></span></li>
+                                            <li>MAPE: <span id="mape"></span></li>
+                                            <li>RMSE: <span id="rmse"></span></li>
+                                        </ul>
+              
                                     <br/>Proximty Metrics are based on current avaliable amentites
                                     <br/>HDB Property Information are retrieved from Jan 1937 to Dec 2025.</p>
                             </div>
@@ -208,6 +208,7 @@
     <footer class="bg-transparent text-dark py-4 mt-auto">
         <div class="container text-center">
             <p class="mb-2 fw-semibold">&copy; 2026 HDB Resale Price Predictor. A Project by Javin Gn</p>
+            
             <div class="small text-muted">
                 Data sources:  Housing & Development Board. (2021). Resale flat prices based on registration date from Jan-2017 onwards (2026) [Dataset]. data.gov.sg. Retrieved from https://data.gov.sg/datasets/d_8b84c4ee58e3cfc0ece0d773c8ca6abc/view
             
@@ -431,6 +432,10 @@
                 
                 const data = await response.json();
                 document.getElementById('predictedPrice').textContent = `$${data.predicted_price.toLocaleString()}`;
+                document.getElementById('model_r2').textContent = `${data.model_r2.toLocaleString()}`;
+                document.getElementById('mae').textContent = `${data.mae.toLocaleString()}`;
+                document.getElementById('mape').textContent = `${data.mape.toLocaleString()}`;
+                document.getElementById('rmse').textContent = `${data.rmse.toLocaleString()}`;
                 document.getElementById('resultArea').classList.remove('d-none');
             } catch (err) {
                 console.error("Prediction failed:", err);
