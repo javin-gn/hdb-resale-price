@@ -8,6 +8,7 @@ import requests
 from dotenv import load_dotenv
 from datetime import datetime
 import re
+import pyproj
 
 def FeatureGenerator(address): #Code for dagster
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))  #Code for dagster
@@ -406,56 +407,82 @@ def FeatureGenerator(address): #Code for dagster
                 print(f"\n⏳ Cache file exists but is outdated ({days_old} days old). Triggering auto-refresh...")
 
         # ─── STEP B: FALLBACK TO LIVE NETWORK CALLS ───
-        print("\n🌐 Cache miss! Requesting shopping_mall records from OneMap Themes API...")
+        print("\n🌐 Cache miss! Requesting full retail layer from OpenStreetMap Overpass API...")
+        
+        # Initialize coordinate transformer (WGS84 Lat/Lng -> Singapore SVY21)
+        transformer = pyproj.Transformer.from_crs("EPSG:4326", "EPSG:3414", always_xy=True)
+        
+        overpass_url = "https://overpass-api.de/api/interpreter"
+        
+        # ─── FIXED: ADDING HEADERS TO PREVENT 406 BLOCKS ───
+        headers = {
+            # Overpass requires a descriptive custom User-Agent. Do not use stock python-requests.
+            "User-Agent": "SingaporeMallDataFetcher/1.0 (contact: your_email@domain.com)",
+            "Accept": "application/json"
+        }
+        
+        overpass_query = """
+        [out:json][timeout:30];
+        area["ISO3166-1"="SG"]->.searchArea;
+        (
+        node["shop"="mall"](area.searchArea);
+        way["shop"="mall"](area.searchArea);
+        rel["shop"="mall"](area.searchArea);
+        );
+        out center;
+        """
+        
         shopping_malls = []
-        current_page = 1
-        total_pages = 1
-        headers = {"Authorization": token} 
         
-        while current_page <= total_pages:
-            # Construct the URL with the active page number variable    
-            url = f"https://www.onemap.gov.sg/api/common/elastic/search?searchVal=SHOPPING&returnGeom=Y&getAddrDetails=Y&pageNum={current_page}"   
-        
-            try:
-                response = requests.get(url, headers=headers)
+        try:
+            # Pass the newly defined headers alongside your data payload
+            response = requests.post(overpass_url, data={'data': overpass_query}, headers=headers, timeout=35)
             
-                # Guard check: Ensure the server returned a valid 200 OK code
-                if response.status_code != 200:
-                    print(f"❌ Server Error on Page {current_page}: Received status code {response.status_code}")
-                    break
+            if response.status_code != 200:
+                print(f"❌ Overpass API Error: Received status code {response.status_code}")
+                if response.status_code == 406:
+                    print("💡 Tip: The server rejected the client identity. Ensure the custom User-Agent header is set correctly.")
+                return []
                 
-                res = response.json()
-                # pprint(res)
-        
-                # Update total pages dynamically from the API's first metadata response
-                if current_page == 1:
-                    total_pages = int(res.get("totalNumPages", 1))
-                    print(f"Total pages to retrieve: {total_pages}")
-
-                # Extract items from results dictionary array
-                items = res.get("results", [])
-                for item in items:
-                    name = item.get("SEARCHVAL", "").upper()
-
-                    # 2. Establish strict string exclusions for student care, enrichment, and preschools
-                    # is_student_care = "STUDENT CARE" in name or "ENRICHMENT" in name or "PRESCHOOL" in name
-
-                    # Verify that it is an official Primary School asset
-                    # if "PRIMARY SCHOOL" in name and not is_student_care:
-                    if "SHOPPING" in name:
+            res = response.json()
+            elements = res.get('elements', [])
+            
+            print(f"Total entries fetched from OpenStreetMap: {len(elements)}")
+            
+            for item in elements:
+                tags = item.get('tags', {})
+                name = tags.get('name') or tags.get('name:en')
+                
+                if not name:
+                    continue
+                    
+                if 'center' in item:
+                    lat = item['center']['lat']
+                    lon = item['center']['lon']
+                else:
+                    lat = item.get('lat')
+                    lon = item.get('lon')
+                    
+                if lat and lon:
+                    try:
+                        mall_x, mall_y = transformer.transform(lon, lat)
+                        
                         shopping_malls.append({
                             "mall_name": name.title(),
-                            "mall_x": float(item["X"]),
-                            "mall_y": float(item["Y"])
+                            "mall_x": round(float(mall_x), 3),
+                            "mall_y": round(float(mall_y), 3)
                         })
-
-                print(f"Processed Page {current_page}/{total_pages}...")
-                current_page += 1
-                time.sleep(0.2)  # Short pause to satisfy OneMap rate-limiting rules
-
-            except Exception as e:
-                print(f"❌ Connection or JSON parsing failed on page {current_page}: {e}")
-                break
+                    except Exception as conversion_error:
+                        print(f"⚠️ Coordinate projection failed for {name}: {conversion_error}")
+                        
+            # Deduplicate results
+            unique_malls = {m['mall_name'].lower(): m for m in shopping_malls}.values()
+            shopping_malls = list(unique_malls)
+            
+            print(f"✅ Successfully compiled and projected {len(shopping_malls)} unique malls to SVY21 format.")
+            
+        except Exception as e:
+            print(f"❌ Connection or parsing failed during Overpass API execution: {e}")
         
         # [Insert this directly inside fetch_shopping_malls_svy21, after Step B's while loop completes]
         df_mall = pd.DataFrame(shopping_malls)
@@ -871,8 +898,8 @@ def FeatureGenerator(address): #Code for dagster
 
     cleaned_street = normalize_for_hdb_api(street)
     print("Connecting to Data.gov.sg V2 Collection API...")
-    print(blk)
-    print(cleaned_street)
+    #print(blk)
+    #print(cleaned_street)
     url = "https://data.gov.sg/api/action/datastore_search"
 
     filter_conditions = {
@@ -894,7 +921,7 @@ def FeatureGenerator(address): #Code for dagster
         
         # Extract the records list
         records = data.get('result', {}).get('records', [])
-        print(json.dumps(records))
+        #print(json.dumps(records))
         # Check if the records list is not empty
         if records:
             df["town"] = hdb_towns.get(records[0].get("bldg_contract_town"), records[0].get("bldg_contract_town")) 
@@ -910,7 +937,7 @@ def FeatureGenerator(address): #Code for dagster
         #json_string = df.to_json(orient='records')
         #return json_string
         result_dict = df.to_dict(orient='records')[0] 
-        print(result_dict)
+        #print(result_dict)
         return result_dict
     except NameError:
         print("✅ Script complete.")

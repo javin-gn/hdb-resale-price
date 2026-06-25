@@ -8,6 +8,7 @@ import requests
 from dotenv import load_dotenv
 from pprint import pprint
 from datetime import datetime
+import pyproj
 
 
 import matplotlib.pyplot as plt
@@ -19,8 +20,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
-from lightgbm import LGBMRegressor
-from sklearn.metrics import mean_absolute_error, r2_score
+import lightgbm as lgb
+from lightgbm import LGBMRegressor, early_stopping, log_evaluation
+
+from sklearn.metrics import mean_absolute_error, r2_score, mean_absolute_percentage_error, root_mean_squared_error
+from sklearn.model_selection import cross_val_score
 import pickle
 
 
@@ -498,56 +502,82 @@ def run_pipeline(): #Code for dagster
                 print(f"\n⏳ Cache file exists but is outdated ({days_old} days old). Triggering auto-refresh...")
 
         # ─── STEP B: FALLBACK TO LIVE NETWORK CALLS ───
-        print("\n🌐 Cache miss! Requesting shopping_mall records from OneMap Themes API...")
+        print("\n🌐 Cache miss! Requesting full retail layer from OpenStreetMap Overpass API...")
+        
+        # Initialize coordinate transformer (WGS84 Lat/Lng -> Singapore SVY21)
+        transformer = pyproj.Transformer.from_crs("EPSG:4326", "EPSG:3414", always_xy=True)
+        
+        overpass_url = "https://overpass-api.de/api/interpreter"
+        
+        # ─── FIXED: ADDING HEADERS TO PREVENT 406 BLOCKS ───
+        headers = {
+            # Overpass requires a descriptive custom User-Agent. Do not use stock python-requests.
+            "User-Agent": "SingaporeMallDataFetcher/1.0 (contact: your_email@domain.com)",
+            "Accept": "application/json"
+        }
+        
+        overpass_query = """
+        [out:json][timeout:30];
+        area["ISO3166-1"="SG"]->.searchArea;
+        (
+        node["shop"="mall"](area.searchArea);
+        way["shop"="mall"](area.searchArea);
+        rel["shop"="mall"](area.searchArea);
+        );
+        out center;
+        """
+        
         shopping_malls = []
-        current_page = 1
-        total_pages = 1
-        headers = {"Authorization": token} 
         
-        while current_page <= total_pages:
-            # Construct the URL with the active page number variable    
-            url = f"https://www.onemap.gov.sg/api/common/elastic/search?searchVal=SHOPPING&returnGeom=Y&getAddrDetails=Y&pageNum={current_page}"   
-        
-            try:
-                response = requests.get(url, headers=headers)
+        try:
+            # Pass the newly defined headers alongside your data payload
+            response = requests.post(overpass_url, data={'data': overpass_query}, headers=headers, timeout=35)
             
-                # Guard check: Ensure the server returned a valid 200 OK code
-                if response.status_code != 200:
-                    print(f"❌ Server Error on Page {current_page}: Received status code {response.status_code}")
-                    break
+            if response.status_code != 200:
+                print(f"❌ Overpass API Error: Received status code {response.status_code}")
+                if response.status_code == 406:
+                    print("💡 Tip: The server rejected the client identity. Ensure the custom User-Agent header is set correctly.")
+                return []
                 
-                res = response.json()
-                # pprint(res)
-        
-                # Update total pages dynamically from the API's first metadata response
-                if current_page == 1:
-                    total_pages = int(res.get("totalNumPages", 1))
-                    print(f"Total pages to retrieve: {total_pages}")
-
-                # Extract items from results dictionary array
-                items = res.get("results", [])
-                for item in items:
-                    name = item.get("SEARCHVAL", "").upper()
-
-                    # 2. Establish strict string exclusions for student care, enrichment, and preschools
-                    # is_student_care = "STUDENT CARE" in name or "ENRICHMENT" in name or "PRESCHOOL" in name
-
-                    # Verify that it is an official Primary School asset
-                    # if "PRIMARY SCHOOL" in name and not is_student_care:
-                    if "SHOPPING" in name:
+            res = response.json()
+            elements = res.get('elements', [])
+            
+            print(f"Total entries fetched from OpenStreetMap: {len(elements)}")
+            
+            for item in elements:
+                tags = item.get('tags', {})
+                name = tags.get('name') or tags.get('name:en')
+                
+                if not name:
+                    continue
+                    
+                if 'center' in item:
+                    lat = item['center']['lat']
+                    lon = item['center']['lon']
+                else:
+                    lat = item.get('lat')
+                    lon = item.get('lon')
+                    
+                if lat and lon:
+                    try:
+                        mall_x, mall_y = transformer.transform(lon, lat)
+                        
                         shopping_malls.append({
                             "mall_name": name.title(),
-                            "mall_x": float(item["X"]),
-                            "mall_y": float(item["Y"])
+                            "mall_x": round(float(mall_x), 3),
+                            "mall_y": round(float(mall_y), 3)
                         })
-
-                print(f"Processed Page {current_page}/{total_pages}...")
-                current_page += 1
-                time.sleep(0.2)  # Short pause to satisfy OneMap rate-limiting rules
-
-            except Exception as e:
-                print(f"❌ Connection or JSON parsing failed on page {current_page}: {e}")
-                break
+                    except Exception as conversion_error:
+                        print(f"⚠️ Coordinate projection failed for {name}: {conversion_error}")
+                        
+            # Deduplicate results
+            unique_malls = {m['mall_name'].lower(): m for m in shopping_malls}.values()
+            shopping_malls = list(unique_malls)
+            
+            print(f"✅ Successfully compiled and projected {len(shopping_malls)} unique malls to SVY21 format.")
+            
+        except Exception as e:
+            print(f"❌ Connection or parsing failed during Overpass API execution: {e}")
         
         # [Insert this directly inside fetch_shopping_malls_svy21, after Step B's while loop completes]
         df_mall = pd.DataFrame(shopping_malls)
@@ -922,17 +952,29 @@ def run_pipeline(): #Code for dagster
     print(f"Final Training Features Count: {X_train.shape[1]}")
     print(f"Final Testing Features Count: {X_test.shape[1]}")
 
-    model = LGBMRegressor(n_estimators=1500, learning_rate=0.03, num_leaves=127, random_state=42)
-    model.fit(X_train, y_train)
+    model = LGBMRegressor(n_estimators=5000, learning_rate=0.03, num_leaves=127, random_state=42)
+    
+    #model.fit(X_train, y_train)
+    model.fit(
+        X_train, y_train,
+        eval_set=[(X_test, y_test)],
+        eval_metric='rmse',
+        callbacks=[lgb.early_stopping(stopping_rounds=100)]
+    )
+    
 
     # 1. Generate predictions using the aligned test set
     predictions = model.predict(X_test)
 
     # 2. Calculate accuracy metrics
     mae = mean_absolute_error(y_test, predictions)
+    mape_baseline = mean_absolute_percentage_error(y_test, predictions)
+    rmse_baseline = root_mean_squared_error(y_test, predictions)
     r2 = r2_score(y_test, predictions)
 
-    print(f"LightGBM Mean Absolute Error: ${mae:,.2f}")
+    print(f"Mean Absolute Error: ${mae:,.2f}")
+    print(f"LightGBM MAPE = {mape_baseline:.1%}")
+    print(f"LightGBM RMSE = ${rmse_baseline:,.2f}")  
     print(f"LightGBM R² Score: {r2 * 100:.2f}%")
 
     # Bundle your model artifacts together
@@ -940,6 +982,10 @@ def run_pipeline(): #Code for dagster
         'model': model,                                     # Your trained LightGBM model
         'trained_features': list(X_train.columns),          # Aligned column list
         'global_price_mean': y_train.mean(),                # Global fallback average
+        'mae': f"${mae:,.2f}",
+        'r2_score': f"{r2 * 100:.2f}%",
+        'mape': f"{mape_baseline:.1%}",
+        'rmse': f"${rmse_baseline:,.2f}",
         'target_encoding_maps': {                           # All your mean_mapped Series
             col: y_train.groupby(X_raw[col]).mean() for col in [
                 'street_name', 'closest_mrt_name', 'closest_primary_school_name', 'flat_model', 'flat_type'

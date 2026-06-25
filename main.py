@@ -11,6 +11,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 from pydantic import BaseModel
 import pandas as pd
+from sklearn.metrics import r2_score
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -167,6 +168,11 @@ class ValuationRequest(BaseModel):
 @app.post("/api/predict")
 async def predict_valuation(data: ValuationRequest):
     try:
+        
+        model_r2 = artifacts["r2_score"]
+        mae = artifacts["mae"]
+        mape = artifacts["mape"]
+        rmse = artifacts["rmse"]
         # 1. Convert Pydantic model to dict
         data_dict = data.dict()
         
@@ -200,7 +206,7 @@ async def predict_valuation(data: ValuationRequest):
         # 7. Run Prediction
         prediction = float(model.predict(X_final)[0])
         
-        return {"predicted_price": prediction}
+        return {"predicted_price": prediction, "model_r2": model_r2, "mae": mae, "mape": mape, "rmse" : rmse}
     
     except Exception as e:
         # Print the error to your terminal so you can see why it failed
