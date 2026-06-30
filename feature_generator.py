@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 import re
 import pyproj
+import math
 
 def FeatureGenerator(address): #Code for dagster
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))  #Code for dagster
@@ -517,17 +518,21 @@ def FeatureGenerator(address): #Code for dagster
     # =====================================================================
     # PHASE 1: HUB DISTANCE TRACKING MATRIX
     # =====================================================================
-    def pythahorean_vectorized(x1, y1, x2, y2):
-        """
-        Computes straight-line distance in kilometres using SVY21 flat-plane grid
-        coordinates. Leverages Numpy beoadcasting for fast execution across large data sets.
-        """
 
-        dx = x2 - x1
-        dy = y2 - y1
+ 
 
-        # Hypotenuse math (gives metres), divided by 1000 to return km
-        return np.sqrt(dx**2 + dy**2) / 1000.0
+    def haversine_km(lat1, lon1, lat2, lon2):
+        # Use np.radians instead of math.radians
+        lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
+
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+        
+        # Use np.sin, np.cos, np.sqrt, np.arcsin
+        a = np.sin(dlat/2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2.0)**2
+        c = 2 * np.arcsin(np.sqrt(a))
+        
+        return 6371 * c
 
 
     print("\n📐 Computing distances to URA Master Plan Economic Hubs...")
@@ -536,7 +541,7 @@ def FeatureGenerator(address): #Code for dagster
     # Compute straight-line distances using the flat cartesian coorindates
     for hub_name, (hub_x, hub_y) in hubs.items():
         col_name = f"dist_to_{hub_name.lower()}"
-        df[col_name] = pythahorean_vectorized(df["x"], df["y"], hub_x, hub_y)
+        df[col_name] = haversine_km(df["x"], df["y"], hub_x, hub_y)
 
     # Calculate proximity to the absolute closest economic hub
     dist_cols = [f"dist_to_{hub_name.lower()}" for hub_name in hubs.keys()]
@@ -818,6 +823,8 @@ def FeatureGenerator(address): #Code for dagster
         "BT" : "Bukit Timah"
     }
 
+
+
     def normalize_for_hdb_api(onemap_street_name):
         # 1. Force Uppercase to match data.gov.sg schema
         street = onemap_street_name.upper().strip()
@@ -914,6 +921,14 @@ def FeatureGenerator(address): #Code for dagster
         "fields": "year_completed,bldg_contract_town"
     }
 
+    MATURE_ESTATES = {
+    "ANG MO KIO","BEDOK","BISHAN","BUKIT MERAH","BUKIT TIMAH","CENTRAL AREA",
+    "CLEMENTI","GEYLANG","KALLANG/WHAMPOA","MARINE PARADE","PASIR RIS",
+    "QUEENSTOWN","SERANGOON","TAMPINES","TOA PAYOH",
+    }
+
+    
+
     try:
         response = requests.get(url, params=params)
         response.raise_for_status()
@@ -927,7 +942,9 @@ def FeatureGenerator(address): #Code for dagster
             df["town"] = hdb_towns.get(records[0].get("bldg_contract_town"), records[0].get("bldg_contract_town")) 
             df["lease_commence_date"] = records[0].get("year_completed"),
             df["remaining_lease"] = calculate_remaining_lease(records[0].get("year_completed"))
-    
+            df["is_mature"]= df["town"].str.upper().isin(MATURE_ESTATES).astype(int)
+            CBD_LAT, CBD_LNG = 1.2841, 103.8516  # Raffles Place MRT
+            df["dist_cbd_km"] = haversine_km(df["lat"], df["lon"], CBD_LAT, CBD_LNG)
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
         

@@ -58,6 +58,20 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Distance to CBD</small>
+                                            <div class="fw-bold"><span id="dist_cbd_km"></span></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded metric-card">
+                                            <small class="text-muted">Historical Price per sqft</small>
+                                            <div class="fw-bold">$<span id="hist_price_psm">500</span></div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="p-3 border rounded metric-card">
                                             <small class="text-muted">Flat Type</small>
@@ -244,6 +258,8 @@
         const dataContent = document.getElementById('dataContent');
         const loadingIndicator = document.getElementById('loadingIndicator');
         let debounceTimer;
+        const baseGrowth = 0.03;
+        let projectedGrowth = 0.03;
 
 
         const yearDropdown = document.getElementById('year');
@@ -275,6 +291,9 @@
                 option.textContent = month;
                 monthDropdown.appendChild(option);
             }
+
+            const baseGrowth = 0.03;
+            projectedGrowth = (selectedYear - 2026) * baseGrowth;
         }
 
         // 3. Event Listener for Year Change
@@ -393,8 +412,7 @@
                 document.getElementById('remainingLease').textContent = data.remaining_lease;
                 document.getElementById('hdb_towns').textContent = data.town;
                 document.getElementById('leaseCommenceDate').textContent = data.lease_commence_date;
-
-
+                document.getElementById('dist_cbd_km').textContent = data.dist_cbd_km.toFixed(2) + ' km';
 
 
                 loadingIndicator.classList.add('d-none');
@@ -439,6 +457,7 @@
             const numbers = rawValue.match(/\d+/g);
 
             let storey_midpoint = 0;
+            const currentYear = new Date().getFullYear();
 
             if (numbers && numbers.length >= 2) {
                 const low = parseFloat(numbers[0]);
@@ -460,8 +479,8 @@
                 lease_commence_date: parseInt(document.getElementById('leaseCommenceDate').textContent) || 2022,
                 town: document.getElementById('hdb_towns').textContent,
                 month: document.getElementById('year').value + "-" + document.getElementById('month').value,
-                year: document.getElementById('year').value,
-                month_num: document.getElementById('month').value,
+                year: parseInt(document.getElementById('year').value),
+                month_num: parseInt(document.getElementById('month').value),
                 
                 street_name: document.getElementById('streetName').textContent, // .textContent
                 dist_to_closest_primary_school_km: cleanDist('schDist'),
@@ -477,8 +496,10 @@
                 sch_within_2km: parseInt(document.getElementById('sch2km').textContent) || 0,
                 mall_count: parseInt(document.getElementById('mallCount').textContent) || 0,
                 malls_within_500m: parseInt(document.getElementById('mallsWithin500m').textContent) || 0,
-                lrt_within_500m: 0,
-                dist_to_closest_lrt_km: 3.54
+                dist_cbd_km: cleanDist('dist_cbd_km'),
+                flat_age: currentYear - parseInt(document.getElementById('year').value), 
+                hist_price_psm: document.getElementById('hist_price_psm').textContent
+               
             };
 
             try {

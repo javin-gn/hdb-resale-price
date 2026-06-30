@@ -12,20 +12,24 @@ from concurrent.futures import ThreadPoolExecutor
 from pydantic import BaseModel
 import pandas as pd
 from sklearn.metrics import r2_score
-
+from typing import Optional
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 executor = ThreadPoolExecutor()
 
-# --- 1. LOAD ML MODEL (Once at startup) ---
-# Ensure your model is at data/hdb_model_pipeline.pkl
+# --- 1. LOAD ML MODEL ---
+# Updated to match the structure in pipeline.py: 
+# results = {"LightGBM": {"pipeline": pipe, "mae": mae, ...}}
 with open('data/hdb_model_pipeline.pkl', 'rb') as f:
     artifacts = pickle.load(f)
 
-model = artifacts['model']
-expected_features = artifacts['trained_features']
-global_mean = artifacts['global_price_mean']
-encoding_maps = artifacts['target_encoding_maps']
+# Change these lines to access the dictionary keys directly
+model = artifacts['pipeline'] # The key in your pipeline.py is 'pipeline'
+# Use the keys exactly as they appear in the saved artifact dictionary
+model_r2 = artifacts['r2']
+mae = artifacts['mae']
+mape = artifacts['mape']
+rmse = artifacts['rmse']
 
 
 async def get_current_onemap_token():
@@ -135,82 +139,89 @@ async def get_config():
         data = json.load(f)
     return data
 
+def _resolve_hist_price_psm(town: str, flat_type: str, provided: Optional[float]) -> float:
+    """
+    Returns the caller-provided hist_price_psm if given, otherwise looks up the
+    recent market median for this town+flat_type from psm_lookup.json, falling
+    back to the Singapore-wide median if that combo has no recent data.
+    """
+    if provided is not None:
+        return provided
+    lookup = model .get("psm_lookup", {})
+    return lookup.get((town, flat_type), model.get("global_median_psm", 5500.0))
+
+@app.get("/market-price-psm")
+def market_price_psm(town: str, flat_type: str):
+    """Returns the recent median S$/sqm used as the hist_price_psm feature for this town+flat_type."""
+    town = town.upper().strip()
+    flat_type = flat_type.upper().strip()
+    resolved = _resolve_hist_price_psm(town, flat_type, None)
+    is_specific = (town, flat_type) in model.get("psm_lookup", {})
+    return {
+        "town": town,
+        "flat_type": flat_type,
+        "hist_price_psm": resolved,
+        "source": "town_flat_type_median" if is_specific else "singapore_wide_fallback",
+    }
+
 # Define the schema for incoming data
 class ValuationRequest(BaseModel):
-    floor_area_sqm: float
-    flat_type: str
-    flat_models: str  # Matches your payload key
-    storey_range: str
-    storey_midpoint: float
-    remaining_lease: int
-    lease_commence_date: int
-    town: str
-    month: str
-    year: str
+    year: int
     month_num: int
-    street_name: str
+    floor_area_sqm: float
+    storey_midpoint: float  # Added this
+    remaining_lease: int    # Matches index.html
+    lease_commence_date: int
+    flat_age: int
+    is_mature: int = 0      # Ensure this is provided or set a default
+    town: str
+    flat_type: str
+    flat_models: str        # Matches index.html
+    dist_to_closest_mrt_km: float
+    dist_to_closest_shopping_mall_km: float
     dist_to_closest_primary_school_km: float
     min_distance_to_regional_hub_km: float
-    dist_to_closest_shopping_mall_km: float
-    dist_to_closest_mrt_km: float
-    closest_primary_school_name: str
-    closest_mrt_name: str
-    mrt_within_1km: int
-    mrt_within_500m: int
+    dist_cbd_km: float      # Ensure this is in your index.html payload
     sch_within_1km: int
     sch_within_2km: int
-    mall_count: int
+    mrt_within_500m: int
+    mrt_within_1km: int
     malls_within_500m: int
-    lrt_within_500m: int
-    dist_to_closest_lrt_km: float
+    mall_count: int
+    hist_price_psm: float 
+    
 
 # --- 2. PREDICT ENDPOINT ---
 @app.post("/api/predict")
 async def predict_valuation(data: ValuationRequest):
     try:
+        # Pydantic v2 uses .model_dump(), NOT .dict()
+        data_dict = data.model_dump()
         
-        model_r2 = artifacts["r2_score"]
-        mae = artifacts["mae"]
-        mape = artifacts["mape"]
-        rmse = artifacts["rmse"]
-        # 1. Convert Pydantic model to dict
-        data_dict = data.dict()
-        
-        # 2. Create DataFrame
         df = pd.DataFrame([data_dict])
+        df = df.rename(columns={
+            "storey_midpoint": "storey_mid",
+            "remaining_lease": "remaining_lease_yrs",
+            "flat_models": "flat_model",
+            "sch_within_1km" : "primary_schools_within_1km",
+            "sch_within_2km" : "primary_schools_within_2km",
+            "mall_count": "malls_within_1km"
+            # Add any other mapping needed
+        })
         
-        # 3. Data Engineering (Hardcode/Fill context)
-        df['year'] = 2026
-        df['month_num'] = 6
+        # Predict directly
+        prediction = float(model.predict(df)[0])
         
-        # 4. Encoding Logic (Safe Mapping)
-        # We ensure that if a category is missing, it gets the global mean 
-        # instead of causing a crash with NaN
-        for col, mapping in encoding_maps.items():
-            if col in df.columns:
-                # Use .map() and fill missing with global_mean to prevent failures
-                df[f'{col}_encoded'] = df[col].map(mapping).fillna(global_mean)
-        
-        # Drop raw categorical columns after encoding
-        cols_to_drop = [c for c in encoding_maps.keys() if c in df.columns]
-        df = df.drop(columns=cols_to_drop)
-        
-        # 5. One-Hot Encoding for 'town' (or other dummies)
-        # We ensure consistent columns matching the training set
-        df_encoded = pd.get_dummies(df, columns=['town'], dtype=int)
-        
-        # 6. Reindex to match the exact features the model was trained on
-        # This fills missing dummy columns with 0, preventing "feature mismatch" errors
-        X_final = df_encoded.reindex(columns=expected_features, fill_value=0)
-        
-        # 7. Run Prediction
-        prediction = float(model.predict(X_final)[0])
-        
-        return {"predicted_price": prediction, "model_r2": model_r2, "mae": mae, "mape": mape, "rmse" : rmse}
+        return {
+            "predicted_price": prediction, 
+            "model_r2": f"{model_r2 * 100:.2f}%", 
+            "mae": f"S${mae:,.0f}", 
+            "mape": f"{mape:.1%} ", 
+            "rmse": f"S${rmse:,.0f}"
+        }
     
     except Exception as e:
-        # Print the error to your terminal so you can see why it failed
-        print(f"--- PREDICTION ERROR ---")
-        import traceback
-        traceback.print_exc() 
+        # It is helpful to print the error to your server console for debugging
+        print(f"Prediction error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+

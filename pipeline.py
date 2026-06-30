@@ -1,7 +1,7 @@
 import os
 import json
 import time
-import io
+import math
 import pandas as pd
 import numpy as np
 import requests
@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 from pprint import pprint
 from datetime import datetime
 import pyproj
-
+import shap
+from datetime import date
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -18,14 +19,361 @@ import warnings
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
 import lightgbm as lgb
 from lightgbm import LGBMRegressor, early_stopping, log_evaluation
 
-from sklearn.metrics import mean_absolute_error, r2_score, mean_absolute_percentage_error, root_mean_squared_error
+from sklearn.metrics import mean_absolute_error, r2_score, mean_absolute_percentage_error, root_mean_squared_error, mean_squared_error
 from sklearn.model_selection import cross_val_score
 import pickle
+from typing import Optional
+
+
+# --- FEATURE SELECTION & SEPARATION ---
+
+MATURE_ESTATES = {
+    "ANG MO KIO","BEDOK","BISHAN","BUKIT MERAH","BUKIT TIMAH","CENTRAL AREA",
+    "CLEMENTI","GEYLANG","KALLANG/WHAMPOA","MARINE PARADE","PASIR RIS",
+    "QUEENSTOWN","SERANGOON","TAMPINES","TOA PAYOH",
+}
+ 
+
+# Select the structural numeric values you generated
+FEATURE_COLS = [
+# Original
+"year", "month_num",
+"floor_area_sqm", "storey_mid", "flat_age", "remaining_lease_yrs", "hist_price_psm",
+"lease_commence_date", "is_mature",
+"town", "flat_type", "flat_model",
+# New geospatial
+"dist_to_closest_mrt_km",
+"dist_to_closest_shopping_mall_km",
+"dist_to_closest_primary_school_km",
+'dist_cbd_km',
+'primary_schools_within_1km', 
+'primary_schools_within_2km', 
+'mrt_within_500m', 
+'mrt_within_1km',
+'malls_within_500m', 
+'malls_within_1km',
+'min_distance_to_regional_hub_km'
+]
+TARGET_COL = "resale_price"
+
+
+
+# A. Parse Complex Remaining Lease strings (e.g., '61 years 04 months')
+def parse_remaining_lease(s) -> float:
+    try:
+        s = str(s)
+        years  = int(s.split("years")[0].strip()) if "years" in s else int(s)
+        months = int(s.split("years")[1].split("months")[0].strip()) if "months" in s else 0
+        return years + months / 12
+    except Exception:
+        return np.nan
+
+def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+
+    # Target
+    df["resale_price"] = pd.to_numeric(df["resale_price"], errors="coerce")
+
+    # Time
+    df["month"]     = pd.to_datetime(df["month"])
+    df["year"]      = df["month"].dt.year
+    df["month_num"] = df["month"].dt.month
+
+    # Numerics
+    df["floor_area_sqm"]      = pd.to_numeric(df["floor_area_sqm"], errors="coerce")
+    df["lease_commence_date"] = pd.to_numeric(df["lease_commence_date"], errors="coerce")
+    df["storey_mid"]          =  df['storey_range'].apply(lambda x: sum(map(int, str(x).split(' TO '))) / 2)
+
+    # Remaining lease
+    if "remaining_lease" in df.columns:
+        df["remaining_lease_yrs"] = df["remaining_lease"].apply(parse_remaining_lease)
+    else:
+        df["remaining_lease_yrs"] = 99 - (df["year"] - df["lease_commence_date"])
+
+    # Derived
+    df["is_mature"]       = df["town"].str.upper().isin(MATURE_ESTATES).astype(int)
+    df["flat_age"]        = df["year"] - df["lease_commence_date"]
+  
+
+    df["price_psm"]      = df["resale_price"] / df["floor_area_sqm"]   # temp column
+    df["hist_price_psm"] = df.groupby(["town","flat_type"])["price_psm"].transform(lambda x: x.shift(1).rolling(6, min_periods=1).median())
+    df = df.drop(columns=["price_psm"])   # never enters the model
+
+
+    # Categoricals
+    for col in ["town", "flat_type", "flat_model"]:
+        df[col] = df[col].astype("category")
+
+    
+    # Drop rows missing critical fields
+    critical = ["resale_price","floor_area_sqm","storey_mid","remaining_lease_yrs",
+                "dist_to_closest_mrt_km","dist_to_closest_shopping_mall_km","dist_to_closest_primary_school_km"]
+    df = df.dropna(subset=critical)
+    print(f"      → {len(df):,} rows after cleaning")
+    return df
+
+def get_preprocessor():
+
+    num_cols = [
+        "year","month_num","floor_area_sqm","storey_mid","remaining_lease_yrs",
+        "lease_commence_date", "flat_age", "is_mature",
+        "dist_to_closest_mrt_km",
+        "dist_to_closest_shopping_mall_km",
+        "dist_to_closest_primary_school_km",
+        'min_distance_to_regional_hub_km',
+        'dist_cbd_km',
+        'primary_schools_within_1km', 
+        'primary_schools_within_2km', 
+        'mrt_within_500m', 
+        'mrt_within_1km',
+        'malls_within_500m', 
+        'malls_within_1km',
+        'hist_price_psm'
+
+
+    ]
+    cat_cols = ["town","flat_type","flat_model"]
+
+    ct = ColumnTransformer([
+        ("num", Pipeline([
+            ("imp", SimpleImputer(strategy="median")),
+            ("sc",  StandardScaler()),
+        ]), num_cols),
+        ("cat", Pipeline([
+            ("imp", SimpleImputer(strategy="most_frequent")),
+            ("enc", OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)),
+        ]), cat_cols),
+    ])
+    # Emit a DataFrame (with column names) instead of a bare numpy array.
+    # This prevents LightGBM's "X does not have valid feature names" warning
+    # and ensures feature names match between fit and predict.
+    ct.set_output(transform="pandas")
+    return ct
+
+
+def train_models(df: pd.DataFrame):
+
+    X = df[FEATURE_COLS].copy()
+    y = df[TARGET_COL].copy()
+    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
+ 
+    pipe = Pipeline([
+        ("pre", get_preprocessor()),
+        ("m", lgb.LGBMRegressor(
+            n_estimators=600,
+            learning_rate=0.04,
+            num_leaves=127,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            min_child_samples=20,
+            n_jobs=-1,
+            random_state=42,
+            verbose=-1,
+        )),
+    ])
+    pipe.fit(X_tr, y_tr)
+ 
+    preds = pipe.predict(X_te)
+    mae   = mean_absolute_error(y_te, preds)
+    rmse  = np.sqrt(mean_squared_error(y_te, preds))
+    r2    = r2_score(y_te, preds)
+    mape = mean_absolute_percentage_error(y_te, preds)
+    print(f"      LightGBM → MAE: S${mae:,.0f}  RMSE: S${rmse:,.0f} MAPE: {mape:.1%}   R²: {r2 * 100:.2f}%")
+ 
+    results = {"LightGBM": {"pipeline": pipe, "mae": mae, "rmse": rmse, "mape": mape, "r2": r2, "preds": preds}}
+    return results, X_te, y_te
+
+
+
+def save_artefacts(results: dict, X_te, y_te, df: pd.DataFrame):
+
+    res = results["LightGBM"]
+    path = "data/hdb_model_pipeline.pkl"
+    with open(path, "wb") as f:
+        pickle.dump(res, f)
+
+    report = {"LightGBM": {"mae_sgd": round(res["mae"], 2),
+                            "rmse_sgd": round(res["rmse"], 2), "mape": round(res["mape"], 4),
+                            "r2": round(res["r2"], 4)}}
+    with open("outputs/evaluation_report.json", "w") as f:
+        json.dump(report, f, indent=2)
+
+    pipe = res["pipeline"]
+    model_step = pipe.named_steps["m"]
+    if hasattr(model_step, "feature_importances_"):
+        imp_df = pd.DataFrame({
+            "feature": FEATURE_COLS,
+            "importance": model_step.feature_importances_,
+        }).sort_values("importance", ascending=False)
+        imp_df.to_csv("outputs/feature_importance.csv", index=False)
+
+    print(f"      LightGBM  R²={res['r2']:.4f}  MAE=S${res['mae']:,.0f}")
+    _try_shap(results, X_te, df)
+    return "LightGBM", pipe
+
+ 
+def _try_shap(results: dict, X_te, df):
+    try:
+        pipe = results["LightGBM"]["pipeline"]
+        print("    Computing SHAP values …")
+        sample = X_te.sample(min(500, len(X_te)), random_state=42)
+        # pre now returns a DataFrame (set_output="pandas"), so feature names
+        # are preserved and match what LightGBM was trained on.
+        X_transformed = pipe.named_steps["pre"].transform(sample)
+        explainer = shap.TreeExplainer(pipe.named_steps["m"])
+        shap_vals = explainer.shap_values(X_transformed)
+        mean_abs  = np.abs(shap_vals).mean(axis=0)
+        # Use the actual transformed column names, not the raw FEATURE_COLS list
+        feat_names = list(X_transformed.columns)
+        shap_df = (pd.DataFrame({"feature": feat_names, "mean_abs_shap": mean_abs})
+                     .sort_values("mean_abs_shap", ascending=False))
+        shap_df.to_csv("outputs/shap_importance.csv", index=False)
+        print(f"      SHAP saved → outputs/shap_importance.csv")
+    except ImportError:
+        print("    shap not installed (pip install shap) — skipping SHAP analysis")
+    except Exception as e:
+        print(f"    SHAP failed: {e}")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 7.  FUTURE PRICE FORECAST
+# ══════════════════════════════════════════════════════════════════════════════
+
+def save_psm_lookup(df: pd.DataFrame):
+    """
+    Save a (town, flat_type) -> recent median S$/sqm lookup table as a standalone
+    artifact. The API loads this at startup so it can auto-fill hist_price_psm
+    for incoming requests without needing to re-fetch or reprocess data.gov.sg data.
+    """
+    print("    Saving hist_price_psm lookup table …")
+    recent = df[df["year"] >= df["year"].max() - 1]
+    psm_lookup = (recent.assign(price_psm=recent["resale_price"] / recent["floor_area_sqm"])
+                  .groupby(["town", "flat_type"])["price_psm"]
+                  .median()
+                  .reset_index()
+                  .rename(columns={"price_psm": "hist_price_psm"}))
+ 
+    global_median = psm_lookup["hist_price_psm"].median()
+    psm_lookup.to_json("data/psm_lookup.json", orient="records")
+ 
+    # Also save the global fallback median for towns/types not seen recently
+    with open("data/psm_lookup_meta.json", "w") as f:
+        json.dump({"global_median_psm": float(global_median),
+                  "as_of_year": int(df["year"].max())}, f, indent=2)
+ 
+    print(f"      Saved → data/psm_lookup.json ({len(psm_lookup)} town×type combos)")
+    return psm_lookup
+
+
+def forecast_future(results: dict, df: pd.DataFrame):
+    pipe = results["LightGBM"]["pipeline"]
+    def predict_fn(X):
+        return pipe.predict(X)
+ 
+    recent = df[df["year"] >= df["year"].max() - 1]
+    combos = (recent.groupby(["town","flat_type"])
+              .agg(floor_area_sqm=("floor_area_sqm","median"),
+                   hist_price_psm=("hist_price_psm","median"),
+                   storey_mid=("storey_mid","median"),
+                   remaining_lease_yrs=("remaining_lease_yrs","median"),
+                   lease_commence_date=("lease_commence_date","median"),
+                   flat_age=("flat_age","median"),
+                   is_mature=("is_mature","first"),
+                   flat_model=("flat_model", lambda x: x.mode()[0]),
+                   dist_to_closest_mrt_km= ("dist_to_closest_mrt_km","median"),
+                   dist_to_closest_shopping_mall_km= ("dist_to_closest_shopping_mall_km", "median"),
+                   dist_to_closest_primary_school_km= ("malls_within_1km","median"),
+                   min_distance_to_regional_hub_km= ("min_distance_to_regional_hub_km","median"),
+                   dist_cbd_km= ("dist_cbd_km","median"),
+                   primary_schools_within_1km= ("dist_to_closest_primary_school_km","median"),
+                   primary_schools_within_2km= ("primary_schools_within_2km","median"),
+                   mrt_within_500m= ("mrt_within_500m","median"),
+                   mrt_within_1km= ("mrt_within_1km","median"),
+                   malls_within_500m= ("malls_within_500m","median"),
+                   malls_within_1km=("malls_within_1km","median"))
+              .reset_index())
+ 
+    # hist_price_psm: use the median price/sqm from recent transactions as the
+    # lagged market signal for future predictions
+    psm_lookup = (recent.assign(price_psm=recent["resale_price"] / recent["floor_area_sqm"])
+                  .groupby(["town","flat_type"])["price_psm"]
+                  .median().rename("hist_price_psm"))
+    combos = combos.drop(columns=["hist_price_psm"], errors="ignore")
+    combos = combos.join(psm_lookup, on=["town","flat_type"])
+    
+    rows = []
+    base_year = df["year"].max()
+    for fy in [2026, 2027, 2028]:
+        tmp = combos.copy()
+        tmp["year"]             = fy
+        tmp["month_num"]        = 6
+        delta = fy - base_year
+        tmp["flat_age"]         = tmp["flat_age"]         + delta
+       
+        tmp["remaining_lease_yrs"] = tmp["remaining_lease_yrs"] - delta
+        tmp["predicted_price"]  = predict_fn(tmp[FEATURE_COLS]).round(-3)
+        tmp["forecast_year"]    = fy
+        rows.append(tmp)
+ 
+    forecast_df = pd.concat(rows, ignore_index=True)
+    forecast_df.to_csv("outputs/future_price_forecast.csv", index=False)
+    print(f"      Saved → outputs/future_price_forecast.csv")
+    return forecast_df
+ 
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 8.  SINGLE-FLAT PREDICTOR
+# ══════════════════════════════════════════════════════════════════════════════
+ 
+def predict_single(results: dict,
+                   town: str, flat_type: str, floor_area_sqm: float,
+                   storey_range: str, lease_commence_date: int,
+                   lat: Optional[float] = None, lng: Optional[float] = None,
+                   year: int = 2026, month_num: int = 6,  hist_price_psm: Optional[float] = None) -> dict:
+    """
+    Predict resale price for one flat.
+    Provide lat/lng for full geospatial accuracy; otherwise uses town centroid.
+    """
+    storey_range = "07 TO 09"
+    storey_mid = (sum(map(int, str(storey_range).split(' TO '))) / 2)
+    flat_age   = year - lease_commence_date
+    X = pd.DataFrame([{
+        "year": year, "month_num": month_num,
+        "floor_area_sqm": floor_area_sqm,
+        "storey_mid": storey_mid,
+        "flat_age": date.today().year - year,
+        "remaining_lease_yrs":  99 - flat_age,
+        "lease_commence_date": lease_commence_date,
+        "is_mature": int(town.upper() in MATURE_ESTATES),
+        "town": town, "flat_type": flat_type, "flat_model": "Model A",
+        "dist_to_closest_mrt_km": float(1.38),
+        "dist_to_closest_shopping_mall_km": float(1.38),
+        "dist_to_closest_primary_school_km": float(1.38),
+        "dist_cbd_km": float(1.38),
+        "min_distance_to_regional_hub_km": float(1.38),
+        'primary_schools_within_1km': 1, 
+        'primary_schools_within_2km': 1, 
+        'mrt_within_500m': 1, 
+        'mrt_within_1km': 1,
+        'malls_within_500m': 1, 
+        'malls_within_1km': 1,
+    
+
+    }])
+
+    X["hist_price_psm"]    = hist_price_psm if hist_price_psm is not None else 5500.0
+ 
+    pipe  = results["LightGBM"]["pipeline"]
+    price = float(pipe.predict(X)[0])
+ 
+    return {
+        "estimated_price": round(price, -3),
+        "year": year
+    }
 
 
 def run_pipeline(): #Code for dagster
@@ -39,7 +387,8 @@ def run_pipeline(): #Code for dagster
     mrt_cache_path = os.path.join(SCRIPT_DIR, "data/mrt_lrt_cache.json") #Code for dagster
     schools_cache_path = os.path.join(SCRIPT_DIR, "data/primary_schools_cache.json") #Code for dagster
     shopping_malls_cache_path = os.path.join(SCRIPT_DIR, "data/shopping_malls_cache.json") #Code for dagster
-    
+
+
     print("🚀 Starting the HDB Resale Data Pipeline...") #Code for dagster
 
     load_dotenv()
@@ -109,7 +458,8 @@ def run_pipeline(): #Code for dagster
     #Pull only the latest time-slice directly into a single dataframe
     df = pd.read_csv(final_download_url)
     print(f"🚀 Loaded {len(df):,} latest active transaction records into memory.")
-  
+
+
 
     print("""
     # ===============================================================================================================================
@@ -612,18 +962,20 @@ def run_pipeline(): #Code for dagster
     # =====================================================================
     # PHASE 1: HUB DISTANCE TRACKING MATRIX
     # =====================================================================
-    def pythahorean_vectorized(x1, y1, x2, y2):
-        """
-        Computes straight-line distance in kilometres using SVY21 flat-plane grid
-        coordinates. Leverages Numpy beoadcasting for fast execution across large data sets.
-        """
+ 
 
-        dx = x2 - x1
-        dy = y2 - y1
+    def haversine_km(lat1, lon1, lat2, lon2):
+        # Use np.radians instead of math.radians
+        lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
 
-        # Hypotenuse math (gives metres), divided by 1000 to return km
-        return np.sqrt(dx**2 + dy**2) / 1000.0
-
+        dlon = lon2 - lon1
+        dlat = lat2 - lat1
+        
+        # Use np.sin, np.cos, np.sqrt, np.arcsin
+        a = np.sin(dlat/2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2.0)**2
+        c = 2 * np.arcsin(np.sqrt(a))
+        
+        return 6371 * c
 
     print("\n📐 Computing distances to URA Master Plan Economic Hubs...")
 
@@ -631,7 +983,7 @@ def run_pipeline(): #Code for dagster
     # Compute straight-line distances using the flat cartesian coorindates
     for hub_name, (hub_x, hub_y) in hubs.items():
         col_name = f"dist_to_{hub_name.lower()}"
-        df[col_name] = pythahorean_vectorized(df["x"], df["y"], hub_x, hub_y)
+        df[col_name] = (haversine_km(df["x"], df["y"], hub_x, hub_y)).round(2)
 
     # Calculate proximity to the absolute closest economic hub
     dist_cols = [f"dist_to_{hub_name.lower()}" for hub_name in hubs.keys()]
@@ -872,141 +1224,42 @@ def run_pipeline(): #Code for dagster
         
     else:
         print("⚠ Calculation skipped: Shopping Mall DataFrame could not be compiled.")
-
-
-    print("""
-    # ===============================================================================================================================
-    # STEP 6: Train Test Split using LGBMRegressor + Export Final Matrix to pickle for downstream ML pipeline consumption
-    # ===============================================================================================================================
-    """)
-
-    # A. Parse Complex Remaining Lease strings (e.g., '61 years 04 months')
-    def parse_lease(lease_str):
-        if pd.isna(lease_str):
-            return 99.0
-        parts = str(lease_str).split()
-        years = int(parts[0])
-        months = int(parts[2]) if 'month' in parts else 0
-        return years + (months / 12.0)
-
-    df['remaining_lease_years'] = df['remaining_lease'].apply(parse_lease)
-
-    # B. Decode Storey Range to Numerical Midpoint (e.g., '10 TO 12' -> 11.0)
-    df['storey_midpoint'] = df['storey_range'].apply(lambda x: sum(map(int, str(x).split(' TO '))) / 2)
-
-    # C. Extract Numeric Time Values from Month (e.g., '2017-01' -> Year 2017, Month 1)
-    df['year'] = df['month'].apply(lambda x: int(str(x).split('-')[0]))
-    df['month_num'] = df['month'].apply(lambda x: int(str(x).split('-')[1]))
-
-    #df = df[df['year'] >= 2022].reset_index(drop=True)
-
-    # --- FEATURE SELECTION & SEPARATION ---
-    # Select the structural numeric values you generated
-    features =  [
-        'floor_area_sqm', 'lease_commence_date', 'remaining_lease_years', 'storey_midpoint',
-        'year', 'month_num', 'min_distance_to_regional_hub_km', 'primary_schools_within_1km', 
-        'primary_schools_within_2km', 'dist_to_closest_primary_school_km', 'mrt_within_500m', 
-        'mrt_within_1km', 'dist_to_closest_mrt_km', 'lrt_within_500m', 'dist_to_closest_lrt_km', 
-        'malls_within_500m', 'malls_within_1km', 'dist_to_closest_shopping_mall_km',
-        'town', 'street_name', 'closest_mrt_name', 'closest_primary_school_name', 'flat_model', 'flat_type'
-    ]
-    X_raw = df[features].copy()
-    y = df['resale_price']
-
-    X_train_raw, X_test_raw, y_train, y_test = train_test_split(X_raw, y, test_size=0.2, random_state=42)
-
-    # Create clean working copies for encoding
-    X_train = X_train_raw.copy()
-    X_test = X_test_raw.copy()
-
-    # --- APPLY TARGET ENCODING ---
-    target_encode_features = ['street_name', 'closest_mrt_name', 'closest_primary_school_name', 'flat_model', 'flat_type']
-
-    for col in target_encode_features:
-        # Compute mean price per category using only Training Data
-        mean_mapped = y_train.groupby(X_train[col]).mean()
-        
-        # Map back to train and test sets
-        X_train[f'{col}_encoded'] = X_train[col].map(mean_mapped)
-        X_test[f'{col}_encoded'] = X_test[col].map(mean_mapped)
-        
-        # Fill any unseen test categories with global training price average
-        X_train[f'{col}_encoded'] = X_train[f'{col}_encoded'].fillna(y_train.mean())
-        X_test[f'{col}_encoded'] = X_test[f'{col}_encoded'].fillna(y_train.mean())
-
-    # Drop the original text columns used for target encoding
-    X_train = X_train.drop(columns=target_encode_features)
-    X_test = X_test.drop(columns=target_encode_features)
-
-    # --- ONE-HOT ENCODE TOWN SEPARATELY AND ALIGN ---
-    # One-hot encode town on train and test independently
-    X_train = pd.get_dummies(X_train, columns=['town'], dtype=int)
-    X_test = pd.get_dummies(X_test, columns=['town'], dtype=int)
-
-    # It forces X_test to have the exact same columns, in the exact same order as X_train.
-    # If X_test has a unique town, it gets dropped. If it's missing a town, it gets added with all 0s.
-    X_test = X_test.reindex(columns=X_train.columns, fill_value=0)
-
-    # --- TRAIN LIGHTGBM ---
-    # Both X_train and X_test are now guaranteed to have the exact same number of columns!
-    print(f"Final Training Features Count: {X_train.shape[1]}")
-    print(f"Final Testing Features Count: {X_test.shape[1]}")
-
-    model = LGBMRegressor(n_estimators=5000, learning_rate=0.03, num_leaves=127, random_state=42)
     
-    #model.fit(X_train, y_train)
-    model.fit(
-        X_train, y_train,
-        eval_set=[(X_test, y_test)],
-        eval_metric='rmse',
-        callbacks=[lgb.early_stopping(stopping_rounds=100)]
-    )
+   
+    CBD_LAT, CBD_LNG = 1.2841, 103.8516  # Raffles Place MRT
     
+ 
+    df["dist_cbd_km"] = haversine_km(df["lat"], df["lon"], CBD_LAT, CBD_LNG)
 
-    # 1. Generate predictions using the aligned test set
-    predictions = model.predict(X_test)
+    return df
 
-    # 2. Calculate accuracy metrics
-    mae = mean_absolute_error(y_test, predictions)
-    mape_baseline = mean_absolute_percentage_error(y_test, predictions)
-    rmse_baseline = root_mean_squared_error(y_test, predictions)
-    r2 = r2_score(y_test, predictions)
-
-    print(f"Mean Absolute Error: ${mae:,.2f}")
-    print(f"LightGBM MAPE = {mape_baseline:.1%}")
-    print(f"LightGBM RMSE = ${rmse_baseline:,.2f}")  
-    print(f"LightGBM R² Score: {r2 * 100:.2f}%")
-
-    # Bundle your model artifacts together
-    model_artifacts = {
-        'model': model,                                     # Your trained LightGBM model
-        'trained_features': list(X_train.columns),          # Aligned column list
-        'global_price_mean': y_train.mean(),                # Global fallback average
-        'mae': f"${mae:,.2f}",
-        'r2_score': f"{r2 * 100:.2f}%",
-        'mape': f"{mape_baseline:.1%}",
-        'rmse': f"${rmse_baseline:,.2f}",
-        'target_encoding_maps': {                           # All your mean_mapped Series
-            col: y_train.groupby(X_raw[col]).mean() for col in [
-                'street_name', 'closest_mrt_name', 'closest_primary_school_name', 'flat_model', 'flat_type'
-            ]
-        }
-    }
-
-    # Export artifact bundle to your local hard drive
-    with open('data/hdb_model_pipeline.pkl', 'wb') as f:
-        pickle.dump(model_artifacts, f)
-
-    # Dagster implementation
-    try:
-        total_rows = len(df)
-        print(f"✅ Successfully ingested and enriched {total_rows} rows .")
-        print("Pipeline artifacts successfully saved for deployment!") 
-        return total_rows
-    except NameError:
-        print("✅ Script complete.")
-        return 0
 
 # Dagster implementation - Backward compatibility wrapper
 if __name__ == "__main__":
-    run_pipeline()
+    df_raw = run_pipeline()
+
+    df = engineer_features(df_raw)
+    # Train
+    results, X_te, y_te = train_models(df)
+
+    # Save
+    best_name, best_pipe = save_artefacts(results, X_te, y_te, df)
+
+    # Forecast
+    forecast_df = forecast_future(results, df)
+
+    save_psm_lookup(df)
+
+    # Sample prediction
+    pred = predict_single(
+        results,
+        town="QUEENSTOWN", flat_type="4 ROOM",
+        floor_area_sqm=90, storey_range="10 TO 12",
+        lease_commence_date=1990,
+        lat=1.2943, lng=1.8062,   # swap 1.8062 → 103.8062 if testing
+        year=2027,
+    )
+    print(f"      → Estimated price  : S${pred['estimated_price']:,.0f}")
+    print(f"      → Year  : {pred['year']}")
+    print("\n✓ Pipeline completed.")
+   

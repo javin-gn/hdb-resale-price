@@ -19,3 +19,6 @@ uvicorn
 jinja2
 httpx
 pyproj
+shap
+typing
+
