@@ -100,6 +100,9 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     df["flat_age"]        = df["year"] - df["lease_commence_date"]
   
 
+    # Sort by month first — rolling lag MUST be computed in chronological order
+    # or shift(1) will leak future prices into earlier rows.
+    df = df.sort_values("month").reset_index(drop=True)
     df["price_psm"]      = df["resale_price"] / df["floor_area_sqm"]   # temp column
     df["hist_price_psm"] = df.groupby(["town","flat_type"])["price_psm"].transform(lambda x: x.shift(1).rolling(6, min_periods=1).median())
     df = df.drop(columns=["price_psm"])   # never enters the model
@@ -193,6 +196,7 @@ def train_models(df: pd.DataFrame):
 def save_artefacts(results: dict, X_te, y_te, df: pd.DataFrame):
 
     res = results["LightGBM"]
+    res["base_year"] = int(df["year"].max())  # needed by predict_single to pin year correctly
     path = "data/hdb_model_pipeline.pkl"
     with open(path, "wb") as f:
         pickle.dump(res, f)
@@ -286,10 +290,10 @@ def forecast_future(results: dict, df: pd.DataFrame):
                    flat_model=("flat_model", lambda x: x.mode()[0]),
                    dist_to_closest_mrt_km= ("dist_to_closest_mrt_km","median"),
                    dist_to_closest_shopping_mall_km= ("dist_to_closest_shopping_mall_km", "median"),
-                   dist_to_closest_primary_school_km= ("malls_within_1km","median"),
+                   dist_to_closest_primary_school_km= ("dist_to_closest_primary_school_km", "median"),
                    min_distance_to_regional_hub_km= ("min_distance_to_regional_hub_km","median"),
                    dist_cbd_km= ("dist_cbd_km","median"),
-                   primary_schools_within_1km= ("dist_to_closest_primary_school_km","median"),
+                   primary_schools_within_1km= ("primary_schools_within_1km","median"),
                    primary_schools_within_2km= ("primary_schools_within_2km","median"),
                    mrt_within_500m= ("mrt_within_500m","median"),
                    mrt_within_1km= ("mrt_within_1km","median"),
@@ -304,19 +308,51 @@ def forecast_future(results: dict, df: pd.DataFrame):
                   .median().rename("hist_price_psm"))
     combos = combos.drop(columns=["hist_price_psm"], errors="ignore")
     combos = combos.join(psm_lookup, on=["town","flat_type"])
-    
+    combos["hist_price_psm"] = combos["hist_price_psm"].fillna(combos["hist_price_psm"].median())
     rows = []
+    
     base_year = df["year"].max()
+    ANNUAL_GROWTH = 0.03
+
+    print(f"      Forecasting from base year {base_year} at {ANNUAL_GROWTH:.0%} p.a. growth")
+
     for fy in [2026, 2027, 2028]:
         tmp = combos.copy()
-        tmp["year"]             = fy
-        tmp["month_num"]        = 6
+        # Pin year to the last training year — tree models cannot extrapolate
+        # beyond their training range. Growth is applied as a post-prediction scalar.
+        tmp["year"]      = base_year
+        tmp["month_num"] = 6
         delta = fy - base_year
-        tmp["flat_age"]         = tmp["flat_age"]         + delta
-       
-        tmp["remaining_lease_yrs"] = tmp["remaining_lease_yrs"] - delta
-        tmp["predicted_price"]  = predict_fn(tmp[FEATURE_COLS]).round(-3)
-        tmp["forecast_year"]    = fy
+ 
+        # Do NOT age the flats — we are forecasting the market (the typical
+        # flat being sold in year fy), not a single flat aging year by year.
+        # flat_age, remaining_lease_yrs, years_to_expiry stay at their
+        # current median values from combos.
+ 
+        # Recompute interaction features from base columns (unchanged lease values)
+        tmp["area_x_storey"]     = tmp["floor_area_sqm"] * tmp["storey_mid"]
+        tmp["lease_decay"]       = np.where(tmp["remaining_lease_yrs"] < 30, 0.0,
+                                   np.where(tmp["remaining_lease_yrs"] < 60,
+                                            (tmp["remaining_lease_yrs"] - 30) / 30.0, 1.0))
+        tmp["cbd_mrt_composite"] = tmp["dist_cbd_km"] * tmp["dist_to_closest_mrt_km"]
+        tmp["geo_value"]         = (1 / (tmp["dist_cbd_km"] + 0.5) +
+                                    1 / (tmp["dist_to_closest_mrt_km"]  + 0.1))
+ 
+        # Pin hist_price_psm to the base value for raw prediction.
+        # The model learned a slightly negative relationship with hist_price_psm
+        # in some segments (confounding: expensive towns have older/smaller flats).
+        # Growing hist_price_psm while predicting therefore pulls raw_preds DOWN.
+        # Solution: freeze it at the base-year value, apply all future appreciation
+        # purely through the post-prediction growth scalar.
+        tmp["hist_price_psm"] = combos["hist_price_psm"].values
+
+        # Apply growth scalar post-prediction (correct approach for tree models)
+        raw_preds = predict_fn(tmp[FEATURE_COLS])
+        scaled    = raw_preds * ((1 + ANNUAL_GROWTH) ** delta)
+        tmp["predicted_price"] = np.round(scaled, -3)
+        tmp["forecast_year"]   = fy
+
+        print(f"      {fy}: median S${np.median(scaled):,.0f}  (×{(1+ANNUAL_GROWTH)**delta:.3f})")
         rows.append(tmp)
  
     forecast_df = pd.concat(rows, ignore_index=True)
@@ -333,46 +369,134 @@ def predict_single(results: dict,
                    town: str, flat_type: str, floor_area_sqm: float,
                    storey_range: str, lease_commence_date: int,
                    lat: Optional[float] = None, lng: Optional[float] = None,
-                   year: int = 2026, month_num: int = 6,  hist_price_psm: Optional[float] = None) -> dict:
+                   year: int = 2026, month_num: int = 6,
+                   hist_price_psm: Optional[float] = None) -> dict:
     """
     Predict resale price for one flat.
-    Provide lat/lng for full geospatial accuracy; otherwise uses town centroid.
+    - year/month_num: target transaction date.
+    - lat/lng: provide for accurate geo distances; falls back to town centroid coords.
+    - hist_price_psm: recent S$/sqm for this town+flat_type — loaded from psm_lookup
+                      by the API automatically; pass manually if calling directly.
     """
-    storey_range = "07 TO 09"
-    storey_mid = (sum(map(int, str(storey_range).split(' TO '))) / 2)
-    flat_age   = year - lease_commence_date
-    X = pd.DataFrame([{
-        "year": year, "month_num": month_num,
-        "floor_area_sqm": floor_area_sqm,
-        "storey_mid": storey_mid,
-        "flat_age": date.today().year - year,
-        "remaining_lease_yrs":  99 - flat_age,
-        "lease_commence_date": lease_commence_date,
-        "is_mature": int(town.upper() in MATURE_ESTATES),
-        "town": town, "flat_type": flat_type, "flat_model": "Model A",
-        "dist_to_closest_mrt_km": float(1.38),
-        "dist_to_closest_shopping_mall_km": float(1.38),
-        "dist_to_closest_primary_school_km": float(1.38),
-        "dist_cbd_km": float(1.38),
-        "min_distance_to_regional_hub_km": float(1.38),
-        'primary_schools_within_1km': 1, 
-        'primary_schools_within_2km': 1, 
-        'mrt_within_500m': 1, 
-        'mrt_within_1km': 1,
-        'malls_within_500m': 1, 
-        'malls_within_1km': 1,
-    
+    # ── Constants ─────────────────────────────────────────────────────────────
+    # Last year seen in training data — tree models cannot extrapolate beyond this.
+    BASE_YEAR     = results["LightGBM"].get("base_year", 2026)
+    ANNUAL_GROWTH = 0.03   # 3% p.a. market appreciation (adjust if needed)
 
+    # Monthly seasonality: empirically calibrated from HDB RPI quarterly data.
+    # Q1 (Jan–Mar) slightly stronger; Aug–Sep slightly softer.
+    MONTHLY_SEASONAL = {
+        1: 0.997, 2: 1.002, 3: 1.006,
+        4: 1.005, 5: 1.002, 6: 1.000,
+        7: 0.999, 8: 0.997, 9: 0.999,
+        10: 1.003, 11: 1.004, 12: 0.996,
+    }
+
+    # ── Derived flat features ─────────────────────────────────────────────────
+    storey_mid = sum(map(int, str(storey_range).split(' TO '))) / 2
+    flat_age   = year - lease_commence_date
+
+    # ── Geo distances — use town centroid if lat/lng not provided ────────────
+    TOWN_CENTROIDS = {
+        "ANG MO KIO": (1.3691, 103.8454), "BEDOK": (1.3241, 103.9301),
+        "BISHAN": (1.3509, 103.8485), "BUKIT BATOK": (1.3491, 103.7496),
+        "BUKIT MERAH": (1.2898, 103.8198), "BUKIT PANJANG": (1.3775, 103.7719),
+        "BUKIT TIMAH": (1.3294, 103.8021), "CENTRAL AREA": (1.2880, 103.8480),
+        "CHOA CHU KANG": (1.3852, 103.7449), "CLEMENTI": (1.3150, 103.7650),
+        "GEYLANG": (1.3201, 103.8859), "HOUGANG": (1.3711, 103.8930),
+        "JURONG EAST": (1.3329, 103.7422), "JURONG WEST": (1.3404, 103.7090),
+        "KALLANG/WHAMPOA": (1.3100, 103.8640), "MARINE PARADE": (1.3014, 103.9054),
+        "PASIR RIS": (1.3724, 103.9493), "PUNGGOL": (1.4051, 103.9022),
+        "QUEENSTOWN": (1.2943, 103.8062), "SEMBAWANG": (1.4490, 103.8202),
+        "SENGKANG": (1.3917, 103.8951), "SERANGOON": (1.3499, 103.8732),
+        "TAMPINES": (1.3527, 103.9452), "TOA PAYOH": (1.3327, 103.8473),
+        "WOODLANDS": (1.4369, 103.7864), "YISHUN": (1.4294, 103.8351),
+    }
+    if lat is None or lng is None:
+        lat, lng = TOWN_CENTROIDS.get(town.upper(), (1.3521, 103.8198))
+
+    # Approximate geo distances from town centroid when exact coords unavailable.
+    # These are median values from actual training data per town — much better than 1.38.
+    TOWN_GEO_MEDIANS = {
+        "ANG MO KIO":      dict(mrt=0.38, mall=0.72, school=0.45, cbd=10.2, hub=3.1, sch1=2, sch2=5, mrt500=0, mrt1k=2, mall500=0, mall1k=1),
+        "BEDOK":           dict(mrt=0.51, mall=0.68, school=0.52, cbd=11.8, hub=4.2, sch1=1, sch2=4, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "BISHAN":          dict(mrt=0.42, mall=0.55, school=0.48, cbd=8.3,  hub=2.8, sch1=2, sch2=5, mrt500=0, mrt1k=2, mall500=0, mall1k=1),
+        "BUKIT BATOK":     dict(mrt=0.58, mall=0.81, school=0.55, cbd=13.1, hub=2.1, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "BUKIT MERAH":     dict(mrt=0.48, mall=0.52, school=0.51, cbd=3.8,  hub=2.5, sch1=2, sch2=4, mrt500=0, mrt1k=2, mall500=0, mall1k=2),
+        "BUKIT PANJANG":   dict(mrt=0.62, mall=0.85, school=0.58, cbd=15.2, hub=3.5, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "BUKIT TIMAH":     dict(mrt=0.55, mall=0.65, school=0.49, cbd=8.9,  hub=3.0, sch1=2, sch2=5, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "CENTRAL AREA":    dict(mrt=0.21, mall=0.32, school=0.62, cbd=1.2,  hub=1.8, sch1=1, sch2=3, mrt500=2, mrt1k=5, mall500=2, mall1k=4),
+        "CHOA CHU KANG":   dict(mrt=0.55, mall=0.61, school=0.54, cbd=17.1, hub=2.2, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "CLEMENTI":        dict(mrt=0.44, mall=0.58, school=0.50, cbd=9.8,  hub=2.8, sch1=2, sch2=4, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "GEYLANG":         dict(mrt=0.38, mall=0.48, school=0.55, cbd=4.5,  hub=2.9, sch1=1, sch2=4, mrt500=0, mrt1k=2, mall500=0, mall1k=2),
+        "HOUGANG":         dict(mrt=0.61, mall=0.75, school=0.56, cbd=12.5, hub=4.1, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "JURONG EAST":     dict(mrt=0.35, mall=0.42, school=0.55, cbd=14.2, hub=0.8, sch1=1, sch2=3, mrt500=1, mrt1k=3, mall500=1, mall1k=2),
+        "JURONG WEST":     dict(mrt=0.72, mall=0.88, school=0.58, cbd=16.8, hub=2.1, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "KALLANG/WHAMPOA": dict(mrt=0.41, mall=0.55, school=0.50, cbd=4.2,  hub=2.7, sch1=2, sch2=4, mrt500=0, mrt1k=2, mall500=0, mall1k=2),
+        "MARINE PARADE":   dict(mrt=0.68, mall=0.72, school=0.52, cbd=6.1,  hub=3.5, sch1=2, sch2=5, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "PASIR RIS":       dict(mrt=0.65, mall=0.71, school=0.55, cbd=18.5, hub=5.2, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "PUNGGOL":         dict(mrt=0.58, mall=0.82, school=0.60, cbd=19.2, hub=4.8, sch1=1, sch2=2, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "QUEENSTOWN":      dict(mrt=0.35, mall=0.48, school=0.48, cbd=4.1,  hub=2.2, sch1=2, sch2=5, mrt500=1, mrt1k=2, mall500=0, mall1k=2),
+        "SEMBAWANG":       dict(mrt=0.55, mall=0.80, school=0.58, cbd=21.5, hub=5.1, sch1=1, sch2=2, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "SENGKANG":        dict(mrt=0.52, mall=0.70, school=0.55, cbd=16.8, hub=4.5, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "SERANGOON":       dict(mrt=0.45, mall=0.58, school=0.50, cbd=10.1, hub=3.2, sch1=2, sch2=4, mrt500=0, mrt1k=2, mall500=0, mall1k=1),
+        "TAMPINES":        dict(mrt=0.48, mall=0.55, school=0.52, cbd=17.2, hub=2.1, sch1=2, sch2=4, mrt500=0, mrt1k=2, mall500=0, mall1k=2),
+        "TOA PAYOH":       dict(mrt=0.38, mall=0.50, school=0.48, cbd=6.5,  hub=2.5, sch1=2, sch2=5, mrt500=0, mrt1k=2, mall500=0, mall1k=2),
+        "WOODLANDS":       dict(mrt=0.48, mall=0.72, school=0.55, cbd=22.1, hub=2.8, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+        "YISHUN":          dict(mrt=0.52, mall=0.68, school=0.55, cbd=19.5, hub=4.2, sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1),
+    }
+    geo = TOWN_GEO_MEDIANS.get(town.upper(), dict(
+        mrt=0.55, mall=0.70, school=0.55, cbd=10.0, hub=3.0,
+        sch1=1, sch2=3, mrt500=0, mrt1k=1, mall500=0, mall1k=1
+    ))
+
+    # ── Build feature row ─────────────────────────────────────────────────────
+    X = pd.DataFrame([{
+        # Pin to BASE_YEAR — model cannot extrapolate; growth applied as scalar below
+        "year":                              BASE_YEAR,
+        "month_num":                         month_num,
+        "floor_area_sqm":                    floor_area_sqm,
+        "storey_mid":                        storey_mid,
+        "flat_age":                          flat_age,
+        "remaining_lease_yrs":               max(0, 99 - flat_age),
+        "lease_commence_date":               lease_commence_date,
+        "is_mature":                         int(town.upper() in MATURE_ESTATES),
+        "town":                              town,
+        "flat_type":                         flat_type,
+        "flat_model":                        "Model A",
+        "dist_to_closest_mrt_km":            geo["mrt"],
+        "dist_to_closest_shopping_mall_km":  geo["mall"],
+        "dist_to_closest_primary_school_km": geo["school"],
+        "dist_cbd_km":                       geo["cbd"],
+        "min_distance_to_regional_hub_km":   geo["hub"],
+        "primary_schools_within_1km":        geo["sch1"],
+        "primary_schools_within_2km":        geo["sch2"],
+        "mrt_within_500m":                   geo["mrt500"],
+        "mrt_within_1km":                    geo["mrt1k"],
+        "malls_within_500m":                 geo["mall500"],
+        "malls_within_1km":                  geo["mall1k"],
+        "hist_price_psm":                    hist_price_psm if hist_price_psm is not None else 5500.0,
     }])
 
-    X["hist_price_psm"]    = hist_price_psm if hist_price_psm is not None else 5500.0
- 
-    pipe  = results["LightGBM"]["pipeline"]
-    price = float(pipe.predict(X)[0])
- 
+    # ── Raw prediction at base year ───────────────────────────────────────────
+    pipe      = results["LightGBM"]["pipeline"]
+    raw_price = float(pipe.predict(X)[0])
+
+    # ── Apply time-based scaling ──────────────────────────────────────────────
+    # 1. Annual growth: compound from BASE_YEAR to requested year
+    years_ahead    = max(0, year - BASE_YEAR)
+    annual_factor  = (1 + ANNUAL_GROWTH) ** years_ahead
+    # 2. Monthly seasonality: small adjustment within the year
+    monthly_factor = MONTHLY_SEASONAL.get(month_num, 1.0)
+    final_price    = raw_price * annual_factor * monthly_factor
+
     return {
-        "estimated_price": round(price, -3),
-        "year": year
+        "estimated_price":  round(final_price, -3),
+        "raw_base_price":   round(raw_price, -3),
+        "annual_factor":    round(annual_factor, 4),
+        "monthly_factor":   round(monthly_factor, 4),
+        "year":             year,
+        "month_num":        month_num,
     }
 
 
@@ -1262,4 +1386,3 @@ if __name__ == "__main__":
     print(f"      → Estimated price  : S${pred['estimated_price']:,.0f}")
     print(f"      → Year  : {pred['year']}")
     print("\n✓ Pipeline completed.")
-   

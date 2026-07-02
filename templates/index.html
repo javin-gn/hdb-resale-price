@@ -75,7 +75,7 @@
                                     <div class="col-md-6">
                                         <div class="p-3 border rounded metric-card">
                                             <small class="text-muted">Flat Type</small>
-                                            <select id="flat_type" class="form-select">
+                                            <select id="flat_type" class="form-select" onchange="populatePSM()">
                                             </select>
                                         </div>
                                     </div>
@@ -296,11 +296,37 @@
             projectedGrowth = (selectedYear - 2026) * baseGrowth;
         }
 
+
+
         // 3. Event Listener for Year Change
         yearDropdown.addEventListener('change', (e) => {
             populateMonths(e.target.value);
         });
 
+        async function populatePSM() {
+            const town = document.getElementById('hdb_towns').textContent;
+            const flatType = document.getElementById('flat_type').value;
+
+            if (!town || !flatType) return;
+
+            try {
+                // Call the FastAPI endpoint
+                const response = await fetch(`/market-price-psm?town=${encodeURIComponent(town)}&flat_type=${encodeURIComponent(flatType)}`);
+                const data = await response.json();
+
+                // Update the UI
+                const psmDisplay = document.getElementById('hist_price_psm');
+                if (psmDisplay) {
+                    psmDisplay.textContent = Math.round(data.hist_price_psm).toLocaleString();
+                }
+                
+                console.log(`PSM updated via ${data.source}: ${data.hist_price_psm}`);
+            } catch (error) {
+                console.error("Error fetching market PSM:", error);
+            }
+        }
+
+    
         document.getElementById('floorArea').addEventListener('input', function (e) {
             // 1. Remove any character that is not a digit or a decimal point
             let value = this.value.replace(/[^0-9.]/g, '');
@@ -413,11 +439,16 @@
                 document.getElementById('hdb_towns').textContent = data.town;
                 document.getElementById('leaseCommenceDate').textContent = data.lease_commence_date;
                 document.getElementById('dist_cbd_km').textContent = data.dist_cbd_km.toFixed(2) + ' km';
-
+                
 
                 loadingIndicator.classList.add('d-none');
                 dataContent.classList.remove('d-none');
                 populateDropdowns();
+
+                // Inside fetchMetrics() function, after calling populateDropdowns()
+                await populateDropdowns();
+                // Add this line to trigger the price update based on default values
+                populatePSM();
 
                 // Directly embedded array generated from genDS.py
                 const storeyRanges = [
@@ -449,7 +480,11 @@
 
 
         document.getElementById('predictButton').addEventListener('click', async () => {
-            // 1. Collect all values from the inputs and selects
+            
+            // 1. Force the latest PSM to load before reading the value
+                await populatePSM();
+
+            // 2. Collect all values from the inputs and selects
 
             const rawValue = document.getElementById('storeyLevel').value; // e.g., "04 to 06"
 
@@ -498,7 +533,7 @@
                 malls_within_500m: parseInt(document.getElementById('mallsWithin500m').textContent) || 0,
                 dist_cbd_km: cleanDist('dist_cbd_km'),
                 flat_age: currentYear - parseInt(document.getElementById('year').value), 
-                hist_price_psm: document.getElementById('hist_price_psm').textContent
+                hist_price_psm: parseFloat(document.getElementById('hist_price_psm').textContent.replace(/,/g, '')) || 0
                
             };
 

@@ -24,13 +24,34 @@ with open('data/hdb_model_pipeline.pkl', 'rb') as f:
     artifacts = pickle.load(f)
 
 # Change these lines to access the dictionary keys directly
-model = artifacts['pipeline'] # The key in your pipeline.py is 'pipeline'
-# Use the keys exactly as they appear in the saved artifact dictionary
+model = artifacts['pipeline']
 model_r2 = artifacts['r2']
 mae = artifacts['mae']
 mape = artifacts['mape']
 rmse = artifacts['rmse']
+BASE_YEAR = artifacts.get('base_year', 2026)  # last year in training data
 
+# Monthly growth: compound 3% annual growth into monthly steps (~0.247% per month).
+# This means selecting any future month always shows a higher price than the previous
+# month, which matches user expectations when browsing future valuations.
+ANNUAL_GROWTH = 0.03  # 3% p.a. — adjust if needed
+MONTHLY_GROWTH_RATE = (1 + ANNUAL_GROWTH) ** (1/12) - 1  # ~0.00247 per month
+
+# --- 2. LOAD LOOKUP DATA EXPLICITLY ---
+# This ignores the pickle file for lookups and goes straight to the JSONs
+PSM_DATA = {}
+GLOBAL_MEDIAN = 5500.0
+
+if os.path.exists('data/psm_lookup.json'):
+    with open('data/psm_lookup.json', 'r') as f:
+        raw_list = json.load(f)
+        # Convert list of dicts to a lookup dictionary: {(town, flat_type): psm}
+        PSM_DATA = {(item['town'], item['flat_type']): item['hist_price_psm'] for item in raw_list}
+
+if os.path.exists('data/psm_lookup_meta.json'):
+    with open('data/psm_lookup_meta.json', 'r') as f:
+        meta = json.load(f)
+        GLOBAL_MEDIAN = meta.get("global_median_psm", 5500.0)
 
 async def get_current_onemap_token():
     
@@ -140,23 +161,22 @@ async def get_config():
     return data
 
 def _resolve_hist_price_psm(town: str, flat_type: str, provided: Optional[float]) -> float:
-    """
-    Returns the caller-provided hist_price_psm if given, otherwise looks up the
-    recent market median for this town+flat_type from psm_lookup.json, falling
-    back to the Singapore-wide median if that combo has no recent data.
-    """
     if provided is not None:
         return provided
-    lookup = model .get("psm_lookup", {})
-    return lookup.get((town, flat_type), model.get("global_median_psm", 5500.0))
+    
+    # Use the loaded PSM_DATA dictionary, NOT the model object
+    return PSM_DATA.get((town, flat_type), GLOBAL_MEDIAN)
 
 @app.get("/market-price-psm")
 def market_price_psm(town: str, flat_type: str):
-    """Returns the recent median S$/sqm used as the hist_price_psm feature for this town+flat_type."""
     town = town.upper().strip()
     flat_type = flat_type.upper().strip()
+    
     resolved = _resolve_hist_price_psm(town, flat_type, None)
-    is_specific = (town, flat_type) in model.get("psm_lookup", {})
+    
+    # Check if the specific key exists in our loaded data
+    is_specific = (town, flat_type) in PSM_DATA
+    
     return {
         "town": town,
         "flat_type": flat_type,
@@ -195,33 +215,53 @@ class ValuationRequest(BaseModel):
 @app.post("/api/predict")
 async def predict_valuation(data: ValuationRequest):
     try:
-        # Pydantic v2 uses .model_dump(), NOT .dict()
         data_dict = data.model_dump()
-        
+
+        # ── Year pinning ──────────────────────────────────────────────────────
+        # LightGBM cannot extrapolate beyond its training range.
+        # We pin year to BASE_YEAR for the raw prediction, then apply
+        # a growth scalar + monthly seasonality as post-prediction adjustments.
+        requested_year  = data_dict["year"]
+        requested_month = data_dict["month_num"]
+        data_dict["year"] = BASE_YEAR   # pin before sending to model
+
         df = pd.DataFrame([data_dict])
         df = df.rename(columns={
             "storey_midpoint": "storey_mid",
             "remaining_lease": "remaining_lease_yrs",
-            "flat_models": "flat_model",
-            "sch_within_1km" : "primary_schools_within_1km",
-            "sch_within_2km" : "primary_schools_within_2km",
-            "mall_count": "malls_within_1km"
-            # Add any other mapping needed
+            "flat_models":     "flat_model",
+            "sch_within_1km":  "primary_schools_within_1km",
+            "sch_within_2km":  "primary_schools_within_2km",
+            "mall_count":      "malls_within_1km",
         })
-        
-        # Predict directly
-        prediction = float(model.predict(df)[0])
-        
+
+        # ── Raw prediction at base year ───────────────────────────────────────
+        raw_price = float(model.predict(df)[0])
+
+        # ── Apply time-based scaling ──────────────────────────────────────────
+        # Compute total months elapsed from BASE_YEAR Jan as the reference point.
+        # Every additional month adds ~0.247% so price always increases forward in time.
+        BASE_MONTH    = 1   # January of BASE_YEAR is our reference (factor = 1.0)
+        months_elapsed = (requested_year - BASE_YEAR) * 12 + (requested_month - BASE_MONTH)
+        months_elapsed = max(0, months_elapsed)
+        time_factor   = (1 + MONTHLY_GROWTH_RATE) ** months_elapsed
+        final_price   = raw_price * time_factor
+
+        print(f"  predict: year={requested_year} month={requested_month} "
+              f"months_elapsed={months_elapsed} factor={time_factor:.4f} "
+              f"raw=S${raw_price:,.0f} → S${final_price:,.0f}")
+
         return {
-            "predicted_price": prediction, 
-            "model_r2": f"{model_r2 * 100:.2f}%", 
-            "mae": f"S${mae:,.0f}", 
-            "mape": f"{mape:.1%} ", 
-            "rmse": f"S${rmse:,.0f}"
+            "predicted_price": round(final_price, 0),
+            "raw_base_price":  round(raw_price, 0),
+            "time_factor":     round(time_factor, 4),
+            "months_elapsed":  months_elapsed,
+            "model_r2":        f"{model_r2 * 100:.2f}%",
+            "mae":             f"S${mae:,.0f}",
+            "mape":            f"{mape:.1%}",
+            "rmse":            f"S${rmse:,.0f}",
         }
-    
+
     except Exception as e:
-        # It is helpful to print the error to your server console for debugging
         print(f"Prediction error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
-

@@ -939,12 +939,13 @@ def FeatureGenerator(address): #Code for dagster
         #print(json.dumps(records))
         # Check if the records list is not empty
         if records:
-            df["town"] = hdb_towns.get(records[0].get("bldg_contract_town"), records[0].get("bldg_contract_town")) 
+            df["town"] = (hdb_towns.get(records[0].get("bldg_contract_town"), records[0].get("bldg_contract_town"))).upper()
             df["lease_commence_date"] = records[0].get("year_completed"),
             df["remaining_lease"] = calculate_remaining_lease(records[0].get("year_completed"))
             df["is_mature"]= df["town"].str.upper().isin(MATURE_ESTATES).astype(int)
             CBD_LAT, CBD_LNG = 1.2841, 103.8516  # Raffles Place MRT
             df["dist_cbd_km"] = haversine_km(df["lat"], df["lon"], CBD_LAT, CBD_LNG)
+            
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
         
