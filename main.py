@@ -11,6 +11,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 from pydantic import BaseModel
 import pandas as pd
+import numpy as np
 from sklearn.metrics import r2_score
 from typing import Optional
 app = FastAPI()
@@ -235,8 +236,9 @@ async def predict_valuation(data: ValuationRequest):
             "mall_count":      "malls_within_1km",
         })
 
-        # ── Raw prediction at base year ───────────────────────────────────────
-        raw_price = float(model.predict(df)[0])
+        # Model predicts log(price) — must exp() back to raw price
+        log_pred  = model.predict(df)[0]
+        raw_price = float(np.exp(log_pred))
 
         # ── Apply time-based scaling ──────────────────────────────────────────
         # Compute total months elapsed from BASE_YEAR Jan as the reference point.

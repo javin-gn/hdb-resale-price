@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
@@ -161,36 +161,110 @@ def get_preprocessor():
 
 def train_models(df: pd.DataFrame):
 
-    X = df[FEATURE_COLS].copy()
-    y = df[TARGET_COL].copy()
-    X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42)
- 
-    pipe = Pipeline([
-        ("pre", get_preprocessor()),
-        ("m", lgb.LGBMRegressor(
-            n_estimators=600,
-            learning_rate=0.04,
-            num_leaves=127,
-            subsample=0.8,
-            colsample_bytree=0.8,
-            min_child_samples=20,
-            n_jobs=-1,
-            random_state=42,
-            verbose=-1,
-        )),
-    ])
-    pipe.fit(X_tr, y_tr)
- 
-    preds = pipe.predict(X_te)
-    mae   = mean_absolute_error(y_te, preds)
-    rmse  = np.sqrt(mean_squared_error(y_te, preds))
-    r2    = r2_score(y_te, preds)
-    mape = mean_absolute_percentage_error(y_te, preds)
-    print(f"      LightGBM → MAE: S${mae:,.0f}  RMSE: S${rmse:,.0f} MAPE: {mape:.1%}   R²: {r2 * 100:.2f}%")
- 
-    results = {"LightGBM": {"pipeline": pipe, "mae": mae, "rmse": rmse, "mape": mape, "r2": r2, "preds": preds}}
-    return results, X_te, y_te
+    # ── Time-series split ─────────────────────────────────────────────────────
+    df = df.sort_values("month").reset_index(drop=True)
+    years   = sorted(df["year"].unique())
+    n_years = len(years)
+    if n_years < 2:
+        raise ValueError(f"Need at least 2 years of data, got {n_years}")
 
+    cutoff_year = years[-1]
+    train_mask  = df["year"] < cutoff_year
+    test_mask   = df["year"] == cutoff_year
+
+    X_tr = df.loc[train_mask, FEATURE_COLS]
+    y_tr = df.loc[train_mask, TARGET_COL]
+    X_te = df.loc[test_mask,  FEATURE_COLS]
+    y_te = df.loc[test_mask,  TARGET_COL]
+
+    print(f"[4/7] Time-series split:")
+    print(f"      Train : {years[0]}--{years[-2]}  ({len(X_tr):,} rows)")
+    print(f"      Test  : {cutoff_year}            ({len(X_te):,} rows)")
+    print(f"      Strategy: log(price) target -- symmetrises percentage errors")
+
+    # Log-transform the target.
+    # Predicting log(price) then exp()-ing back makes the loss treat a
+    # S$20K error on a S$300K flat the same percentage-wise as on a S$700K flat.
+    # Do NOT combine with objective="mape" -- that double-penalises on log scale.
+    y_tr_log = np.log(y_tr)
+
+    def make_pipe():
+        return Pipeline([
+            ("pre", get_preprocessor()),
+            ("m", lgb.LGBMRegressor(
+                n_estimators=800,
+                learning_rate=0.03,
+                num_leaves=127,
+                subsample=0.8,
+                colsample_bytree=0.8,
+                min_child_samples=20,
+                reg_alpha=0.1,
+                reg_lambda=0.1,
+                n_jobs=-1,
+                random_state=42,
+                verbose=-1,
+                # Default rmse objective on log-target is correct --
+                # minimising rmse in log-space ~= minimising relative errors in raw space.
+            )),
+        ])
+
+    # ── Walk-forward CV ───────────────────────────────────────────────────────
+    print(f"      Walk-forward CV ({n_years - 1} folds):")
+    cv_scores = {"mae": [], "r2": [], "mape": []}
+
+    for i in range(1, n_years):
+        cv_train_years = years[:i]
+        cv_val_year    = years[i]
+        cv_tr_mask     = df["year"].isin(cv_train_years)
+        cv_val_mask    = df["year"] == cv_val_year
+
+        cv_X_tr  = df.loc[cv_tr_mask,  FEATURE_COLS]
+        cv_y_tr  = np.log(df.loc[cv_tr_mask,  TARGET_COL])
+        cv_X_val = df.loc[cv_val_mask, FEATURE_COLS]
+        cv_y_val = df.loc[cv_val_mask, TARGET_COL]
+
+        p = make_pipe()
+        p.fit(cv_X_tr, cv_y_tr)
+        cv_preds = np.exp(p.predict(cv_X_val))
+
+        fold_mae  = mean_absolute_error(cv_y_val, cv_preds)
+        fold_r2   = r2_score(cv_y_val, cv_preds)
+        fold_mape = mean_absolute_percentage_error(cv_y_val, cv_preds)
+        cv_scores["mae"].append(fold_mae)
+        cv_scores["r2"].append(fold_r2)
+        cv_scores["mape"].append(fold_mape)
+        print(f"        Fold {i}: train {years[0]}--{cv_train_years[-1]} "
+              f"-> val {cv_val_year} | "
+              f"MAE S${fold_mae:,.0f}  R2 {fold_r2*100:.2f}%  MAPE {fold_mape:.1%}")
+
+    cv_mape_mean = sum(cv_scores["mape"]) / len(cv_scores["mape"])
+    cv_r2_mean   = sum(cv_scores["r2"])   / len(cv_scores["r2"])
+    print(f"      CV mean -> R2 {cv_r2_mean*100:.2f}%  MAPE {cv_mape_mean:.1%}")
+
+    # ── Final model ───────────────────────────────────────────────────────────
+    print(f"      Training final model on {years[0]}--{years[-2]} ...")
+    pipe = make_pipe()
+    pipe.fit(X_tr, y_tr_log)
+
+    raw_preds = np.exp(pipe.predict(X_te))
+    mae  = mean_absolute_error(y_te, raw_preds)
+    rmse = np.sqrt(mean_squared_error(y_te, raw_preds))
+    r2   = r2_score(y_te, raw_preds)
+    mape = mean_absolute_percentage_error(y_te, raw_preds)
+    print(f"      Test ({cutoff_year}) -> "
+          f"MAE S${mae:,.0f}  RMSE S${rmse:,.0f}  MAPE {mape:.1%}  R2 {r2*100:.2f}%")
+
+    results = {"LightGBM": {
+        "pipeline":   pipe,
+        "mae":        mae,
+        "rmse":       rmse,
+        "mape":       mape,
+        "r2":         r2,
+        "preds":      raw_preds,
+        "cv_scores":  cv_scores,
+        "log_target": True,
+    }}
+    return results, X_te, y_te
 
 
 def save_artefacts(results: dict, X_te, y_te, df: pd.DataFrame):
@@ -276,7 +350,7 @@ def save_psm_lookup(df: pd.DataFrame):
 def forecast_future(results: dict, df: pd.DataFrame):
     pipe = results["LightGBM"]["pipeline"]
     def predict_fn(X):
-        return pipe.predict(X)
+        return np.exp(pipe.predict(X))
  
     recent = df[df["year"] >= df["year"].max() - 1]
     combos = (recent.groupby(["town","flat_type"])
@@ -480,7 +554,7 @@ def predict_single(results: dict,
 
     # ── Raw prediction at base year ───────────────────────────────────────────
     pipe      = results["LightGBM"]["pipeline"]
-    raw_price = float(pipe.predict(X)[0])
+    raw_price = float(np.exp(pipe.predict(X)[0]))
 
     # ── Apply time-based scaling ──────────────────────────────────────────────
     # 1. Annual growth: compound from BASE_YEAR to requested year
