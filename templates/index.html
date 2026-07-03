@@ -215,19 +215,90 @@
                             </div>
 
                       
-                            <div id="resultArea" class="mt-4 alert alert-info d-none">
-                                    <h4>Predicted HDB Resale Price: <span id="predictedPrice"></span></h4>
-                                    <p>Models are trained on HDB Resale Price from Jan-2017 onwards using LIGHTGBM with  <span id="model_r2"></span> accuracy.
-                                    <br/>Proximty Metrics are based on One Map's School/Mrt and OpenStreetMap's Crowd-sourced data.
-                                    <br/>HDB Property Information are retrieved from Jan 1937 to Dec 2025.
-                                    <br/>  
-                                    <ul>
-                                        <li>Mean Absolute Error: <span id="mae"></span></li>
-                                        <li>MAPE: <span id="mape"></span></li>
-                                        <li>RMSE: <span id="rmse"></span></li>
-                                    </ul>
-              
-                                    </p>
+                            <div id="resultArea" class="mt-4 d-none">
+
+                                <!-- Main predicted price -->
+                                <div class="card border-primary mb-3">
+                                    <div class="card-body text-center py-4">
+                                        <small class="text-muted text-uppercase fw-semibold letter-spacing-1">Estimated Resale Price</small>
+                                        <div class="display-5 fw-bold text-primary mt-1" id="predictedPrice"></div>
+                                        <small class="text-muted" id="predictionDate"></small>
+                                    </div>
+                                </div>
+
+                                <!-- Price range bar -->
+                                <div class="card border-0 bg-light mb-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <small class="text-muted fw-semibold">PRICE RANGE</small>
+                                            <small class="text-muted">Model uncertainty: ±<span id="mapeDisplay"></span></small>
+                                        </div>
+
+                                        <!-- 95% band labels -->
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="small text-secondary" id="low95Label"></span>
+                                            <span class="small text-secondary" id="high95Label"></span>
+                                        </div>
+
+                                        <!-- Visual range bar -->
+                                        <div class="position-relative" style="height: 28px;">
+                                            <!-- 95% band (full bar background) -->
+                                            <div class="rounded" style="background:#dee2e6; height:28px; width:100%;"></div>
+                                            <!-- 68% band (inner, coloured) -->
+                                            <div id="band68Bar" class="rounded position-absolute top-0"
+                                                 style="background:#0d6efd33; height:28px;"></div>
+                                            <!-- Centre marker (predicted price) -->
+                                            <div id="centreMarker" class="position-absolute top-0"
+                                                 style="width:3px; background:#0d6efd; height:28px; transform:translateX(-50%);"></div>
+                                        </div>
+
+                                        <!-- 68% band labels -->
+                                        <div class="d-flex justify-content-between mt-1">
+                                            <span class="small text-primary fw-semibold" id="low68Label"></span>
+                                            <span class="small text-primary fw-semibold" id="high68Label"></span>
+                                        </div>
+
+                                        <div class="row text-center mt-2 g-2">
+                                            <div class="col-6">
+                                                <div class="p-2 rounded" style="background:#0d6efd22;">
+                                                    <small class="text-muted d-block">Likely range (68%)</small>
+                                                    <span class="fw-semibold text-primary small" id="range68Text"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="p-2 rounded bg-white border">
+                                                    <small class="text-muted d-block">Wider range (95%)</small>
+                                                    <span class="fw-semibold small text-secondary" id="range95Text"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Model stats -->
+                                <div class="card border-0 mb-0">
+                                    <div class="card-body p-3">
+                                        <small class="text-muted">
+                                            Models are trained on HDB Resale Price from Jan-2017 onwards using LightGBM with <strong><span id="model_r2"></span></strong> accuracy.
+                                            Proximity metrics are based on OneMap's School/MRT and OpenStreetMap data.
+                                        </small>
+                                        <div class="row g-2 mt-2">
+                                            <div class="col-4 text-center">
+                                                <small class="text-muted d-block">MAE</small>
+                                                <span class="fw-semibold small" id="mae"></span>
+                                            </div>
+                                            <div class="col-4 text-center">
+                                                <small class="text-muted d-block">MAPE</small>
+                                                <span class="fw-semibold small" id="mape"></span>
+                                            </div>
+                                            <div class="col-4 text-center">
+                                                <small class="text-muted d-block">RMSE</small>
+                                                <span class="fw-semibold small" id="rmse"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -545,11 +616,39 @@
                 });
                 
                 const data = await response.json();
-                document.getElementById('predictedPrice').textContent = `$${data.predicted_price.toLocaleString()}`;
-                document.getElementById('model_r2').textContent = `${data.model_r2.toLocaleString()}`;
-                document.getElementById('mae').textContent = `${data.mae.toLocaleString()}`;
-                document.getElementById('mape').textContent = `${data.mape.toLocaleString()}`;
-                document.getElementById('rmse').textContent = `${data.rmse.toLocaleString()}`;
+
+                const fmt = n => '$' + Math.round(n).toLocaleString();
+
+                // Main price
+                document.getElementById('predictedPrice').textContent = fmt(data.predicted_price);
+                const yr  = document.getElementById('year').value;
+                const mo  = document.getElementById('month').value.toString().padStart(2,'0');
+                document.getElementById('predictionDate').textContent = `Estimated for ${yr}-${mo}`;
+
+                // Range labels
+                document.getElementById('mapeDisplay').textContent  = data.mape;
+                document.getElementById('low95Label').textContent   = fmt(data.price_low_95);
+                document.getElementById('high95Label').textContent  = fmt(data.price_high_95);
+                document.getElementById('low68Label').textContent   = fmt(data.price_low_68);
+                document.getElementById('high68Label').textContent  = fmt(data.price_high_68);
+                document.getElementById('range68Text').textContent  = `${fmt(data.price_low_68)} – ${fmt(data.price_high_68)}`;
+                document.getElementById('range95Text').textContent  = `${fmt(data.price_low_95)} – ${fmt(data.price_high_95)}`;
+
+                // Visual bar: position 68% band and centre marker within the 95% band
+                const span95   = data.price_high_95 - data.price_low_95;
+                const off68L   = ((data.price_low_68  - data.price_low_95) / span95) * 100;
+                const off68R   = ((data.price_high_95 - data.price_high_68) / span95) * 100;
+                const offCentre= ((data.predicted_price - data.price_low_95) / span95) * 100;
+
+                document.getElementById('band68Bar').style.left  = off68L + '%';
+                document.getElementById('band68Bar').style.right = off68R + '%';
+                document.getElementById('centreMarker').style.left = offCentre + '%';
+
+                // Model stats
+                document.getElementById('model_r2').textContent = data.model_r2;
+                document.getElementById('mae').textContent      = data.mae;
+                document.getElementById('mape').textContent     = data.mape;
+                document.getElementById('rmse').textContent     = data.rmse;
                 document.getElementById('resultArea').classList.remove('d-none');
             } catch (err) {
                 console.error("Prediction failed:", err);

@@ -236,6 +236,13 @@ async def predict_valuation(data: ValuationRequest):
             "mall_count":      "malls_within_1km",
         })
 
+        # Derive lag features from hist_price_psm (best available proxy at prediction time)
+        psm = df["hist_price_psm"].iloc[0]
+        df["lag_1_psm"]  = psm
+        df["lag_3_psm"]  = psm
+        df["lag_12_psm"] = psm
+        df["mom_1_psm"]  = 0.0  # no momentum signal available at single-prediction time
+
         # Model predicts log(price) — must exp() back to raw price
         log_pred  = model.predict(df)[0]
         raw_price = float(np.exp(log_pred))
@@ -249,19 +256,34 @@ async def predict_valuation(data: ValuationRequest):
         time_factor   = (1 + MONTHLY_GROWTH_RATE) ** months_elapsed
         final_price   = raw_price * time_factor
 
+        # ── Price range using MAPE as uncertainty band ────────────────────────
+        # MAPE = typical % error → true price lies within ±MAPE of prediction.
+        # 68% band: ±1×MAPE  (like ±1 std dev — most likely range)
+        # 95% band: ±2×MAPE  (wider safety net)
+        price_low_68  = round(final_price * (1 - mape), 0)
+        price_high_68 = round(final_price * (1 + mape), 0)
+        price_low_95  = round(final_price * (1 - 2 * mape), 0)
+        price_high_95 = round(final_price * (1 + 2 * mape), 0)
+
         print(f"  predict: year={requested_year} month={requested_month} "
               f"months_elapsed={months_elapsed} factor={time_factor:.4f} "
-              f"raw=S${raw_price:,.0f} → S${final_price:,.0f}")
+              f"raw=S${raw_price:,.0f} → S${final_price:,.0f} "
+              f"[S${price_low_68:,.0f}–S${price_high_68:,.0f}]")
 
         return {
-            "predicted_price": round(final_price, 0),
-            "raw_base_price":  round(raw_price, 0),
-            "time_factor":     round(time_factor, 4),
-            "months_elapsed":  months_elapsed,
-            "model_r2":        f"{model_r2 * 100:.2f}%",
-            "mae":             f"S${mae:,.0f}",
-            "mape":            f"{mape:.1%}",
-            "rmse":            f"S${rmse:,.0f}",
+            "predicted_price":  round(final_price, 0),
+            "price_low_68":     price_low_68,
+            "price_high_68":    price_high_68,
+            "price_low_95":     price_low_95,
+            "price_high_95":    price_high_95,
+            "mape_pct":         round(mape * 100, 2),
+            "raw_base_price":   round(raw_price, 0),
+            "time_factor":      round(time_factor, 4),
+            "months_elapsed":   months_elapsed,
+            "model_r2":         f"{model_r2 * 100:.2f}%",
+            "mae":              f"S${mae:,.0f}",
+            "mape":             f"{mape:.1%}",
+            "rmse":             f"S${rmse:,.0f}",
         }
 
     except Exception as e:
