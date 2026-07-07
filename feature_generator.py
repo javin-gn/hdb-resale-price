@@ -139,32 +139,33 @@ def FeatureGenerator(address): #Code for dagster
 
     # --- REVISED HUBS DICTIONARY (SVY21 METRES) ---
     hubs = {
-        "Jurong_Lake_District": (18033.4, 35359.6),
-        "Tampines_Regional_Centre": (41243.5, 36980.2),
-        "Woodlands_Regional_Centre": (22802.1, 44710.8),
-        "Paya_Lebar_Central": (34820.6, 34105.9),
-        "One_North_Hub": (23348.9, 31711.2),
-        "Punggol_Digital_District": (35720.4, 41920.5),
-        "Bishan_Sub_Regional_Centre": (29718.3, 37280.4),
-        "Seletar_Aerospace_Park": (31740.1, 42510.9),
-        "Changi_Business_Park": (43720.8, 34810.1),
-        "International_Business_Park": (18810.2, 35120.7)
+        "Jurong_Lake_District": (1.3194, 103.7317),
+        "Tampines_Regional_Centre": (1.3533, 103.9455),
+        "Woodlands_Regional_Centre": (1.4328, 103.7806),
+        "Paya_Lebar_Central": (1.3168, 103.8887),
+        "One_North_Hub": (1.3015, 103.7854),
+        "Punggol_Digital_District": (1.4010, 103.9080),
+        "Bishan_Sub_Regional_Centre": (1.3520, 103.8542),
+        "Seletar_Aerospace_Park": (1.4116, 103.8724),
+        "Changi_Business_Park": (1.3323, 103.9635),
+        "International_Business_Park": (1.3181, 103.7371)
     }
 
     # --- AUTHORITATIVE NON-"SHOPPING" RETAIL NODES (SVY21 METRES) ---
     # --- AUTHORITATIVE NON-"SHOPPING" RETAIL NODES (CORRECTED SVY21 METRES) ---
     FIXED_MALLS = [
-        {"mall_name": "Amk Hub", "mall_x": 29184.22, "mall_y": 39105.82}, 
-        {"mall_name": "Ion Orchard", "mall_x": 27807.51, "mall_y": 32395.71},
-        {"mall_name": "Ngee Ann City", "mall_x": 27931.33, "mall_y": 32247.16},
-        {"mall_name": "Vivocity", "mall_x": 26458.74, "mall_y": 29013.91},
-        {"mall_name": "Plaza Singapura", "mall_x": 29088.22, "mall_y": 32881.54},
-        {"mall_name": "Bugis Junction", "mall_x": 30200.70, "mall_y": 32857.73},
-        {"mall_name": "Nex", "mall_x": 32306.21, "mall_y": 36743.79},
-        {"mall_name": "Jem", "mall_x": 17972.14, "mall_y": 35431.11},
-        {"mall_name": "Westgate", "mall_x": 17871.91, "mall_y": 35572.82},
-        {"mall_name": "Tampines Mall", "mall_x": 41280.55, "mall_y": 36802.40}
+        {"mall_name": "Amk Hub", "lat": 1.3725, "lng": 103.8475},
+        {"mall_name": "Ion Orchard", "lat": 1.3033, "lng": 103.8322},
+        {"mall_name": "Ngee Ann City", "lat": 1.3020, "lng": 103.8333},
+        {"mall_name": "Vivocity", "lat": 1.2647, "lng": 103.8201},
+        {"mall_name": "Plaza Singapura", "lat": 1.3005, "lng": 103.8466},
+        {"mall_name": "Bugis Junction", "lat": 1.3003, "lng": 103.8566},
+        {"mall_name": "Nex", "lat": 1.3508, "lng": 103.8755},
+        {"mall_name": "Jem", "lat": 1.3197, "lng": 103.7311},
+        {"mall_name": "Westgate", "lat": 1.3210, "lng": 103.7302},
+        {"mall_name": "Tampines Mall", "lat": 1.3535, "lng": 103.9458}
     ]
+
 
 
     ###############################################
@@ -522,18 +523,19 @@ def FeatureGenerator(address): #Code for dagster
  
 
     def haversine_km(lat1, lon1, lat2, lon2):
-        # Use np.radians instead of math.radians
-        lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
-
-        dlon = lon2 - lon1
-        dlat = lat2 - lat1
+        # Convert to radians explicitly
+        phi1, lambda1 = np.radians(lat1), np.radians(lon1)
+        phi2, lambda2 = np.radians(lat2), np.radians(lon2)
         
-        # Use np.sin, np.cos, np.sqrt, np.arcsin
-        a = np.sin(dlat/2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2.0)**2
-        c = 2 * np.arcsin(np.sqrt(a))
+        dphi = phi2 - phi1
+        dlambda = lambda2 - lambda1
         
+        a = np.sin(dphi/2)**2 + np.cos(phi1) * np.cos(phi2) * np.sin(dlambda/2)**2
+        # c is the angular distance in radians
+        c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+        
+        # R * c gives the distance
         return 6371 * c
-
 
     print("\n📐 Computing distances to URA Master Plan Economic Hubs...")
 
@@ -541,7 +543,7 @@ def FeatureGenerator(address): #Code for dagster
     # Compute straight-line distances using the flat cartesian coorindates
     for hub_name, (hub_x, hub_y) in hubs.items():
         col_name = f"dist_to_{hub_name.lower()}"
-        df[col_name] = haversine_km(df["x"], df["y"], hub_x, hub_y)
+        df[col_name] = df.apply(lambda row: haversine_km(row['lat'], row['lon'], hub_x, hub_y), axis=1)
 
     # Calculate proximity to the absolute closest economic hub
     dist_cols = [f"dist_to_{hub_name.lower()}" for hub_name in hubs.keys()]

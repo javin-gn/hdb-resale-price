@@ -492,7 +492,9 @@
                 document.getElementById('schName').textContent = data.closest_primary_school_name;
                 document.getElementById('schDist').textContent = data.dist_to_closest_primary_school_km.toFixed(2) + ' km';
 
-                document.getElementById('hubName').textContent = data.closest_regional_hub_name.replace(/_/g, ' ');
+                document.getElementById('hubName').textContent = data.closest_regional_hub_name.replace(/^to_/i, '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());           
+                                                                                                            
+                                                                                               
                 document.getElementById('hubDist').textContent = data.min_distance_to_regional_hub_km.toFixed(2) + ' km';
 
                 document.getElementById('mrtName').textContent = data.closest_mrt_name;
